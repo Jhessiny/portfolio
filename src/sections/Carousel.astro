@@ -1,0 +1,114 @@
+---
+import ProjectItem from "./ProjectItem.astro";
+import { projectsList } from "../data/projects";
+---
+
+<div id="carousel-wrapper">
+  <div class="flex overflow-x-hidden px-2 md:px-0 pt-20">
+    <div class="flex items-end z-0">
+      <h2
+        class="font-bold text-text-dark text-5xl uppercase transform rotate-180 inline-block mr-6 z-20 hidden sm:block"
+        style="writing-mode: vertical-rl;"
+      >
+        Projects
+      </h2>
+    </div>
+    <div>
+      <div
+        id="carousel-track"
+        class="flex gap-8 duration-500 relative -translate-x-[0px]"
+      >
+        {projectsList.map((item, index) => (
+          <ProjectItem {...item} index={index} active={0} />
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="absolute -bottom-28 left-[4.3rem]">
+    <button id="carousel-prev" class="opacity-40 cursor-default" aria-label="Previous">
+      <svg viewBox="0 0 15 15" class="w-6 h-6 fill-current"><path d="M6.854 3.146a.5.5 0 0 1 0 .708L3.707 7H12.5a.5.5 0 0 1 0 1H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0z"/></svg>
+    </button>
+    <button id="carousel-next" class="cursor-pointer" aria-label="Next">
+      <svg viewBox="0 0 15 15" class="w-6 h-6 fill-current"><path d="M8.146 3.146a.5.5 0 0 0 0 .708L11.293 7H2.5a.5.5 0 0 0 0 1h8.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708 0z"/></svg>
+    </button>
+    <div id="carousel-dots" class="h-14 flex justify-between items-end w-14">
+      {projectsList.map((_, index) => (
+        <div
+          data-index={index}
+          class:list={[
+            "carousel-dot w-1 bg-primary-dark duration-300 rounded-t-sm cursor-pointer",
+            index === 0 ? "h-10" : "h-3",
+          ]}
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  const translateList: Record<number, string> = {
+    0: "-translate-x-[0px]",
+    1: "-translate-x-[452px]",
+    2: "-translate-x-[904px]",
+    3: "-translate-x-[1356px]",
+  };
+
+  const track = document.getElementById("carousel-track")!;
+  const prevBtn = document.getElementById("carousel-prev")!;
+  const nextBtn = document.getElementById("carousel-next")!;
+  const dots = document.querySelectorAll<HTMLElement>(".carousel-dot");
+  const cards = track.children;
+  const total = cards.length;
+  let active = 0;
+
+  function update() {
+    // Update translate
+    Object.values(translateList).forEach((cls) => track.classList.remove(cls));
+    track.classList.add(translateList[active]);
+
+    // Update prev button state
+    if (active === 0) {
+      prevBtn.classList.add("opacity-40", "cursor-default");
+      prevBtn.classList.remove("cursor-pointer");
+    } else {
+      prevBtn.classList.remove("opacity-40", "cursor-default");
+      prevBtn.classList.add("cursor-pointer");
+    }
+
+    // Update dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("h-10", i === active);
+      dot.classList.toggle("h-3", i !== active);
+    });
+
+    // Update card active/hide states
+    Array.from(cards).forEach((card, i) => {
+      const el = card as HTMLElement;
+      // Active card lift
+      el.classList.toggle("md:-translate-y-5", i === active);
+      el.classList.toggle("md:scale-105", i === active);
+      el.classList.toggle("bg-opacity-60", i === active);
+      // Hide passed cards
+      el.classList.toggle("opacity-0", active > i);
+    });
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (active > 0) {
+      active--;
+      update();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    active = (active + 1) % total;
+    update();
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      active = parseInt(dot.dataset.index!);
+      update();
+    });
+  });
+</script>

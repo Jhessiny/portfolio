@@ -1,0 +1,55 @@
+---
+
+---
+
+<div class="block md:hidden">
+  <button id="hamburger" class="space-y-2" aria-label="Open menu">
+    <div class="hamburger-bar w-8 h-0.5 bg-secondary-dark"></div>
+    <div class="hamburger-bar w-8 h-0.5 bg-secondary-dark"></div>
+    <div class="hamburger-bar w-8 h-0.5 bg-secondary-dark"></div>
+  </button>
+
+  <div
+    id="mobile-overlay"
+    class="bg-primary-light fixed top-0 left-0 w-[100vw] h-[100vh] z-50 overflow-hidden hidden"
+  >
+    <button
+      id="close-menu"
+      class="absolute top-2 right-2 cursor-pointer z-10 p-2"
+      aria-label="Close menu"
+    >
+      <svg viewBox="0 0 24 24" class="w-10 h-10 fill-black">
+        <path d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71A1 1 0 0 0 5.7 7.12L10.59 12 5.7 16.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.41z"/>
+      </svg>
+    </button>
+    <ul class="items-center flex flex-col justify-center h-full gap-10">
+      <li><a href="#home" class="mobile-nav-link font-bold py-2 px-2 uppercase text-3xl text-text-dark">Home</a></li>
+      <li><a href="#experience" class="mobile-nav-link font-bold py-2 px-2 uppercase text-3xl text-text-dark">Experience</a></li>
+      <li><a href="#projects" class="mobile-nav-link font-bold py-2 px-2 uppercase text-3xl text-text-dark">Portfolio</a></li>
+      <li><a href="#resume" class="mobile-nav-link font-bold py-2 px-2 uppercase text-3xl text-text-dark">Resume</a></li>
+      <li><a href="/blog" class="mobile-nav-link font-bold py-2 px-2 uppercase text-3xl text-text-dark border-solid border-2 border-secondary-dark">Blog</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.getElementById("hamburger")!;
+  const overlay = document.getElementById("mobile-overlay")!;
+  const closeBtn = document.getElementById("close-menu")!;
+
+  function openMenu() {
+    overlay.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    overlay.classList.add("hidden");
+    document.body.style.overflow = "auto";
+  }
+
+  hamburger.addEventListener("click", openMenu);
+  closeBtn.addEventListener("click", closeMenu);
+  overlay.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+</script>

@@ -1,0 +1,74 @@
+---
+import DefaultMenu from "./DefaultMenu.astro";
+import MobileMenu from "./MobileMenu.astro";
+---
+
+<div
+  id="header"
+  class="absolute w-full z-10 translate-x-[-50%] left-[50%] duration-300"
+>
+  <nav
+    id="header-nav"
+    class="flex justify-between px-2 py-4 w-full max-w-ultraLargeDesktop mx-auto text-secondary-dark md:text-primary-light"
+  >
+    <h1 class="font-bold text-3xl uppercase tracking-widest">JOSM</h1>
+    <DefaultMenu />
+    <MobileMenu />
+  </nav>
+</div>
+
+<script>
+  const header = document.getElementById("header")!;
+  const nav = document.getElementById("header-nav")!;
+  const defaultMenu = document.getElementById("default-menu")!;
+
+  function checkScroll() {
+    const scrolled = window.scrollY > 5;
+    if (scrolled) {
+      header.classList.add(
+        "fixed",
+        "bg-secondary-dark",
+        "bg-opacity-80",
+        "backdrop-blur-lg"
+      );
+      header.classList.remove("absolute");
+      nav.classList.remove("text-secondary-dark", "md:text-primary-light");
+      nav.classList.add("text-primary-light");
+      // Update default menu nav items
+      defaultMenu
+        .querySelectorAll<HTMLAnchorElement>("a")
+        .forEach((a) => {
+          a.classList.remove("text-text-dark");
+          a.classList.add("text-primary-light");
+        });
+      // Update hamburger bars
+      document.querySelectorAll<HTMLElement>(".hamburger-bar").forEach((bar) => {
+        bar.classList.remove("bg-secondary-dark");
+        bar.classList.add("bg-primary-light");
+      });
+    } else {
+      header.classList.remove(
+        "fixed",
+        "bg-secondary-dark",
+        "bg-opacity-80",
+        "backdrop-blur-lg"
+      );
+      header.classList.add("absolute");
+      nav.classList.add("text-secondary-dark", "md:text-primary-light");
+      nav.classList.remove("text-primary-light");
+      defaultMenu
+        .querySelectorAll<HTMLAnchorElement>("a")
+        .forEach((a) => {
+          a.classList.add("text-text-dark");
+          a.classList.remove("text-primary-light");
+        });
+      document.querySelectorAll<HTMLElement>(".hamburger-bar").forEach((bar) => {
+        bar.classList.add("bg-secondary-dark");
+        bar.classList.remove("bg-primary-light");
+      });
+    }
+  }
+
+  window.addEventListener("scroll", checkScroll);
+  checkScroll();
+</script>

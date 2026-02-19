@@ -1,0 +1,25 @@
+---
+const particles = Array.from({ length: 35 });
+---
+
+<div id="resume-btn-wrapper" class="relative">
+  <a
+    id="resume-download"
+    href="/assets/RESUME - JHÉSSINY MATTOS.pdf"
+    download="RESUME - JHÉSSINY MATTOS"
+    class="bg-primary-dark text-white px-10 py-5 uppercase rounded-sm hover:brightness-110 duration-300"
+  >
+    Download Resume
+  </a>
+  {particles.map(() => <span class="particle" />)}
+</div>
+
+<script>
+  const wrapper = document.getElementById("resume-btn-wrapper")!;
+  const btn = document.getElementById("resume-download")!;
+
+  btn.addEventListener("click", () => {
+    wrapper.classList.add("active");
+    setTimeout(() => wrapper.classList.remove("active"), 2000);
+  });
+</script>

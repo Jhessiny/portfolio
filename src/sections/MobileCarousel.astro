@@ -1,0 +1,17 @@
+---
+import ProjectItem from "./ProjectItem.astro";
+import { projectsList } from "../data/projects";
+---
+
+<div class="flex flex-col justify-items-stretch items-stretch px-4 sm:hidden">
+  <h2 class="font-bold text-text-dark text-3xl uppercase block mb-4">
+    Projects
+  </h2>
+  <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 -mx-4 px-4">
+    {projectsList.map((item, index) => (
+      <div class="snap-center shrink-0 w-full pt-[3rem]">
+        <ProjectItem {...item} index={index} isMobile />
+      </div>
+    ))}
+  </div>
+</div>
