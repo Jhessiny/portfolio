@@ -19,14 +19,15 @@ import { projectsList } from "../data/projects";
         class="flex gap-6 duration-500 relative"
         style="transform: translateX(0)"
       >
-        {projectsList.map((item) => (
+        {/* Render cards 3x for seamless infinite loop */}
+        {[...projectsList, ...projectsList, ...projectsList].map((item) => (
           <ProjectItem {...item} class="w-[calc((100%-4.5rem)/3.5)]" />
         ))}
       </div>
     </div>
   </div>
   <div class="flex items-center gap-4 mt-8 ml-[4.3rem]">
-    <button id="carousel-prev" class="opacity-40 cursor-default" aria-label="Previous">
+    <button id="carousel-prev" class="cursor-pointer" aria-label="Previous">
       <svg viewBox="0 0 15 15" class="w-6 h-6 fill-current"><path d="M6.854 3.146a.5.5 0 0 1 0 .708L3.707 7H12.5a.5.5 0 0 1 0 1H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0z"/></svg>
     </button>
     <button id="carousel-next" class="cursor-pointer" aria-label="Next">
@@ -51,52 +52,64 @@ import { projectsList } from "../data/projects";
   const prevBtn = document.getElementById("carousel-prev")!;
   const nextBtn = document.getElementById("carousel-next")!;
   const dots = document.querySelectorAll<HTMLElement>(".carousel-dot");
-  const total = track.children.length;
-  let active = 0;
+  const realCount = dots.length; // original number of projects
+  // Track starts at the middle set so we can go backwards from the start
+  let index = realCount;
 
-  function getCardWidth() {
+  function getStep() {
     const trackWidth = track.parentElement!.clientWidth;
-    const gap = 24; // gap-6 = 1.5rem = 24px
-    // 3.5 cards visible: cardWidth = (trackWidth - 2.5 * gap) / 3.5
-    return (trackWidth - 2.5 * gap) / 3.5;
+    const gap = 24;
+    const cardWidth = (trackWidth - 2.5 * gap) / 3.5;
+    return cardWidth + gap;
   }
 
-  function update() {
-    const cardWidth = getCardWidth();
-    const gap = 24;
-    const offset = active * (cardWidth + gap);
-    track.style.transform = `translateX(-${offset}px)`;
+  function jumpWithoutTransition(newIndex: number) {
+    track.style.transition = "none";
+    index = newIndex;
+    track.style.transform = `translateX(-${index * getStep()}px)`;
+    // Force reflow so the jump is instant
+    track.offsetHeight;
+    track.style.transition = "";
+  }
 
-    // Prev button state
-    if (active === 0) {
-      prevBtn.classList.add("opacity-40", "cursor-default");
-      prevBtn.classList.remove("cursor-pointer");
-    } else {
-      prevBtn.classList.remove("opacity-40", "cursor-default");
-      prevBtn.classList.add("cursor-pointer");
-    }
+  function moveTo(newIndex: number) {
+    index = newIndex;
+    track.style.transform = `translateX(-${index * getStep()}px)`;
+    updateDots();
+  }
 
-    // Dots
+  function updateDots() {
+    const realIndex = ((index % realCount) + realCount) % realCount;
     dots.forEach((dot, i) => {
-      dot.classList.toggle("h-10", i === active);
-      dot.classList.toggle("h-3", i !== active);
+      dot.classList.toggle("h-10", i === realIndex);
+      dot.classList.toggle("h-3", i !== realIndex);
     });
   }
 
-  prevBtn.addEventListener("click", () => {
-    if (active > 0) { active--; update(); }
+  // After each transition, silently reset to the middle set if we drifted out
+  track.addEventListener("transitionend", () => {
+    if (index >= realCount * 2) {
+      jumpWithoutTransition(index - realCount);
+    } else if (index < realCount) {
+      jumpWithoutTransition(index + realCount);
+    }
   });
 
-  nextBtn.addEventListener("click", () => {
-    if (active < total - 1) { active++; update(); }
-  });
+  prevBtn.addEventListener("click", () => moveTo(index - 1));
+  nextBtn.addEventListener("click", () => moveTo(index + 1));
 
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
-      active = parseInt(dot.dataset.index!);
-      update();
+      const target = parseInt(dot.dataset.index!);
+      // Move to that position within the middle set
+      moveTo(realCount + target);
     });
   });
 
-  window.addEventListener("resize", update);
+  window.addEventListener("resize", () => {
+    track.style.transform = `translateX(-${index * getStep()}px)`;
+  });
+
+  // Initialize at the start of the middle set
+  jumpWithoutTransition(realCount);
 </script>
