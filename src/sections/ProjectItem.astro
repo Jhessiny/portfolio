@@ -12,8 +12,8 @@ interface Props {
 const { title, description, technologies, img, githubRepo, deployLink, class: className } = Astro.props;
 ---
 
-<div class:list={["pt-12 shrink-0", className]}>
-  <div class="relative">
+<div class:list={["pt-12 shrink-0 h-full", className]}>
+  <div class="relative h-full">
     <!-- Image floating above the card -->
     <img
       src={img}
@@ -23,14 +23,14 @@ const { title, description, technologies, img, githubRepo, deployLink, class: cl
       class="absolute left-1/2 -translate-x-1/2 -top-10 w-[70%] h-24 object-cover rounded-sm shadow-md z-10"
     />
     <!-- Card body -->
-    <div class="bg-white rounded-lg shadow-lg pt-16 pb-6 px-6 flex flex-col">
+    <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-lg shadow-lg pt-16 pb-6 px-6 flex flex-col h-full">
       <h3 class="font-bold uppercase text-lg text-text-dark">{title}</h3>
       <p class="mt-2 text-primary-dark text-sm leading-relaxed">{description}</p>
       <div class="mt-4">
         <p class="text-text-dark text-xs font-semibold">Techs:</p>
         <p class="text-text-dark text-sm mt-1">{technologies}</p>
       </div>
-      <div class="flex gap-3 mt-6 pt-4">
+      <div class="flex gap-3 mt-auto pt-4">
         <a
           href={githubRepo}
           target="_blank"
