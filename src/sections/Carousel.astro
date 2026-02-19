@@ -20,7 +20,7 @@ import { projectsList } from "../data/projects";
         style="transform: translateX(0)"
       >
         {projectsList.map((item) => (
-          <ProjectItem {...item} class="w-[calc((100%-3rem)/2.5)]" />
+          <ProjectItem {...item} class="w-[calc((100%-4.5rem)/3.5)]" />
         ))}
       </div>
     </div>
@@ -57,8 +57,8 @@ import { projectsList } from "../data/projects";
   function getCardWidth() {
     const trackWidth = track.parentElement!.clientWidth;
     const gap = 24; // gap-6 = 1.5rem = 24px
-    // 2.5 cards visible: cardWidth = (trackWidth - 1.5 * gap) / 2.5
-    return (trackWidth - 1.5 * gap) / 2.5;
+    // 3.5 cards visible: cardWidth = (trackWidth - 2.5 * gap) / 3.5
+    return (trackWidth - 2.5 * gap) / 3.5;
   }
 
   function update() {
