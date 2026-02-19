@@ -40,10 +40,3 @@ export const projectsList: ProjectModel[] = [
     deployLink: "https://jhessiny.github.io/kraftsoft-digital-agency/",
   },
 ];
-
-export const translateList: Record<number, string> = {
-  0: "-translate-x-[0px]",
-  1: "-translate-x-[452px]",
-  2: "-translate-x-[904px]",
-  3: "-translate-x-[1356px]",
-};

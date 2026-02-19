@@ -8,9 +8,9 @@ import { projectsList } from "../data/projects";
     Projects
   </h2>
   <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 -mx-4 px-4">
-    {projectsList.map((item, index) => (
-      <div class="snap-center shrink-0 w-full pt-[3rem]">
-        <ProjectItem {...item} index={index} isMobile />
+    {projectsList.map((item) => (
+      <div class="snap-center shrink-0 w-[85%]">
+        <ProjectItem {...item} />
       </div>
     ))}
   </div>

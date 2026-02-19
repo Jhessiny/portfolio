@@ -1,6 +1,4 @@
 ---
-import Card from "../components/Card.astro";
-
 interface Props {
   title: string;
   description: string;
@@ -8,53 +6,48 @@ interface Props {
   img: string;
   githubRepo: string;
   deployLink: string;
-  index: number;
-  active?: number;
-  isMobile?: boolean;
+  class?: string;
 }
 
-const { title, description, technologies, img, githubRepo, deployLink, index, active, isMobile } = Astro.props;
-
-const activeClasses =
-  typeof active === "number" && active === index
-    ? "md:-translate-y-5 md:scale-105 bg-opacity-60"
-    : "";
-const hideClass =
-  typeof active === "number" && active > index ? "opacity-0" : "";
-const widthClass = isMobile ? "w-full" : "w-[26.25rem]";
+const { title, description, technologies, img, githubRepo, deployLink, class: className } = Astro.props;
 ---
 
-<Card
-  class={`backdrop-blur-md min-h-[25rem] sm:min-h-[25rem] md:min-h-full bg-opacity-40 relative px-5 md:px-10 pt-16 pb-10 duration-300 z-10 flex flex-col justify-between ${activeClasses} ${hideClass} ${widthClass}`}
->
-  <img
-    src={img}
-    alt={title}
-    width="600"
-    height="600"
-    class="object-cover w-[10rem] h-[6rem] absolute top-0 translate-y-[-50%] rounded-sm"
-  />
-  <p class="font-bold uppercase text-sm">{title}</p>
-  <p class="mt-2">{description}</p>
-  <p class="mt-2 font-bold">Techs: {technologies}</p>
-  <div class="flex justify-around mt-4 gap-4">
-    <a
-      href={githubRepo}
-      target="_blank"
-      class="bg-primary-dark border-transparent text-white border-2 rounded-sm border-solid py-1 flex items-center gap-2 hover:scale-105 duration-300 hover:shadow-lg hover:-translate-y-[2px] flex-1 justify-center"
-      rel="noreferrer"
-    >
-      <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-      see code
-    </a>
-    <a
-      href={deployLink}
-      target="_blank"
-      class="bg-primary-dark border-transparent text-white border-2 rounded-sm border-solid py-1 flex items-center gap-2 hover:scale-105 duration-300 hover:shadow-lg hover:-translate-y-[2px] flex-1 justify-center"
-      rel="noreferrer"
-    >
-      <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M9.602 2.244c-.326.166-.63.382-.904.646L3.04 8.548a3.063 3.063 0 0 0 0 4.328l5.658 5.658a3.063 3.063 0 0 0 4.328 0l5.658-5.658a3.063 3.063 0 0 0 0-4.328L13.026 2.89a3.04 3.04 0 0 0-.904-.646L12 6.084l-2.398-3.84zM12 0l3 4.8-3 3.6-3-3.6 3-4.8zm0 24l-3-4.8 3-3.6 3 3.6-3 4.8z"/></svg>
-      see deploy
-    </a>
+<div class:list={["bg-white rounded-lg shadow-lg overflow-hidden flex flex-col shrink-0", className]}>
+  <div class="w-full h-48 overflow-hidden">
+    <img
+      src={img}
+      alt={title}
+      width="600"
+      height="300"
+      class="w-full h-full object-cover"
+    />
   </div>
-</Card>
+  <div class="p-6 flex flex-col flex-1">
+    <h3 class="font-bold uppercase text-lg text-text-dark">{title}</h3>
+    <p class="mt-2 text-primary-dark text-sm leading-relaxed">{description}</p>
+    <div class="mt-4">
+      <p class="text-text-dark text-xs font-semibold">Techs:</p>
+      <p class="text-text-dark text-sm mt-1">{technologies}</p>
+    </div>
+    <div class="flex gap-3 mt-6 pt-4">
+      <a
+        href={githubRepo}
+        target="_blank"
+        rel="noreferrer"
+        class="bg-primary-dark text-white border-2 border-primary-dark rounded-full py-2 px-4 flex items-center gap-2 hover:scale-105 duration-300 hover:shadow-lg flex-1 justify-center text-sm"
+      >
+        <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        see code
+      </a>
+      <a
+        href={deployLink}
+        target="_blank"
+        rel="noreferrer"
+        class="bg-white text-primary-dark border-2 border-primary-dark rounded-full py-2 px-4 flex items-center gap-2 hover:scale-105 duration-300 hover:shadow-lg flex-1 justify-center text-sm"
+      >
+        <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></svg>
+        see deploy
+      </a>
+    </div>
+  </div>
+</div>
