@@ -12,8 +12,8 @@ interface Props {
 const { title, description, technologies, img, githubRepo, deployLink, class: className } = Astro.props;
 ---
 
-<div class:list={["pt-12 shrink-0 h-full", className]}>
-  <div class="relative h-full">
+<div class:list={["pt-12 shrink-0 flex flex-col", className]}>
+  <div class="relative flex-1 flex flex-col">
     <!-- Image floating above the card -->
     <img
       src={img}
@@ -23,7 +23,7 @@ const { title, description, technologies, img, githubRepo, deployLink, class: cl
       class="absolute left-1/2 -translate-x-1/2 -top-10 w-[70%] h-24 object-cover rounded-sm shadow-md z-10"
     />
     <!-- Card body -->
-    <div class="bg-white/75 backdrop-blur-lg border border-white/50 rounded-lg shadow-lg pt-16 pb-6 px-6 flex flex-col h-full">
+    <div class="bg-white/75 backdrop-blur-lg border border-white/50 rounded-lg shadow-lg pt-16 pb-6 px-6 flex flex-col flex-1">
       <h3 class="font-bold uppercase text-lg text-text-dark">{title}</h3>
       <p class="mt-2 text-primary-dark text-sm leading-relaxed">{description}</p>
       <div class="mt-4">
