@@ -1,0 +1,20 @@
+---
+import Container from "../components/Container.astro";
+import Divider from "../components/Divider.astro";
+import Carousel from "./Carousel.astro";
+import MobileCarousel from "./MobileCarousel.astro";
+---
+
+<div id="projects">
+  <Divider />
+  <div class="bg-[url('/assets/almond-tree-branch.jpg')] bg-no-repeat bg-left md:bg-right-bottom bg-cover relative overflow-hidden">
+    <div class="bg-gradient-to-r from-backdrop to-backdrop w-full h-full pt-36 pb-28">
+      <Container>
+        <div class="hidden sm:block">
+          <Carousel />
+        </div>
+        <MobileCarousel />
+      </Container>
+    </div>
+  </div>
+</div>
