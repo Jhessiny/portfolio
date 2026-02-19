@@ -1,0 +1,90 @@
+.particle {
+  position: absolute;
+  background-color: #e491ae;
+  width: 30px;
+  height: 30px;
+  top: 10px;
+  left: 50%;
+  margin-left: -15px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: scale(0);
+  visibility: hidden;
+}
+
+.particle:nth-of-type(odd) {
+  border: solid 2px #e491ae;
+  background-color: transparent;
+}
+
+@keyframes particles-1 { from { transform: scale(1); visibility: visible; } to { left: 42px; top: -187px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-2 { from { transform: scale(1); visibility: visible; } to { left: -128px; top: 103px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-3 { from { transform: scale(1); visibility: visible; } to { left: 156px; top: 67px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-4 { from { transform: scale(1); visibility: visible; } to { left: -89px; top: -142px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-5 { from { transform: scale(1); visibility: visible; } to { left: 203px; top: -31px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-6 { from { transform: scale(1); visibility: visible; } to { left: -167px; top: 198px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-7 { from { transform: scale(1); visibility: visible; } to { left: 71px; top: -209px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-8 { from { transform: scale(1); visibility: visible; } to { left: -214px; top: 76px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-9 { from { transform: scale(1); visibility: visible; } to { left: 134px; top: 187px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-10 { from { transform: scale(1); visibility: visible; } to { left: -56px; top: -98px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-11 { from { transform: scale(1); visibility: visible; } to { left: 178px; top: -145px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-12 { from { transform: scale(1); visibility: visible; } to { left: -192px; top: 212px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-13 { from { transform: scale(1); visibility: visible; } to { left: 95px; top: 54px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-14 { from { transform: scale(1); visibility: visible; } to { left: -145px; top: -167px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-15 { from { transform: scale(1); visibility: visible; } to { left: 217px; top: 123px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-16 { from { transform: scale(1); visibility: visible; } to { left: -73px; top: -224px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-17 { from { transform: scale(1); visibility: visible; } to { left: 162px; top: 91px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-18 { from { transform: scale(1); visibility: visible; } to { left: -201px; top: 38px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-19 { from { transform: scale(1); visibility: visible; } to { left: 108px; top: -156px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-20 { from { transform: scale(1); visibility: visible; } to { left: -118px; top: 176px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-21 { from { transform: scale(1); visibility: visible; } to { left: 189px; top: -67px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-22 { from { transform: scale(1); visibility: visible; } to { left: -234px; top: -14px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-23 { from { transform: scale(1); visibility: visible; } to { left: 64px; top: 201px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-24 { from { transform: scale(1); visibility: visible; } to { left: -87px; top: 134px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-25 { from { transform: scale(1); visibility: visible; } to { left: 141px; top: -89px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-26 { from { transform: scale(1); visibility: visible; } to { left: -156px; top: 219px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-27 { from { transform: scale(1); visibility: visible; } to { left: 203px; top: -203px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-28 { from { transform: scale(1); visibility: visible; } to { left: -129px; top: 91px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-29 { from { transform: scale(1); visibility: visible; } to { left: 76px; top: 148px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-30 { from { transform: scale(1); visibility: visible; } to { left: -198px; top: -112px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-31 { from { transform: scale(1); visibility: visible; } to { left: 147px; top: 215px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-32 { from { transform: scale(1); visibility: visible; } to { left: -64px; top: -176px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-33 { from { transform: scale(1); visibility: visible; } to { left: 212px; top: 42px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-34 { from { transform: scale(1); visibility: visible; } to { left: -172px; top: 165px; transform: scale(0); visibility: hidden; } }
+@keyframes particles-35 { from { transform: scale(1); visibility: visible; } to { left: 119px; top: -134px; transform: scale(0); visibility: hidden; } }
+
+.active .particle:nth-of-type(1) { animation: particles-1 1.5s 0.025s; }
+.active .particle:nth-of-type(2) { animation: particles-2 1.5s 0.05s; }
+.active .particle:nth-of-type(3) { animation: particles-3 1.5s 0.075s; }
+.active .particle:nth-of-type(4) { animation: particles-4 1.5s 0.1s; }
+.active .particle:nth-of-type(5) { animation: particles-5 1.5s 0.125s; }
+.active .particle:nth-of-type(6) { animation: particles-6 1.5s 0.15s; }
+.active .particle:nth-of-type(7) { animation: particles-7 1.5s 0.175s; }
+.active .particle:nth-of-type(8) { animation: particles-8 1.5s 0.2s; }
+.active .particle:nth-of-type(9) { animation: particles-9 1.5s 0.225s; }
+.active .particle:nth-of-type(10) { animation: particles-10 1.5s 0.25s; }
+.active .particle:nth-of-type(11) { animation: particles-11 1.5s 0.275s; }
+.active .particle:nth-of-type(12) { animation: particles-12 1.5s 0.3s; }
+.active .particle:nth-of-type(13) { animation: particles-13 1.5s 0.325s; }
+.active .particle:nth-of-type(14) { animation: particles-14 1.5s 0.35s; }
+.active .particle:nth-of-type(15) { animation: particles-15 1.5s 0.375s; }
+.active .particle:nth-of-type(16) { animation: particles-16 1.5s 0.4s; }
+.active .particle:nth-of-type(17) { animation: particles-17 1.5s 0.425s; }
+.active .particle:nth-of-type(18) { animation: particles-18 1.5s 0.45s; }
+.active .particle:nth-of-type(19) { animation: particles-19 1.5s 0.475s; }
+.active .particle:nth-of-type(20) { animation: particles-20 1.5s 0.5s; }
+.active .particle:nth-of-type(21) { animation: particles-21 1.5s 0.525s; }
+.active .particle:nth-of-type(22) { animation: particles-22 1.5s 0.55s; }
+.active .particle:nth-of-type(23) { animation: particles-23 1.5s 0.575s; }
+.active .particle:nth-of-type(24) { animation: particles-24 1.5s 0.6s; }
+.active .particle:nth-of-type(25) { animation: particles-25 1.5s 0.625s; }
+.active .particle:nth-of-type(26) { animation: particles-26 1.5s 0.65s; }
+.active .particle:nth-of-type(27) { animation: particles-27 1.5s 0.675s; }
+.active .particle:nth-of-type(28) { animation: particles-28 1.5s 0.7s; }
+.active .particle:nth-of-type(29) { animation: particles-29 1.5s 0.725s; }
+.active .particle:nth-of-type(30) { animation: particles-30 1.5s 0.75s; }
+.active .particle:nth-of-type(31) { animation: particles-31 1.5s 0.775s; }
+.active .particle:nth-of-type(32) { animation: particles-32 1.5s 0.8s; }
+.active .particle:nth-of-type(33) { animation: particles-33 1.5s 0.825s; }
+.active .particle:nth-of-type(34) { animation: particles-34 1.5s 0.85s; }
+.active .particle:nth-of-type(35) { animation: particles-35 1.5s 0.875s; }
