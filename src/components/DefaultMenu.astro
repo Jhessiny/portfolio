@@ -1,0 +1,17 @@
+---
+import NavItem from "./NavItem.astro";
+---
+
+<ul id="default-menu" class="hidden items-center animate-re-appear md:flex">
+  <svg viewBox="0 0 15 15" class="w-4 h-4 mr-5 hidden lg:block fill-[#42404b]">
+    <path d="M9.875 7.5a2.375 2.375 0 1 1-4.75 0 2.375 2.375 0 0 1 4.75 0z"/>
+  </svg>
+  <NavItem href="#home" text="Home" />
+  <NavItem href="#experience" text="Experience" />
+  <NavItem href="#projects" text="Portfolio" />
+  <NavItem href="#resume" text="Resume" />
+  <NavItem href="/blog" text="Blog" highlight />
+  <svg viewBox="0 0 15 15" class="w-4 h-4 ml-5 hidden lg:block fill-[#42404b]">
+    <path d="M9.875 7.5a2.375 2.375 0 1 1-4.75 0 2.375 2.375 0 0 1 4.75 0z"/>
+  </svg>
+</ul>

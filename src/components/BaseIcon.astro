@@ -1,0 +1,39 @@
+---
+interface Props {
+  hoverColor: string;
+  color?: string;
+}
+
+const { hoverColor, color = "#42404b" } = Astro.props;
+---
+
+<div class="icon-wrapper" data-color={color} data-hover={hoverColor}>
+  <slot />
+</div>
+
+<style>
+  .icon-wrapper {
+    display: inline-flex;
+    transition: transform 0.3s;
+  }
+  .icon-wrapper:hover {
+    transform: scale(1.1);
+  }
+  .icon-wrapper :global(svg) {
+    width: 30px;
+    height: 30px;
+    transition: fill 0.3s;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".icon-wrapper").forEach((el) => {
+    const color = el.dataset.color!;
+    const hover = el.dataset.hover!;
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+    svg.style.fill = color;
+    el.addEventListener("mouseenter", () => (svg.style.fill = hover));
+    el.addEventListener("mouseleave", () => (svg.style.fill = color));
+  });
+</script>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  company: string;
+  description: string;
+  date: string;
+}
+
+const { title, company, description, date } = Astro.props;
+---
+
+<div class="text-text-dark w-full">
+  <h3 class="font-bold uppercase text-sm text-primary-dark">{title}</h3>
+  <p class="text-sm">
+    <span>{company} - </span>
+    <span>{date}</span>
+  </p>
+  <p class="text-sm">{description}</p>
+</div>

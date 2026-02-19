@@ -1,0 +1,27 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  highlight?: boolean;
+  light?: boolean;
+  class?: string;
+}
+
+const { href, text, highlight = false, light = false, class: className } = Astro.props;
+const textColor = light ? "text-primary-light" : "text-text-dark";
+const border = highlight ? "border-solid border-2 border-secondary-dark" : "";
+---
+
+<li>
+  <a
+    class:list={[
+      textColor,
+      border,
+      "font-bold py-2 px-2 lg:px-4 uppercase inline-block leading-3 text-xs",
+      className,
+    ]}
+    href={href}
+  >
+    {text}
+  </a>
+</li>
