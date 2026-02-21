@@ -1,9 +1,458 @@
 ---
-import SkillsIcons from "./SkillsIcons.astro";
-import ResumeButton from "./ResumeButton.astro";
+const stackGroups = [
+  {
+    label: "Frontend",
+    color: "#64ffda",
+    items: [
+      { name: "React", icon: "Re", color: "#61dafb" },
+      { name: "TypeScript", icon: "TS", color: "#3178c6" },
+      { name: "Next.js", icon: "N↗", color: "#ffffff" },
+      { name: "Redux / Zustand", icon: "Rx", color: "#764abc" },
+      { name: "React Hook Form", icon: "⊟", color: "#ec5990" },
+      { name: "Tailwind", icon: "TW", color: "#38bdf8" },
+    ],
+  },
+  {
+    label: "Testing",
+    color: "#00b4d8",
+    items: [
+      { name: "Jest", icon: "Jt", color: "#c21325" },
+      { name: "Cypress", icon: "Cy", color: "#17202c" },
+      { name: "Vitest", icon: "Vi", color: "#6e9f18" },
+      { name: "Testing Library", icon: "TL", color: "#e33332" },
+    ],
+  },
+  {
+    label: "Backend & Infra",
+    color: "#4a9eff",
+    items: [
+      { name: "Node.js", icon: "No", color: "#68a063" },
+      { name: "PostgreSQL", icon: "Pg", color: "#336791" },
+      { name: "Docker", icon: "🐳", color: "#0db7ed" },
+      { name: "Supabase", icon: "SB", color: "#3ecf8e" },
+    ],
+  },
+  {
+    label: "AI / LLM",
+    color: "#c47aff",
+    items: [
+      { name: "Claude API", icon: "◈", color: "#c47aff" },
+      { name: "V0", icon: "V0", color: "#ffffff" },
+      { name: "Replit", icon: "Re", color: "#f26207" },
+    ],
+  },
+];
+
+const languages = [
+  { lang: "Portuguese", level: "Native", pct: 100 },
+  { lang: "English", level: "Fluent", pct: 92 },
+  { lang: "French", level: "Advanced", pct: 75 },
+];
 ---
 
-<SkillsIcons />
-<div class="py-24 flex justify-center items-center" id="resume">
-  <ResumeButton />
-</div>
+<section class="sr-section" id="skills">
+  <!-- background grid -->
+  <div class="sr-grid-bg"></div>
+  <!-- ambient glow -->
+  <div class="sr-glow sr-glow--bottom"></div>
+
+  <div class="sr-container">
+
+    <!-- Section header -->
+    <div class="sr-header" data-sr-animate>
+      <div class="sr-header__label">
+        <div class="sr-header__line"></div>
+        <span>Skills & Resume</span>
+      </div>
+      <h2 class="sr-header__title">
+        WHAT I <span class="sr-accent">WORK WITH</span>
+      </h2>
+    </div>
+
+    <!-- ── Tech stack by category ── -->
+    <div class="sr-stack" data-sr-animate>
+      <div class="sr-divider-label">
+        <div class="sr-divider-line"></div>
+        <span>Full Stack</span>
+        <div class="sr-divider-line"></div>
+      </div>
+
+      <div class="sr-groups">
+        {stackGroups.map((group, gi) => (
+          <div class="sr-group">
+            <div class="sr-group__header">
+              <span class="sr-group__label" style={`color: ${group.color}88;`}>{group.label}</span>
+              <div class="sr-group__line" style={`background: ${group.color}22;`}></div>
+            </div>
+            <div class="sr-pills">
+              {group.items.map((tech, i) => (
+                <div
+                  class="sr-pill"
+                  style={`--pill-color: ${tech.color}; --pill-delay: ${gi * 0.05 + i * 0.05}s;`}
+                  data-sr-pill
+                >
+                  <span class="sr-pill__icon">{tech.icon}</span>
+                  <span class="sr-pill__name">{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="sr-separator"></div>
+
+    <!-- ── Languages ── -->
+    <div class="sr-languages" data-sr-animate>
+      <div class="sr-divider-label">
+        <div class="sr-divider-line"></div>
+        <span>Languages</span>
+        <div class="sr-divider-line"></div>
+      </div>
+
+      <div class="sr-lang-bars">
+        {languages.map((l, i) => (
+          <div class="sr-lang" style={`--lang-delay: ${i * 0.15}s;`} data-sr-lang data-pct={l.pct}>
+            <div class="sr-lang__header">
+              <span class="sr-lang__name">{l.lang}</span>
+              <span class="sr-lang__level">{l.level}</span>
+            </div>
+            <div class="sr-lang__track">
+              <div class="sr-lang__fill" style={`--target-width: ${l.pct}%;`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="sr-separator"></div>
+
+    <!-- ── Resume CTA ── -->
+    <div class="sr-cta" data-sr-animate>
+      <span class="sr-cta__label">Need the formal doc?</span>
+      <a
+        href="/assets/RESUME - JHÉSSINY MATTOS.pdf"
+        download="RESUME - JHÉSSINY MATTOS"
+        class="sr-cta__btn"
+      >
+        <span class="sr-cta__arrow">↓</span>
+        Full Profile — PDF
+      </a>
+      <span class="sr-cta__credit">Jhéssiny Mattos · Updated 2026</span>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .sr-section {
+    background: #060e1a;
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    box-sizing: border-box;
+  }
+
+  .sr-grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .sr-glow--bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(100,255,218,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .sr-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .sr-header {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .sr-header.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sr-header__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .sr-header__label span {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #64ffda;
+    text-transform: uppercase;
+  }
+  .sr-header__line {
+    width: 24px;
+    height: 1px;
+    background: #64ffda55;
+  }
+
+  .sr-header__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: #c8d8e8;
+    margin: 0;
+  }
+  .sr-accent {
+    color: #64ffda;
+  }
+
+  /* ── Shared divider label ── */
+  .sr-divider-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .sr-divider-label span {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: #5a7a8a;
+    text-transform: uppercase;
+  }
+  .sr-divider-line {
+    width: 20px;
+    height: 1px;
+    background: #1e3a4a;
+  }
+
+  /* ── Separator ── */
+  .sr-separator {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #1e3a4a, transparent);
+    margin: 72px 0;
+  }
+
+  /* ── Animate on scroll ── */
+  [data-sr-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  [data-sr-animate].in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Stack groups ── */
+  .sr-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .sr-group__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .sr-group__label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .sr-group__line {
+    flex: 1;
+    height: 1px;
+  }
+
+  /* ── Pills ── */
+  .sr-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sr-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid #1e3a4a;
+    background: transparent;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.5s ease var(--pill-delay, 0s),
+      transform 0.5s ease var(--pill-delay, 0s),
+      border-color 0.3s,
+      background 0.3s,
+      box-shadow 0.3s;
+  }
+  .sr-pill.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .sr-pill:hover {
+    border-color: color-mix(in srgb, var(--pill-color) 33%, transparent);
+    background: color-mix(in srgb, var(--pill-color) 5%, transparent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--pill-color) 9%, transparent);
+  }
+
+  .sr-pill__icon {
+    font-size: 10px;
+    color: #4a6a7a;
+    min-width: 18px;
+    text-align: center;
+    transition: color 0.3s;
+  }
+  .sr-pill:hover .sr-pill__icon {
+    color: var(--pill-color);
+  }
+
+  .sr-pill__name {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5a8a9a;
+    transition: color 0.3s;
+  }
+  .sr-pill:hover .sr-pill__name {
+    color: #c8d8e8;
+  }
+
+  /* ── Languages ── */
+  .sr-lang-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .sr-lang {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.6s ease var(--lang-delay, 0s),
+      transform 0.6s ease var(--lang-delay, 0s);
+  }
+  .sr-lang.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sr-lang__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .sr-lang__name {
+    font-size: 10px;
+    color: #c8d8e8;
+    letter-spacing: 0.1em;
+  }
+  .sr-lang__level {
+    font-size: 10px;
+    color: #5a7a8a;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .sr-lang__track {
+    height: 4px;
+    border-radius: 2px;
+    background: #1e3a4a;
+    position: relative;
+    overflow: hidden;
+  }
+  .sr-lang__fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #64ffda, #00b4d8);
+    box-shadow: 0 0 8px #64ffda44;
+    transition: width 1s ease calc(var(--lang-delay, 0s) + 0.2s);
+  }
+  .sr-lang.in-view .sr-lang__fill {
+    width: var(--target-width);
+  }
+
+  /* ── Resume CTA ── */
+  .sr-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .sr-cta__label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: #5a7a8a;
+    text-transform: uppercase;
+  }
+
+  .sr-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 40px;
+    border: 1px solid #64ffda44;
+    color: #64ffda;
+    background: transparent;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.35s;
+  }
+  .sr-cta__btn:hover {
+    border-color: #64ffda88;
+    color: #64ffda;
+    background: #64ffda14;
+    box-shadow: 0 0 32px #64ffda1a;
+  }
+
+  .sr-cta__arrow {
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+  .sr-cta__credit {
+    font-size: 10px;
+    color: #4a6a7a;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    .sr-section {
+      padding: 80px 20px;
+    }
+  }
+</style>
+
