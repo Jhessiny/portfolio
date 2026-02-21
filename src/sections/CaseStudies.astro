@@ -1,0 +1,446 @@
+---
+const projects = [
+  {
+    index: "01",
+    title: "StudyMap",
+    tagline: "Visual knowledge platform for students",
+    description:
+      "An interactive canvas where concepts connect, resources attach, and knowledge gaps become visible. Built with Clean Architecture, React Flow, and Supabase.",
+    tags: ["Product Engineering", "Real-time", "AI-ready"],
+    stack: ["React 19", "TypeScript", "Supabase", "React Flow"],
+    status: "In Development",
+    href: "/case-study/study-map",
+    accent: "#64ffda",
+  },
+  {
+    index: "02",
+    title: "Ethereum Explorer",
+    tagline: "Blockchain data made readable",
+    description:
+      "A TypeScript-first interface for exploring Ethereum transactions, blocks, and wallet activity. Focused on turning raw chain data into a legible product experience.",
+    tags: ["Data Product", "Web3", "TypeScript"],
+    stack: ["TypeScript", "React", "Ethers.js"],
+    status: "Completed",
+    href: "/case-study/ethereum-explorer",
+    accent: "#00b4d8",
+  },
+  {
+    index: "03",
+    title: "COLLAMAP",
+    tagline: "AI-powered research suggestion engine",
+    description:
+      "A 3-stage AI pipeline that discovers novel research topics from recent publications and generates contextualized suggestions — achieving 66% cost reduction in under 4 days.",
+    tags: ["AI/LLM", "Cost Optimization", "Full-Stack"],
+    stack: ["Node.js", "TypeScript", "PostgreSQL", "Claude API"],
+    status: "Completed",
+    href: "/case-study/collamap",
+    accent: "#ffcb6b",
+  },
+];
+---
+
+<section class="case-studies">
+  <!-- background grid -->
+  <div class="cs-grid-bg"></div>
+
+  <!-- ambient glow blobs -->
+  <div class="cs-glow cs-glow--tl"></div>
+  <div class="cs-glow cs-glow--br"></div>
+
+  <div class="cs-container">
+    <!-- Section header -->
+    <div class="cs-header" data-animate>
+      <div>
+        <div class="cs-header__label">
+          <div class="cs-header__line"></div>
+          <span>Case Studies</span>
+        </div>
+        <h2 class="cs-header__title">
+          Products I've<br />
+          <span class="cs-accent">built &amp; shipped</span>
+        </h2>
+      </div>
+      <p class="cs-header__description">
+        Each project documents not just what was built — but why. The tradeoffs, constraints, and decisions behind it.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="cs-cards">
+      {projects.map((project, i) => (
+        <a
+          href={project.href}
+          class="cs-card-link"
+          data-animate
+          style={`--delay: ${i * 0.12}s; --accent: ${project.accent};`}
+        >
+          <div class="cs-card">
+            {/* scanline overlay */}
+            <div class="cs-card__scanline"></div>
+
+            {/* corner brackets */}
+            <div class="cs-card__bracket cs-card__bracket--tl"></div>
+            <div class="cs-card__bracket cs-card__bracket--tr"></div>
+            <div class="cs-card__bracket cs-card__bracket--bl"></div>
+            <div class="cs-card__bracket cs-card__bracket--br"></div>
+
+            {/* top accent bar */}
+            <div class="cs-card__accent-bar"></div>
+
+            {/* header row */}
+            <div class="cs-card__header">
+              <span class="cs-card__index">{project.index}</span>
+              <span class="cs-card__status">{project.status}</span>
+            </div>
+
+            {/* title */}
+            <h3 class="cs-card__title">{project.title}</h3>
+
+            <p class="cs-card__tagline">{project.tagline}</p>
+
+            <p class="cs-card__description">{project.description}</p>
+
+            {/* tags */}
+            <div class="cs-card__tags">
+              {project.tags.map(tag => (
+                <span class="cs-card__tag">{tag}</span>
+              ))}
+            </div>
+
+            {/* stack */}
+            <div class="cs-card__stack">
+              {project.stack.map(tech => (
+                <span class="cs-card__tech">{tech}</span>
+              ))}
+            </div>
+
+            {/* read more */}
+            <div class="cs-card__cta">
+              READ CASE STUDY <span class="cs-card__arrow">→</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .case-studies {
+    background: #060e1a;
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .cs-grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(100,255,218,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,255,218,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .cs-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .cs-glow--tl {
+    top: 10%;
+    left: 5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(100,255,218,0.04) 0%, transparent 70%);
+  }
+  .cs-glow--br {
+    bottom: 15%;
+    right: 8%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0,180,216,0.05) 0%, transparent 70%);
+  }
+
+  .cs-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .cs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 72px;
+    flex-wrap: wrap;
+    gap: 32px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .cs-header.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cs-header__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .cs-header__label span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #64ffda;
+  }
+  .cs-header__line {
+    width: 24px;
+    height: 1px;
+    background: #64ffda;
+  }
+
+  .cs-header__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: #c8d8e8;
+    margin: 0;
+  }
+  .cs-accent {
+    color: #64ffda;
+  }
+
+  .cs-header__description {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #6a8a9a;
+    max-width: 300px;
+    line-height: 1.8;
+    text-align: right;
+    margin: 0;
+  }
+
+  /* ── Cards grid ── */
+  .cs-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 20px;
+  }
+
+  /* ── Card link ── */
+  .cs-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease var(--delay, 0s), transform 0.7s ease var(--delay, 0s);
+  }
+  .cs-card-link.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Card ── */
+  .cs-card {
+    border: 1px solid #1e3a4a;
+    padding: 36px 32px 56px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s, background 0.35s;
+    background: #0a1628;
+  }
+  .cs-card-link:hover .cs-card {
+    border-color: color-mix(in srgb, var(--accent) 33%, transparent);
+    transform: translateY(-6px);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--accent) 9%, transparent),
+                inset 0 0 60px color-mix(in srgb, var(--accent) 2%, transparent);
+    background: #0d1b2a;
+  }
+
+  /* scanline */
+  .cs-card__scanline {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(100,255,218,0.015) 2px, rgba(100,255,218,0.015) 4px);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .cs-card-link:hover .cs-card__scanline {
+    opacity: 1;
+  }
+
+  /* corner brackets */
+  .cs-card__bracket {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cs-card-link:hover .cs-card__bracket {
+    opacity: 1;
+  }
+  .cs-card__bracket--tl { top: 12px; left: 12px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+  .cs-card__bracket--tr { top: 12px; right: 12px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+  .cs-card__bracket--bl { bottom: 12px; left: 12px; border-bottom: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+  .cs-card__bracket--br { bottom: 12px; right: 12px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+
+  /* accent bar */
+  .cs-card__accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+  }
+  .cs-card-link:hover .cs-card__accent-bar {
+    transform: scaleX(1);
+  }
+
+  /* header row */
+  .cs-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .cs-card__index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  .cs-card__status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+  }
+
+  /* title */
+  .cs-card__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin: 0 0 8px;
+    color: #c8d8e8;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .cs-card-link:hover .cs-card__title {
+    color: #ffffff;
+    text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 27%, transparent);
+  }
+
+  .cs-card__tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: color-mix(in srgb, var(--accent) 53%, transparent);
+    margin: 0 0 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .cs-card__description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #7a9aaa;
+    margin: 0 0 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 300;
+  }
+
+  /* tags */
+  .cs-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .cs-card__tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+    color: color-mix(in srgb, var(--accent) 73%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 13%, transparent);
+  }
+
+  /* stack */
+  .cs-card__stack {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid #1e3a4a;
+  }
+  .cs-card__tech {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #5a7a8a;
+    letter-spacing: 0.06em;
+  }
+
+  /* CTA */
+  .cs-card__cta {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cs-card-link:hover .cs-card__cta {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .cs-card__arrow {
+    font-size: 14px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    .case-studies {
+      padding: 80px 20px;
+    }
+    .cs-cards {
+      grid-template-columns: 1fr;
+    }
+    .cs-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .cs-header__description {
+      text-align: left;
+    }
+  }
+</style>
+
