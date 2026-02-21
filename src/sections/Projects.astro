@@ -1,28 +1,11 @@
 ---
 const projects = [
   {
-    title: "StudyMap",
-    screenshot: "/assets/ecommerce.png",
-    stack: ["React 19", "TypeScript", "Supabase", "React Flow"],
-    href: "/case-study/study-map",
-  },
-  {
-    title: "Ethereum Explorer",
-    screenshot: "/assets/dashboard.png",
-    stack: ["TypeScript", "React", "Ethers.js"],
-    href: "/case-study/ethereum-explorer",
-  },
-  {
-    title: "Online Shopping Cart",
-    screenshot: "/assets/ecommerce.png",
+    title: "Storefront",
+    screenshot: "/assets/storefront.png",
     stack: ["Next.js", "TypeScript", "Tailwind", "Zustand"],
-    href: "https://github.com/Jhessiny/storefront",
-  },
-  {
-    title: "Quiz Dash",
-    screenshot: "/assets/dashboard.png",
-    stack: ["React.js", "TypeScript", "TSS", "Axios"],
-    href: "#",
+    href: "https://storefront-sigma-six.vercel.app/",
+    repo: "https://github.com/Jhessiny/storefront",
   },
 ];
 ---
@@ -64,14 +47,14 @@ const projects = [
               <div class="proj-chrome__dot" style="background: #febc2e;"></div>
               <div class="proj-chrome__dot" style="background: #28c840;"></div>
             </div>
-            <div class="proj-chrome__url" id="proj-url">
+            <a class="proj-chrome__url" id="proj-url" href={projects[0].href} target="_blank" rel="noopener noreferrer">
               {projects[0].href.startsWith("http") ? projects[0].href : `josm.dev${projects[0].href}`}
-            </div>
+            </a>
             <div style="width: 40px;"></div>
           </div>
 
           <!-- Screen area -->
-          <div class="proj-screen">
+          <a class="proj-screen" id="proj-screen-link" href={projects[0].href} target="_blank" rel="noopener noreferrer">
             <img
               id="proj-screenshot"
               src={projects[0].screenshot}
@@ -97,7 +80,7 @@ const projects = [
             <div class="proj-bracket proj-bracket--tr"></div>
             <div class="proj-bracket proj-bracket--bl"></div>
             <div class="proj-bracket proj-bracket--br"></div>
-          </div>
+          </a>
 
           <!-- Info strip below screen -->
           <div class="proj-info">
@@ -109,8 +92,8 @@ const projects = [
                 ))}
               </div>
             </div>
-            <a href={projects[0].href} class="proj-info__cta" id="proj-link">
-              View Project &rarr;
+            <a href={projects[0].repo || projects[0].href} class="proj-info__cta" id="proj-link" target="_blank" rel="noopener noreferrer">
+              {projects[0].repo ? "View Code" : "View Project"} &rarr;
             </a>
           </div>
 
@@ -304,7 +287,13 @@ const projects = [
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 60%;
-    transition: color 0.1s, text-shadow 0.1s;
+    transition: color 0.2s, text-shadow 0.1s, border-color 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .proj-chrome__url:hover {
+    color: #64ffda;
+    border-color: #64ffda44;
   }
   .proj-chrome__url.glitching {
     color: #64ffda88;
@@ -313,12 +302,15 @@ const projects = [
 
   /* ── Screen ── */
   .proj-screen {
+    display: block;
     position: relative;
     border-radius: 6px;
     overflow: hidden;
     animation: screen-flicker 8s ease-in-out infinite;
     background: #0a1520;
     aspect-ratio: 16/9;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   .proj-screen__img {
@@ -588,7 +580,8 @@ const projects = [
   const titleEl = document.getElementById('proj-title')!;
   const stackEl = document.getElementById('proj-stack')!;
   const linkEl = document.getElementById('proj-link') as HTMLAnchorElement;
-  const urlEl = document.getElementById('proj-url')!;
+  const urlEl = document.getElementById('proj-url') as HTMLAnchorElement;
+  const screenLink = document.getElementById('proj-screen-link') as HTMLAnchorElement;
   const counterEl = document.getElementById('proj-current')!;
   const prevBtn = document.getElementById('proj-prev')!;
   const nextBtn = document.getElementById('proj-next')!;
@@ -596,7 +589,7 @@ const projects = [
   const slicesEl = document.getElementById('proj-slices')!;
   const dots = document.querySelectorAll('.proj-dot');
 
-  const projects: { title: string; screenshot: string; stack: string[]; href: string }[] =
+  const projects: { title: string; screenshot: string; stack: string[]; href: string; repo: string }[] =
     JSON.parse(img.dataset.projects || '[]');
 
   const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&_/:.';
@@ -644,7 +637,10 @@ const projects = [
       // Swap image and data
       img.src = project.screenshot;
       img.alt = project.title;
-      linkEl.href = project.href;
+      linkEl.href = project.repo || project.href;
+      linkEl.innerHTML = (project.repo ? 'View Code' : 'View Project') + ' &rarr;';
+      urlEl.href = project.href;
+      screenLink.href = project.href;
       counterEl.textContent = String(index + 1).padStart(2, '0');
 
       // Update stack tags
