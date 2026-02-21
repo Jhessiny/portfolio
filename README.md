@@ -14,13 +14,7 @@ A cyberpunk-inspired developer portfolio with glitch effects, interactive animat
 
 <div align="center">
 
-| Hero | Projects |
-|------|----------|
-| Split-panel hero with avatar overlay and animated text reveal | CRT monitor frame with RGB glitch carousel |
-
-| Case Studies | Skills |
-|--------------|--------|
-| Hover-activated scanline cards with corner brackets | Categorized tech pills with animated language bars |
+![Portfolio Screenshot](public/assets/screenshot.png)
 
 </div>
 
