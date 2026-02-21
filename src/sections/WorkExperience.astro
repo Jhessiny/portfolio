@@ -1,47 +1,369 @@
 ---
-import Container from "../components/Container.astro";
-import ExperienceItem from "./ExperienceItem.astro";
 import { experiences } from "../data/experiences";
 ---
 
-<div class="py-28 md:py-40 px-4" id="experience">
-  <Container>
-    <div
-      id="experience-grid"
-      class="grid grid-cols-1 md:grid-cols-experiencesMd lg:grid-cols-experiencesLg justify-between items-center opacity-0"
-    >
-      <div>
-        <h3 class="text-primary-main font-bold text-5xl leading-none mb-6 md:mb-0 md:text-3xl uppercase md:leading-7">
-          <span class="block">My</span>
-          <span class="block">Work</span>
-          <span class="block">Experience</span>
-        </h3>
-        <h3 class="text-primary-main font-bold text-3xl uppercase leading-7 opacity-20 hidden md:block">
-          <span class="block">Experience</span>
-          <span class="block">Work</span>
-          <span class="block">My</span>
-        </h3>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {experiences.map((exp) => (
-          <ExperienceItem {...exp} />
-        ))}
-      </div>
-    </div>
-  </Container>
-</div>
+<section class="exp-section" id="experience">
+  <!-- background grid -->
+  <div class="exp-grid-bg"></div>
+  <!-- ambient glow -->
+  <div class="exp-glow"></div>
 
-<script>
-  const grid = document.getElementById("experience-grid")!;
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) {
-        grid.classList.remove("opacity-0");
-        grid.classList.add("animate-appearSlideToTop");
-        observer.disconnect();
-      }
-    },
-    { rootMargin: "-5%" }
-  );
-  observer.observe(grid);
-</script>
+  <div class="exp-container">
+    <!-- Header -->
+    <div class="exp-header" data-exp-animate>
+      <div class="exp-header__label">
+        <div class="exp-header__line"></div>
+        <span>Work Experience</span>
+      </div>
+      <h2 class="exp-header__title">
+        WHERE I'VE <span class="exp-accent">OPERATED</span>
+      </h2>
+    </div>
+
+    <!-- Timeline -->
+    <div class="exp-timeline">
+      {experiences.map((item, i) => (
+        <div
+          class="exp-item"
+          data-exp-animate
+          style={`--delay: ${i * 0.12}s;`}
+        >
+          {/* Left — date + company */}
+          <div class="exp-left">
+            <div class="exp-period">{item.period}</div>
+            <div class="exp-company">{item.company}</div>
+            {item.current && (
+              <div class="exp-current-badge">
+                <span class="exp-current-label">Current</span>
+                <span class="exp-current-dot"></span>
+              </div>
+            )}
+          </div>
+
+          {/* Center — timeline line + dot */}
+          <div class="exp-center">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+
+          {/* Right — content */}
+          <div class="exp-right">
+            <h3 class="exp-role">{item.role}</h3>
+            {Array.isArray(item.description) ? (
+              <ul class="exp-bullets">
+                {item.description.map((point) => (
+                  <li class="exp-bullet">{point}</li>
+                ))}
+              </ul>
+            ) : (
+              <p class="exp-desc">{item.description}</p>
+            )}
+            <div class="exp-underline"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-section {
+    background: #060e1a;
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    box-sizing: border-box;
+  }
+
+  .exp-grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .exp-glow {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(100,255,218,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .exp-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .exp-header {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .exp-header.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .exp-header__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .exp-header__label span {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #64ffda;
+    text-transform: uppercase;
+  }
+  .exp-header__line {
+    width: 24px;
+    height: 1px;
+    background: #64ffda55;
+  }
+
+  .exp-header__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: #c8d8e8;
+    margin: 0;
+  }
+  .exp-accent {
+    color: #64ffda;
+  }
+
+  /* ── Timeline item ── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1px 1fr;
+    gap: 0 32px;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease var(--delay, 0s), transform 0.7s ease var(--delay, 0s);
+  }
+  .exp-item.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Left column ── */
+  .exp-left {
+    text-align: right;
+    padding-top: 2px;
+    padding-bottom: 48px;
+  }
+
+  .exp-period {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #5a8a9a;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    transition: color 0.3s;
+  }
+  .exp-item:hover .exp-period {
+    color: #64ffda;
+  }
+
+  .exp-company {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #5a8a9a;
+    transition: color 0.3s;
+  }
+  .exp-item:hover .exp-company {
+    color: #c8d8e8;
+  }
+
+  .exp-current-badge {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .exp-current-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #64ffda;
+    padding: 2px 8px;
+    border: 1px solid #64ffda33;
+    background: #64ffda08;
+  }
+
+  .exp-current-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #64ffda;
+    display: inline-block;
+    animation: exp-pulse-dot 2.2s ease-in-out infinite;
+  }
+
+  /* ── Center timeline ── */
+  .exp-center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .exp-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+    background: transparent;
+    border: 1px solid #1e3a4a;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 2;
+  }
+  .exp-item:hover .exp-dot {
+    background: #64ffda;
+    border-color: #64ffda;
+    box-shadow: 0 0 12px #64ffda88;
+  }
+
+  .exp-line {
+    flex: 1;
+    width: 1px;
+    background: linear-gradient(to bottom, #1e3a4a, #1e3a4a22);
+    transition: background 0.3s;
+    margin-top: 4px;
+  }
+  .exp-item:hover .exp-line {
+    background: linear-gradient(to bottom, #64ffda66, #1e3a4a);
+  }
+
+  /* ── Right column ── */
+  .exp-right {
+    padding-bottom: 48px;
+    padding-top: 0;
+  }
+
+  .exp-role {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    color: #c8d8e8;
+    margin: 0 0 14px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .exp-item:hover .exp-role {
+    color: #ffffff;
+    text-shadow: 0 0 20px #64ffda33;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 520px;
+  }
+  .exp-bullet {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #6a8a9a;
+    transition: color 0.3s;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .exp-bullet:last-child {
+    margin-bottom: 0;
+  }
+  .exp-bullet::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: #64ffda;
+    font-size: 12px;
+  }
+  .exp-item:hover .exp-bullet {
+    color: #a0c0d0;
+  }
+
+  .exp-desc {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #6a8a9a;
+    transition: color 0.3s;
+    max-width: 520px;
+    margin: 0;
+  }
+  .exp-item:hover .exp-desc {
+    color: #a0c0d0;
+  }
+
+  .exp-underline {
+    height: 1px;
+    margin-top: 24px;
+    background: linear-gradient(to right, #64ffda33, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    max-width: 360px;
+  }
+  .exp-item:hover .exp-underline {
+    transform: scaleX(1);
+  }
+
+  /* ── Animations ── */
+  @keyframes exp-pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px #64ffda; }
+    50% { opacity: 0.3; box-shadow: none; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .exp-section {
+      padding: 80px 20px;
+    }
+    .exp-item {
+      grid-template-columns: 120px 1px 1fr;
+      gap: 0 20px;
+    }
+    .exp-header {
+      margin-bottom: 48px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .exp-item {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .exp-left {
+      text-align: left;
+      padding-bottom: 8px;
+    }
+    .exp-center {
+      display: none;
+    }
+    .exp-right {
+      padding-bottom: 32px;
+    }
+    .exp-current-badge {
+      justify-content: flex-start;
+    }
+  }
+</style>
+
