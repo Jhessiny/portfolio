@@ -69,10 +69,13 @@
       />
     </h1>
 
-    <!-- role tags -->
+    <!-- bio line -->
+    <div class="hero-stagger mb-6 md:mb-8">
+      <p class="hero-bio"><span class="text-[#64ffda]">Frontend</span>-focused product engineer building fast, scalable, AI-enabled interfaces.</p>
+    </div>
+
+    <!-- status tag -->
     <div class="hero-stagger flex flex-wrap gap-2 justify-end mb-8 md:mb-11">
-      <span class="tag tag-lit">Product Engineer</span>
-      <span class="tag tag-lit">AI-Augmented</span>
       <span id="available-tag" class="tag tag-scanning flex items-center gap-[7px]" style="min-width: 120px;">
         <span id="available-dot" class="w-[5px] h-[5px] rounded-full inline-block dot-blink"></span>
         <span id="available-text"></span>
@@ -99,7 +102,7 @@
   <div id="bottom-bar-line" class="absolute bottom-0 left-0 right-0 h-[1px] z-20" style="opacity: 0; background: linear-gradient(to right, transparent, #8a9db066, transparent);"></div>
   <div id="bottom-bar" class="absolute bottom-6 left-12 right-12 flex justify-between items-center z-20" style="opacity: 0;">
     <span class="text-[10px] tracking-[0.2em] text-[#6a8a9a] uppercase">
-      Curitiba, BR &middot; 2025
+      São José dos Campos, SP &middot; 2025
     </span>
     <div class="flex flex-col items-center gap-[6px]">
       <span class="text-[9px] tracking-[0.25em] text-[#6a8a9a]">SCROLL</span>
@@ -127,6 +130,18 @@
     border-color: #64ffda33;
     color: #64ffda;
     background: #64ffda08;
+  }
+
+  .hero-bio {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #8a9db0;
+    letter-spacing: 0.02em;
+    text-align: right;
+    border-right: 1px solid #64ffda44;
+    padding-right: 14px;
+    max-width: 340px;
+    margin-left: auto;
   }
 
   .cta-primary {
@@ -286,6 +301,17 @@
     .cta-ghost:active {
       color: #64ffda;
       transform: scale(0.97);
+    }
+
+    /* Bio line centered on mobile */
+    .hero-bio {
+      text-align: center;
+      border-right: none;
+      border-bottom: 1px solid #64ffda44;
+      padding-right: 0;
+      padding-bottom: 10px;
+      margin: 0 auto;
+      font-size: 12px;
     }
 
     /* CTA wrap on mobile */

@@ -1,0 +1,355 @@
+---
+---
+<section id="about" class="relative w-full overflow-hidden font-body">
+  <!-- Background grid -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background-image: linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px); background-size: 80px 80px;"
+  ></div>
+
+  <div class="about-container">
+    <!-- LEFT COLUMN -->
+    <div class="about-left" data-about-animate>
+      <!-- Section label -->
+      <div class="about-label">
+        <span class="about-label-line"></span>
+        <span class="about-label-text">ABOUT</span>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="about-heading">
+        WHO I<br />AM
+      </h2>
+
+      <!-- Details table -->
+      <div class="about-details">
+        <div class="about-detail-row">
+          <span class="about-detail-key">BASED IN</span>
+          <span class="about-detail-value">São José dos Campos, BR</span>
+        </div>
+        <div class="about-detail-row">
+          <span class="about-detail-key">TIMEZONE</span>
+          <span class="about-detail-value">UTC-3 · US & EU friendly</span>
+        </div>
+        <div class="about-detail-row">
+          <span class="about-detail-key">EXPERIENCE</span>
+          <span class="about-detail-value">5 years</span>
+        </div>
+        <div class="about-detail-row">
+          <span class="about-detail-key">FOCUS</span>
+          <span class="about-detail-value">React · TypeScript · AI</span>
+        </div>
+        <div class="about-detail-row">
+          <span class="about-detail-key">AVAILABILITY</span>
+          <span class="about-detail-value about-available">
+            <span class="about-dot"></span>
+            Open to contracts
+          </span>
+        </div>
+      </div>
+
+      <!-- Signature -->
+      <div class="about-signature">
+        <img
+          src="/assets/signature.png"
+          alt="signature"
+          class="about-signature-img"
+        />
+        <span class="about-signature-name">JHESSINY MATTOS</span>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN — numbered paragraphs -->
+    <div class="about-right">
+      <div class="about-paragraph" data-about-animate style="--delay: 0s;">
+        <span class="about-num">01</span>
+        <p>I'm a frontend-focused product engineer who enjoys owning features from idea to production. I work at the intersection of user experience, system design, and business impact — translating product requirements into scalable, high-performance interfaces.</p>
+      </div>
+
+      <div class="about-paragraph" data-about-animate style="--delay: 0.12s;">
+        <span class="about-num">02</span>
+        <p>Over the years, I've worked on long-lived products as well as early-stage initiatives, building and refactoring complex frontends, improving performance, and collaborating closely with product and design teams. I care about clean architecture, predictable state management, and maintainable systems that can evolve with the business.</p>
+      </div>
+
+      <div class="about-paragraph" data-about-animate style="--delay: 0.24s;">
+        <span class="about-num">03</span>
+        <p>I use AI as a development accelerator and as a product capability — integrating LLM-based features where they create real user value, not just novelty. My focus is pragmatic: ship fast, iterate safely, and measure impact.</p>
+      </div>
+
+      <div class="about-paragraph" data-about-animate style="--delay: 0.36s;">
+        <span class="about-num">04</span>
+        <p>I'm particularly interested in small, product-driven teams where engineers have ownership, influence roadmap decisions, and are trusted to execute autonomously.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM TAGS -->
+  <div class="about-tags" data-about-animate style="--delay: 0.48s;">
+    <span class="about-tag">OWNERSHIP</span>
+    <span class="about-tag">SYSTEMS THINKING</span>
+    <span class="about-tag">AI-NATIVE</span>
+    <span class="about-tag">CROSS-FUNCTIONAL</span>
+    <span class="about-tag">REMOTE-FIRST</span>
+  </div>
+</section>
+
+<style>
+  #about {
+    background: linear-gradient(180deg, #0d1b2a 0%, #111d2e 100%);
+    padding: 120px 0 80px;
+  }
+
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* ── Left column ── */
+  .about-left {
+    position: sticky;
+    top: 120px;
+  }
+
+  .about-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .about-label-line {
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: #64ffda;
+  }
+
+  .about-label-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #64ffda;
+    text-transform: uppercase;
+  }
+
+  .about-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    line-height: 0.92;
+    color: #d4eff5;
+    letter-spacing: 0.02em;
+    margin-bottom: 48px;
+  }
+
+  /* ── Details table ── */
+  .about-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid rgba(100, 255, 218, 0.06);
+  }
+
+  .about-detail-row:last-child {
+    border-bottom: 1px solid rgba(100, 255, 218, 0.06);
+  }
+
+  .about-detail-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #64ffda;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .about-detail-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: #8a9db0;
+    text-align: right;
+  }
+
+  .about-available {
+    color: #64ffda;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .about-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #64ffda;
+    animation: about-pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes about-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px #64ffda; }
+    50% { opacity: 0.3; box-shadow: none; }
+  }
+
+  /* ── Signature ── */
+  .about-signature {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .about-signature-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1) sepia(1) saturate(100) hue-rotate(165deg) brightness(0.5);
+    opacity: 0.6;
+  }
+
+  .about-signature-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #4a6a7a;
+    text-transform: uppercase;
+  }
+
+  /* ── Right column ── */
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-top: 12px;
+  }
+
+  .about-paragraph {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .about-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: #3a5a6a;
+    padding-top: 3px;
+  }
+
+  .about-paragraph p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.85;
+    color: #6a8a9a;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Bottom tags ── */
+  .about-tags {
+    max-width: 1200px;
+    margin: 64px auto 0;
+    padding: 0 60px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .about-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #5a7a8a;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid rgba(100, 255, 218, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .about-tag:hover {
+    border-color: rgba(100, 255, 218, 0.25);
+    color: #64ffda;
+    background: rgba(100, 255, 218, 0.04);
+  }
+
+  /* ── Scroll animations ── */
+  [data-about-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--delay, 0s);
+  }
+
+  [data-about-animate].in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .about-container {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 0 32px;
+    }
+
+    .about-left {
+      position: static;
+    }
+
+    .about-tags {
+      padding: 0 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    #about {
+      padding: 80px 0 60px;
+    }
+
+    .about-container {
+      padding: 0 20px;
+      gap: 40px;
+    }
+
+    .about-heading {
+      margin-bottom: 32px;
+    }
+
+    .about-right {
+      gap: 36px;
+    }
+
+    .about-paragraph {
+      grid-template-columns: 32px 1fr;
+      gap: 14px;
+    }
+
+    .about-paragraph p {
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .about-tags {
+      padding: 0 20px;
+      margin-top: 48px;
+    }
+
+    .about-tag {
+      font-size: 9px;
+      padding: 6px 14px;
+    }
+  }
+</style>
