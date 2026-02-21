@@ -21,7 +21,7 @@ import { projectsList } from "../data/projects";
       >
         {/* Render cards 3x for seamless infinite loop */}
         {[...projectsList, ...projectsList, ...projectsList].map((item) => (
-          <ProjectItem {...item} class="w-[calc((100%-1.5rem*1.6)/2.6)]" />
+          <ProjectItem {...item} class="w-full shrink-0" />
         ))}
       </div>
     </div>
@@ -59,8 +59,7 @@ import { projectsList } from "../data/projects";
   function getStep() {
     const trackWidth = track.parentElement!.clientWidth;
     const gap = 24;
-    const cardWidth = (trackWidth - 1.6 * gap) / 2.6;
-    return cardWidth + gap;
+    return trackWidth + gap;
   }
 
   function jumpWithoutTransition(newIndex: number) {

@@ -1,20 +1,727 @@
 ---
-import Container from "../components/Container.astro";
-import Divider from "../components/Divider.astro";
-import Carousel from "./Carousel.astro";
-import MobileCarousel from "./MobileCarousel.astro";
+const projects = [
+  {
+    title: "StudyMap",
+    screenshot: "/assets/ecommerce.png",
+    stack: ["React 19", "TypeScript", "Supabase", "React Flow"],
+    href: "/case-study/study-map",
+  },
+  {
+    title: "Ethereum Explorer",
+    screenshot: "/assets/dashboard.png",
+    stack: ["TypeScript", "React", "Ethers.js"],
+    href: "/case-study/ethereum-explorer",
+  },
+  {
+    title: "Online Shopping Cart",
+    screenshot: "/assets/ecommerce.png",
+    stack: ["Next.js", "TypeScript", "Tailwind", "Zustand"],
+    href: "https://github.com/Jhessiny/storefront",
+  },
+  {
+    title: "Quiz Dash",
+    screenshot: "/assets/dashboard.png",
+    stack: ["React.js", "TypeScript", "TSS", "Axios"],
+    href: "#",
+  },
+];
 ---
 
-<div id="projects">
-  <Divider />
-  <div class="bg-[url('/assets/almond-tree-branch.jpg')] bg-no-repeat bg-left md:bg-right-bottom bg-cover relative overflow-hidden">
-    <div class="bg-gradient-to-r from-backdrop to-backdrop w-full h-full pt-36 pb-28">
-      <Container>
-        <div class="hidden sm:block">
-          <Carousel />
+<section class="projects-section" id="projects">
+  <!-- background grid -->
+  <div class="proj-grid-bg"></div>
+
+  <div class="proj-container">
+    <!-- Section header -->
+    <div class="proj-header" data-animate>
+      <div>
+        <div class="proj-header__label">
+          <div class="proj-header__line"></div>
+          <span>Projects</span>
         </div>
-        <MobileCarousel />
-      </Container>
+        <h2 class="proj-header__title">
+          THINGS I'VE <span class="proj-accent">SHIPPED</span>
+        </h2>
+      </div>
+      <span class="proj-counter">
+        <span id="proj-current">01</span> / {String(projects.length).padStart(2, "0")}
+      </span>
+    </div>
+
+    <!-- Monitor + arrows row -->
+    <div class="proj-row" data-animate style="--delay: 0.15s;">
+      <!-- Left arrow -->
+      <button class="arrow-btn" id="proj-prev" aria-label="Previous">&larr;</button>
+
+      <!-- Monitor frame -->
+      <div class="proj-monitor">
+        <!-- Outer bezel -->
+        <div class="proj-bezel">
+          <!-- Top bar — fake OS chrome -->
+          <div class="proj-chrome">
+            <div class="proj-chrome__dots">
+              <div class="proj-chrome__dot" style="background: #ff5f57;"></div>
+              <div class="proj-chrome__dot" style="background: #febc2e;"></div>
+              <div class="proj-chrome__dot" style="background: #28c840;"></div>
+            </div>
+            <div class="proj-chrome__url" id="proj-url">
+              {projects[0].href.startsWith("http") ? projects[0].href : `josm.dev${projects[0].href}`}
+            </div>
+            <div style="width: 40px;"></div>
+          </div>
+
+          <!-- Screen area -->
+          <div class="proj-screen">
+            <img
+              id="proj-screenshot"
+              src={projects[0].screenshot}
+              alt={projects[0].title}
+              class="proj-screen__img"
+              data-projects={JSON.stringify(projects)}
+            />
+
+            <!-- RGB split overlay -->
+            <div class="proj-screen__rgb" id="proj-rgb"></div>
+
+            <!-- Horizontal glitch slices -->
+            <div class="proj-screen__slices" id="proj-slices"></div>
+
+            <!-- Scanlines overlay -->
+            <div class="proj-screen__scanlines"></div>
+
+            <!-- Teal screen tint -->
+            <div class="proj-screen__tint"></div>
+
+            <!-- Corner brackets -->
+            <div class="proj-bracket proj-bracket--tl"></div>
+            <div class="proj-bracket proj-bracket--tr"></div>
+            <div class="proj-bracket proj-bracket--bl"></div>
+            <div class="proj-bracket proj-bracket--br"></div>
+          </div>
+
+          <!-- Info strip below screen -->
+          <div class="proj-info">
+            <div>
+              <h3 class="proj-info__title" id="proj-title">{projects[0].title}</h3>
+              <div class="proj-info__stack" id="proj-stack">
+                {projects[0].stack.map(t => (
+                  <span class="proj-info__tech">{t}</span>
+                ))}
+              </div>
+            </div>
+            <a href={projects[0].href} class="proj-info__cta" id="proj-link">
+              View Project &rarr;
+            </a>
+          </div>
+
+          <!-- Monitor bottom bezel with dots -->
+          <div class="proj-dots-bar">
+            {projects.map((_, i) => (
+              <button
+                class={`proj-dot${i === 0 ? " active" : ""}`}
+                data-index={i}
+                aria-label={`Go to project ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <!-- Monitor stand -->
+        <div class="proj-stand">
+          <div class="proj-stand__neck"></div>
+          <div class="proj-stand__base"></div>
+        </div>
+      </div>
+
+      <!-- Right arrow -->
+      <button class="arrow-btn" id="proj-next" aria-label="Next">&rarr;</button>
     </div>
   </div>
-</div>
+</section>
+
+<style>
+  .projects-section {
+    background: #060e1a;
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    box-sizing: border-box;
+  }
+
+  .proj-grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .proj-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .proj-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .proj-header.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .proj-header__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .proj-header__label span {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #64ffda;
+    text-transform: uppercase;
+  }
+  .proj-header__line {
+    width: 24px;
+    height: 1px;
+    background: #64ffda55;
+  }
+
+  .proj-header__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: #c8d8e8;
+    margin: 0;
+  }
+  .proj-accent {
+    color: #64ffda;
+  }
+
+  .proj-counter {
+    font-size: 10px;
+    color: #4a6a7a;
+    letter-spacing: 0.15em;
+  }
+
+  /* ── Monitor + arrows row ── */
+  .proj-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease var(--delay, 0s), transform 0.8s ease var(--delay, 0s);
+  }
+  .proj-row.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Arrow buttons ── */
+  .arrow-btn {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #1e3a4a;
+    background: transparent;
+    color: #5a8a9a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .arrow-btn:hover {
+    border-color: #64ffda55;
+    color: #64ffda;
+    box-shadow: 0 0 20px #64ffda18;
+  }
+
+  /* ── Monitor ── */
+  .proj-monitor {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .proj-bezel {
+    background: linear-gradient(145deg, #1a2a3a 0%, #0d1b2a 50%, #0a1520 100%);
+    border: 2px solid #1e3a4a;
+    border-radius: 16px;
+    padding: 20px 20px 60px;
+    position: relative;
+    box-shadow:
+      0 0 0 1px #0a1520,
+      0 0 40px rgba(100,255,218,0.08),
+      inset 0 1px 0 #2a4a5a33,
+      0 40px 80px rgba(0,0,0,0.6);
+  }
+
+  /* ── Chrome bar ── */
+  .proj-chrome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1e3a4a55;
+  }
+  .proj-chrome__dots {
+    display: flex;
+    gap: 6px;
+  }
+  .proj-chrome__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  .proj-chrome__url {
+    font-size: 9px;
+    color: #4a6a7a;
+    letter-spacing: 0.15em;
+    background: #0a1520;
+    padding: 3px 16px;
+    border-radius: 4px;
+    border: 1px solid #1e3a4a44;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 60%;
+    transition: color 0.1s, text-shadow 0.1s;
+  }
+  .proj-chrome__url.glitching {
+    color: #64ffda88;
+    text-shadow: 1px 0 #ff000044, -1px 0 #00ffff44;
+  }
+
+  /* ── Screen ── */
+  .proj-screen {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    animation: screen-flicker 8s ease-in-out infinite;
+    background: #0a1520;
+    aspect-ratio: 16/9;
+  }
+
+  .proj-screen__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: opacity 0.12s ease, transform 0.12s ease, filter 0.12s ease;
+  }
+  .proj-screen__img.glitch-1 {
+    opacity: 0.6;
+    transform: translateX(8px) scaleX(1.02) skewX(-1deg);
+    filter: hue-rotate(90deg) saturate(3) brightness(1.3);
+  }
+  .proj-screen__img.glitch-2 {
+    opacity: 0.3;
+    transform: translateX(-5px) scaleX(0.99) skewX(2deg);
+    filter: hue-rotate(-60deg) saturate(2) contrast(1.5);
+  }
+  .proj-screen__img.glitch-3 {
+    opacity: 0.7;
+    transform: translateX(3px) scaleY(1.01);
+    filter: hue-rotate(180deg) saturate(1.5) brightness(0.8);
+  }
+
+  /* RGB channel split overlay */
+  .proj-screen__rgb {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.05s;
+  }
+  .proj-screen__rgb.active {
+    opacity: 1;
+  }
+  .proj-screen__rgb::before,
+  .proj-screen__rgb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    mix-blend-mode: screen;
+  }
+  .proj-screen__rgb::before {
+    background: rgba(255, 0, 0, 0.08);
+    transform: translateX(4px);
+  }
+  .proj-screen__rgb::after {
+    background: rgba(0, 255, 255, 0.08);
+    transform: translateX(-4px);
+  }
+
+  /* Horizontal slice bars during glitch */
+  .proj-screen__slices {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .proj-screen__slices.active {
+    opacity: 1;
+    animation: glitch-slices 0.15s steps(2) forwards;
+  }
+
+  @keyframes glitch-slices {
+    0% {
+      clip-path: polygon(0 15%, 100% 15%, 100% 18%, 0 18%, 0 45%, 100% 45%, 100% 48%, 0 48%, 0 72%, 100% 72%, 100% 76%, 0 76%);
+      background: rgba(100,255,218,0.06);
+      transform: translateX(6px);
+    }
+    50% {
+      clip-path: polygon(0 5%, 100% 5%, 100% 9%, 0 9%, 0 32%, 100% 32%, 100% 35%, 0 35%, 0 62%, 100% 62%, 100% 65%, 0 65%, 0 88%, 100% 88%, 100% 91%, 0 91%);
+      background: rgba(100,255,218,0.08);
+      transform: translateX(-4px);
+    }
+    100% {
+      clip-path: none;
+      background: transparent;
+      transform: translateX(0);
+    }
+  }
+
+  .proj-screen__scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
+    animation: scanlines-move 3s linear infinite;
+  }
+
+  .proj-screen__tint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(100,255,218,0.04) 0%, transparent 60%);
+  }
+
+  /* ── Corner brackets ── */
+  .proj-bracket {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+  }
+  .proj-bracket--tl { top: 10px; left: 10px; border-top: 1px solid #64ffda66; border-left: 1px solid #64ffda66; }
+  .proj-bracket--tr { top: 10px; right: 10px; border-top: 1px solid #64ffda66; border-right: 1px solid #64ffda66; }
+  .proj-bracket--bl { bottom: 10px; left: 10px; border-bottom: 1px solid #64ffda66; border-left: 1px solid #64ffda66; }
+  .proj-bracket--br { bottom: 10px; right: 10px; border-bottom: 1px solid #64ffda66; border-right: 1px solid #64ffda66; }
+
+  /* ── Info strip ── */
+  .proj-info {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .proj-info__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.06em;
+    color: #c8d8e8;
+    margin: 0 0 8px;
+    transition: text-shadow 0.15s;
+  }
+  .proj-info__title.glitching {
+    text-shadow: 3px 0 #ff000066, -3px 0 #00ffff66;
+  }
+
+  .proj-info__stack {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  :global(.proj-info__tech) {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid #1e3a4a;
+    color: #8baab8;
+  }
+
+  .proj-info__cta {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #64ffda;
+    text-decoration: none;
+    border: 1px solid #64ffda33;
+    padding: 8px 20px;
+    background: #64ffda0a;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .proj-info__cta:hover {
+    background: #64ffda18;
+    border-color: #64ffda66;
+  }
+
+  /* ── Dots bar (bottom bezel) ── */
+  .proj-dots-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    border-top: 1px solid #1e3a4a44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .proj-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #1e3a4a;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: transparent;
+    padding: 0;
+  }
+  .proj-dot.active {
+    background: #64ffda;
+    border-color: #64ffda;
+    box-shadow: 0 0 8px #64ffda88;
+  }
+
+  /* ── Stand ── */
+  .proj-stand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .proj-stand__neck {
+    width: 60px;
+    height: 20px;
+    background: linear-gradient(to bottom, #1a2a3a, #0d1b2a);
+    border-left: 1px solid #1e3a4a44;
+    border-right: 1px solid #1e3a4a44;
+  }
+  .proj-stand__base {
+    width: 140px;
+    height: 8px;
+    background: linear-gradient(to bottom, #1a2a3a, #0d1520);
+    border-radius: 0 0 4px 4px;
+    border: 1px solid #1e3a4a44;
+    border-top: none;
+  }
+
+  /* ── Animations ── */
+  @keyframes screen-flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.85; }
+    97% { opacity: 1; }
+    98% { opacity: 0.9; }
+  }
+
+  @keyframes scanlines-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .projects-section {
+      padding: 80px 20px;
+    }
+    .proj-row {
+      gap: 16px;
+    }
+    .arrow-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
+    }
+    .proj-info {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .arrow-btn {
+      display: none;
+    }
+    .proj-bezel {
+      padding: 16px 16px 52px;
+    }
+    .proj-dot {
+      width: 12px;
+      height: 12px;
+    }
+  }
+</style>
+
+<script>
+  const img = document.getElementById('proj-screenshot') as HTMLImageElement;
+  const titleEl = document.getElementById('proj-title')!;
+  const stackEl = document.getElementById('proj-stack')!;
+  const linkEl = document.getElementById('proj-link') as HTMLAnchorElement;
+  const urlEl = document.getElementById('proj-url')!;
+  const counterEl = document.getElementById('proj-current')!;
+  const prevBtn = document.getElementById('proj-prev')!;
+  const nextBtn = document.getElementById('proj-next')!;
+  const rgbEl = document.getElementById('proj-rgb')!;
+  const slicesEl = document.getElementById('proj-slices')!;
+  const dots = document.querySelectorAll('.proj-dot');
+
+  const projects: { title: string; screenshot: string; stack: string[]; href: string }[] =
+    JSON.parse(img.dataset.projects || '[]');
+
+  const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&_/:.';
+  let current = 0;
+  let animating = false;
+
+  function scrambleText(el: HTMLElement, target: string, duration: number) {
+    let iter = 0;
+    const totalSteps = Math.ceil(duration / 30);
+    const interval = setInterval(() => {
+      const resolved = Math.floor((iter / totalSteps) * target.length);
+      el.textContent = target.split('').map((ch, i) =>
+        i < resolved ? ch : GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
+      ).join('');
+      iter++;
+      if (iter >= totalSteps) {
+        el.textContent = target;
+        clearInterval(interval);
+      }
+    }, 30);
+  }
+
+  function updateProject(index: number) {
+    const project = projects[index];
+    const glitchPhases = ['glitch-1', 'glitch-2', 'glitch-3'];
+
+    // Phase 1: Screen glitch + RGB split + slices (0-80ms)
+    img.classList.add(glitchPhases[0]);
+    rgbEl.classList.add('active');
+    slicesEl.classList.add('active');
+    titleEl.classList.add('glitching');
+    urlEl.classList.add('glitching');
+
+    // Phase 2: Second glitch variant (80ms)
+    setTimeout(() => {
+      img.classList.remove(glitchPhases[0]);
+      img.classList.add(glitchPhases[1]);
+    }, 80);
+
+    // Phase 3: Third glitch + swap content (160ms)
+    setTimeout(() => {
+      img.classList.remove(glitchPhases[1]);
+      img.classList.add(glitchPhases[2]);
+
+      // Swap image and data
+      img.src = project.screenshot;
+      img.alt = project.title;
+      linkEl.href = project.href;
+      counterEl.textContent = String(index + 1).padStart(2, '0');
+
+      // Update stack tags
+      stackEl.innerHTML = project.stack
+        .map(t => `<span class="proj-info__tech">${t}</span>`)
+        .join('');
+
+      // Update dots
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }, 160);
+
+    // Phase 4: Resolve — clear all glitch classes (280ms)
+    setTimeout(() => {
+      img.classList.remove(glitchPhases[2]);
+      rgbEl.classList.remove('active');
+      slicesEl.classList.remove('active');
+      titleEl.classList.remove('glitching');
+      urlEl.classList.remove('glitching');
+    }, 280);
+
+    // Title scramble decrypt (starts at 140ms, runs ~250ms)
+    setTimeout(() => {
+      scrambleText(titleEl, project.title, 250);
+    }, 140);
+
+    // URL scramble (starts at 160ms, runs ~200ms)
+    setTimeout(() => {
+      const displayUrl = project.href.startsWith('http') ? project.href : `josm.dev${project.href}`;
+      scrambleText(urlEl, displayUrl, 200);
+    }, 160);
+
+    // Unlock after full sequence
+    setTimeout(() => {
+      animating = false;
+    }, 420);
+  }
+
+  function go(dir: 'left' | 'right') {
+    if (animating) return;
+    animating = true;
+    current = dir === 'right'
+      ? (current + 1) % projects.length
+      : (current - 1 + projects.length) % projects.length;
+    updateProject(current);
+  }
+
+  prevBtn.addEventListener('click', () => go('left'));
+  nextBtn.addEventListener('click', () => go('right'));
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      if (animating) return;
+      const index = Number((dot as HTMLElement).dataset.index);
+      if (index === current) return;
+      animating = true;
+      current = index;
+      updateProject(current);
+    });
+  });
+
+  // Touch/swipe support
+  const monitor = document.querySelector('.proj-monitor')!;
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  monitor.addEventListener('touchstart', (e) => {
+    touchStartX = (e as TouchEvent).changedTouches[0].screenX;
+  }, { passive: true });
+
+  monitor.addEventListener('touchend', (e) => {
+    touchEndX = (e as TouchEvent).changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      go(diff > 0 ? 'right' : 'left');
+    }
+  }, { passive: true });
+
+</script>
