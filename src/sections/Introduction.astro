@@ -1,30 +1,309 @@
 ---
-import Header from "../components/Header.astro";
 ---
-
-<Header />
-<div
-  class="h-[90vh] md:h-[900px] bg-tertiary bg-[url('/assets/avatar.png')] bg-no-repeat bg-center bg-cover md:bg-contain relative overflow-hidden"
+<section
+  class="relative w-full h-[98vh] overflow-hidden font-body"
   id="home"
 >
-  <div class="h-full w-full md:w-[50.5%] bg-primary-light opacity-95 md:opacity-80 md:animate-bounce-finite md:translate-x-[100%] absolute top-0">
-    <div class="h-full flex flex-col items-center justify-center">
-      <div>
-        <p class="text-text-dark font-bold uppercase text-xs md:ml-3 animate-re-appear">
-          need an awesome
-        </p>
-        <p class="text-text-dark font-thin uppercase text-6xl leading-[3.5rem] xl:text-8xl xl:leading-[5rem]">
-          <span class="block animate-appearSlideRight">frontend</span>
-          <span class="block animate-appearSlideToLeft">developer?</span>
-        </p>
-        <img
-          width="250"
-          height="250"
-          alt="signature"
-          src="/assets/signature.png"
-          class="h-48 object-cover animate-re-appear"
-        />
-      </div>
+  <!-- CENTERED IMAGE -->
+  <div class="absolute inset-0 z-[1] flex items-center justify-center bg-[#415872]">
+    <img
+      src="/assets/avatar.png"
+      alt=""
+      class="h-[190%] max-w-none translate-y-[16.5%] -translate-x-[5%]"
+    />
+  </div>
+
+  <!-- LEFT PANEL -->
+  <div
+    id="left-panel"
+    class="absolute top-0 left-0 h-full overflow-hidden transition-[width] duration-700 ease-in-out z-[2]"
+    style="width: 50%;"
+  >
+  </div>
+
+  <!-- RIGHT PANEL — cold desaturated overlay -->
+  <div
+    id="right-panel"
+    class="absolute top-0 right-0 h-full overflow-hidden transition-[width] duration-700 ease-in-out z-[2]"
+    style="width: 50%;"
+  >
+    <div class="absolute inset-0 bg-[#2b3a4a]/80" style="mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0" style="background: rgba(40,50,60,0.4); mix-blend-mode: saturation;"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 40% 50%, transparent 35%, #2b3a4a 90%);"></div>
+  </div>
+
+  <!-- SPLIT LINE -->
+  <div
+    id="split-line"
+    class="absolute top-0 bottom-0 w-[1px] z-10 transition-all duration-700 ease-in-out"
+    style="left: 50%; background: linear-gradient(to bottom, transparent 0%, #64ffda88 25%, #64ffda 50%, #64ffda88 75%, transparent 100%); box-shadow: 0 0 12px #64ffda55;"
+  ></div>
+
+  <!-- GRID OVERLAY -->
+  <div
+    class="absolute inset-0 pointer-events-none z-[8]"
+    style="background-image: linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px); background-size: 80px 80px;"
+  ></div>
+
+  <!-- MAIN COPY (right-aligned, centered on mobile) -->
+  <div class="hero-copy absolute top-1/2 right-4 md:right-[6%] -translate-y-1/2 z-20 text-right max-w-[90%] md:max-w-[520px]">
+    <!-- subtitle -->
+    <div class="flex items-center justify-end gap-3 mb-5">
+      <span class="text-[11px] tracking-[0.28em] text-[#8a9db0] uppercase">Are you ready for an</span>
+      <div class="w-5 h-[1px] bg-[#64ffda33]"></div>
+    </div>
+
+    <!-- heading -->
+    <h1 class="font-bold uppercase leading-[0.88] mb-6 md:mb-8 text-5xl md:text-7xl lg:text-8xl" style="letter-spacing: 0.03em;">
+      <span class="block text-primary-light">AI</span>
+      <span id="augmented-text" class="block text-[#64ffda]" style="text-shadow: 0 0 40px #64ffda44; font-variant-numeric: tabular-nums;">AUGMENTED</span>
+      <span class="block text-primary-light">DEVELOPER?</span>
+    </h1>
+
+    <!-- signature -->
+    <div class="flex justify-end mb-6 md:mb-8">
+      <img
+        width="250"
+        height="250"
+        alt="signature"
+        src="/assets/signature.png"
+        class="h-20 md:h-32 object-cover opacity-50 [filter:brightness(0)_invert(1)_sepia(1)_saturate(100)_hue-rotate(165deg)_brightness(0.7)]"
+      />
+    </div>
+
+    <!-- role tags -->
+    <div class="flex flex-wrap gap-2 justify-end mb-8 md:mb-11">
+      <span class="tag tag-lit">Product Engineer</span>
+      <span class="tag tag-lit">AI-Augmented</span>
+      <span id="available-tag" class="tag tag-scanning flex items-center gap-[7px]" style="min-width: 120px;">
+        <span id="available-dot" class="w-[5px] h-[5px] rounded-full inline-block dot-blink"></span>
+        <span id="available-text"></span>
+      </span>
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex gap-5 md:gap-7 items-center justify-end">
+      <a href="#contact" class="cta-ghost">Get in touch</a>
+      <a href="#case-studies" class="cta-primary">
+        View Work <span class="text-[13px]">&rarr;</span>
+      </a>
     </div>
   </div>
-</div>
+
+  <!-- BOTTOM BAR -->
+  <div class="absolute bottom-0 left-0 right-0 h-[1px] z-20" style="background: linear-gradient(to right, transparent, #8a9db066, transparent);"></div>
+  <div class="absolute bottom-6 left-12 right-12 flex justify-between items-center z-20">
+    <span class="text-[10px] tracking-[0.2em] text-[#6a8a9a] uppercase">
+      Curitiba, BR &middot; 2025
+    </span>
+    <div class="flex flex-col items-center gap-[6px]">
+      <span class="text-[9px] tracking-[0.25em] text-[#6a8a9a]">SCROLL</span>
+      <div class="w-[1px] h-6" style="background: linear-gradient(to bottom, #8a9db0, transparent);"></div>
+    </div>
+    <span class="text-[10px] tracking-[0.2em] text-[#6a8a9a] uppercase">
+      Product Engineering
+    </span>
+  </div>
+</section>
+
+<style>
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border: 1px solid #2b3a4a;
+    color: #8a9db0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .tag-lit {
+    border-color: #64ffda33;
+    color: #64ffda;
+    background: #64ffda08;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 32px;
+    border: 1px solid #64ffda55;
+    color: #64ffda;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #64ffda0a;
+    transition: all 0.35s;
+    cursor: pointer;
+  }
+
+  .cta-primary:hover {
+    background: #64ffda18;
+    border-color: #64ffda99;
+    box-shadow: 0 0 32px #64ffda22;
+  }
+
+  .cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #8a9db0;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+
+  .cta-ghost:hover {
+    color: #64ffda66;
+  }
+
+  /* Available tag states */
+  .tag-scanning {
+    border-color: #1e3a4a;
+    color: #3a6a7a;
+    background: transparent;
+  }
+
+  .tag-found {
+    border-color: #64ffda66;
+    color: #64ffda;
+    background: transparent;
+    animation: found-flash 0.4s ease-out;
+  }
+
+  .tag-available {
+    border-color: #64ffda33;
+    color: #64ffda;
+    background: #64ffda08;
+  }
+
+  .dot-blink {
+    background: #3a6a7a;
+    animation: blink 0.5s step-end infinite;
+  }
+
+  .dot-found {
+    background: #64ffda;
+    animation: none;
+  }
+
+  .dot-pulse {
+    background: #64ffda;
+    animation: pulse-dot 2.2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes found-flash {
+    0% { background: #64ffda22; }
+    50% { background: #64ffda44; }
+    100% { background: transparent; }
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px #64ffda; }
+    50% { opacity: 0.3; box-shadow: none; }
+  }
+
+  /* Mobile hero centering */
+  @media (max-width: 640px) {
+    .hero-copy {
+      right: 50% !important;
+      transform: translate(50%, -50%) !important;
+      text-align: center;
+    }
+    .hero-copy .flex {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  const hero = document.getElementById('home')!;
+  const rightPanel = document.getElementById('right-panel')!;
+  const splitLine = document.getElementById('split-line')!;
+
+  hero.addEventListener('mousemove', (e) => {
+    const half = window.innerWidth / 2;
+    if (e.clientX > half) {
+      // Hovering right side — overlay covers entire image
+      rightPanel.style.width = '100%';
+      splitLine.style.opacity = '0';
+    } else {
+      // Hovering left side — back to normal
+      rightPanel.style.width = '50%';
+      splitLine.style.opacity = '1';
+    }
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    rightPanel.style.width = '50%';
+    splitLine.style.opacity = '1';
+  });
+
+  // ── 1. AUGMENTED Decrypt ──────────────────────────────
+  const augEl = document.getElementById('augmented-text')!;
+  const h1El = augEl.closest('h1')!;
+  const TARGET = 'AUGMENTED';
+  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+
+  function runDecrypt() {
+    let iter = 0;
+    const interval = setInterval(() => {
+      augEl.textContent = TARGET.split('').map((ch, i) =>
+        i < iter ? ch : CHARS[Math.floor(Math.random() * CHARS.length)]
+      ).join('');
+      iter += 0.35;
+      if (iter >= 9) {
+        augEl.textContent = TARGET;
+        clearInterval(interval);
+      }
+    }, 38);
+  }
+
+  // Fire on mount after 600ms
+  setTimeout(runDecrypt, 600);
+
+  // Fire again on h1 mouseenter
+  h1El.addEventListener('mouseenter', runDecrypt);
+
+  // ── 2. Available Tag Sequence ─────────────────────────
+  const tag = document.getElementById('available-tag')!;
+  const dot = document.getElementById('available-dot')!;
+  const text = document.getElementById('available-text')!;
+
+  const sequence: [string, number][] = [
+    ['SCANNING_.', 800],
+    ['SCANNING_..', 1120],
+    ['SCANNING_...', 1440],
+    ['MATCH FOUND_', 1850],
+    ['Available', 2450],
+  ];
+
+  sequence.forEach(([status, delay]) => {
+    setTimeout(() => {
+      const display = status.replace('_', '');
+      text.textContent = display;
+
+      if (status.startsWith('SCANNING')) {
+        tag.className = 'tag tag-scanning flex items-center gap-[7px]';
+        dot.className = 'w-[5px] h-[5px] rounded-full inline-block dot-blink';
+      } else if (status.startsWith('MATCH')) {
+        tag.className = 'tag tag-found flex items-center gap-[7px]';
+        dot.className = 'w-[5px] h-[5px] rounded-full inline-block dot-found';
+      } else {
+        tag.className = 'tag tag-available flex items-center gap-[7px]';
+        dot.className = 'w-[5px] h-[5px] rounded-full inline-block dot-pulse';
+      }
+    }, delay);
+  });
+</script>
