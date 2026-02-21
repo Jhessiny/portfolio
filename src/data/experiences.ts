@@ -1,30 +1,40 @@
 export const experiences = [
   {
-    title: "Frontend Developer",
+    role: "Frontend Engineer",
     company: "SOFTO",
-    date: "2022 - current",
-    description:
-      "Development of projects features, creating components and testing using React, Typescript, Redux, react-hook-form, Clean Architecture, Jest, testing-library",
+    period: "Feb 2022 — Current",
+    current: true,
+    description: [
+      "Primary frontend engineer on CollaMap, a multi-tenant scientific knowledge platform, for 3+ years — delivering an interactive canvas, custom rich text editor, authentication flows, and multi-tenant architecture.",
+      "Identified low platform retention through user engagement analysis (Microsoft Clarity), proposed an AI-driven research discovery feature, and built a full-stack POC in 3 days — a two-stage novelty detection system processing PubMed publications at $0.17/run with 66% cost optimization.",
+      "Presented architecture, user flow, and cost projections directly to the client.",
+      "Reduced TTI by 60% through code splitting, virtualization, and memoization across data-heavy interfaces.",
+      "Contributed to 8+ projects across industries including Web3, operations dashboards, and a multi-app learning ecosystem.",
+      "Reviewed PRs, mentored junior developers, and conducted technical interviews.",
+    ],
   },
   {
-    title: "Business Analyst",
-    company: "Ame digital",
-    date: "2021 - 2022",
+    role: "Business Analyst",
+    company: "Ame Digital",
+    period: "2021 — 2022",
+    current: false,
     description:
-      "Support to squads, reprocessing failed transactions, running scripts to automate tasks, creating documentation. Techs: Typescript, Postman, GCP, Datadog, Jira, Confluence, Swagger",
+      "Supported Pix and Open Banking implementation at scale — analyzing Central Bank documentation, contributing to transaction rules discussions, and producing technical compliance documentation for a platform processing millions of users and millions in transaction value.",
   },
   {
-    title: "Frontend Developer",
+    role: "Frontend Developer",
     company: "Munddi",
-    date: "2021 - 2021",
+    period: "2021 — 2021",
+    current: false,
     description:
-      "Development of projects features in dashboard and e-commerce. Techs: React, typescript, Jquery, CSS, HTML",
+      "Development of project features in dashboard and e-commerce. Techs: React, Typescript, Jquery, CSS, HTML.",
   },
   {
-    title: "Fullstack developer",
+    role: "Fullstack Developer",
     company: "Freelancer",
-    date: "2020 - 2022",
+    period: "2020 — 2022",
+    current: false,
     description:
-      "Development of websites and web applications. Techs: Node.js, Mondodb, React, HTML, Sass, Material-UI",
+      "Development of websites and web applications. Techs: Node.js, MongoDB, React, HTML, Sass, Material-UI.",
   },
 ];
