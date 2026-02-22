@@ -37,6 +37,7 @@ A cyberpunk-inspired developer portfolio with glitch effects, interactive animat
 - **Case Study Cards** — hover-activated scanlines and corner bracket reveals with accent color indicators
 - **Skills Section** — color-coded tech pills by category (Frontend, Testing, Backend, AI/LLM) with animated language proficiency bars
 - **Fully Responsive** — mobile-first design with touch-optimized interactions and a full-screen mobile menu
+- **Agent-Readable** — machine-readable JSON (`/api/me`) and Markdown (`/api/me/markdown`) endpoints for AI agents, with `llms.txt` discovery, content negotiation middleware, and CORS support
 
 ## Getting Started
 
@@ -66,6 +67,10 @@ src/
 │   └── Layout.astro              # HTML shell, meta tags, fonts
 ├── pages/
 │   ├── index.astro               # Main portfolio (all sections)
+│   ├── api/
+│   │   ├── me.ts                 # JSON endpoint (?filter= support)
+│   │   └── me/
+│   │       └── markdown.ts       # Markdown endpoint
 │   └── case-study/               # Individual case study pages
 │       ├── collamap.astro
 │       └── study-map.astro
@@ -89,17 +94,21 @@ src/
 │   ├── MobileCarousel.astro      # Mobile scroll-snap (CSS)
 │   ├── ProjectItem.astro         # Project card
 │   └── SkillsAndResume.astro     # Tech pills + language bars
+├── lib/
+│   └── portfolio-data.ts         # Centralized typed portfolio data
 ├── data/                         # Content (edit these to update)
 │   ├── projects.ts               # Project entries
 │   └── experiences.ts            # Work experience entries
 ├── types/
 │   └── project.ts                # TypeScript interfaces
+├── middleware.ts                  # Accept header content negotiation
 └── styles/
     ├── global.css                # Tailwind directives + scrollbar
     └── resume-particles.css      # Particle animation keyframes
 
 public/
 ├── assets/                       # Images, resume PDF, signature
+├── llms.txt                      # LLM/agent discovery file
 └── favicon.svg
 ```
 
@@ -110,15 +119,40 @@ Edit the data files in `src/data/` — no need to touch component code:
 - **Projects** — `src/data/projects.ts`
 - **Work Experience** — `src/data/experiences.ts`
 
+## Agent-Readable API
+
+This portfolio exposes machine-readable endpoints so AI agents can discover and consume portfolio data without scraping HTML.
+
+| Route | Content-Type | Description |
+|-------|-------------|-------------|
+| `/api/me` | `application/json` | Full portfolio as structured JSON |
+| `/api/me?filter=skills,projects` | `application/json` | Filtered subsets (`skills`, `projects`, `experience`, `references`, `contact`, `case_studies`, `languages`) |
+| `/api/me/markdown` | `text/markdown` | Portfolio formatted as clean Markdown for LLM context windows |
+| `/llms.txt` | `text/plain` | Discovery file with identity, endpoints, and usage instructions |
+
+**Content negotiation** — requests to `/` with `Accept: application/json` redirect to `/api/me`; `Accept: text/markdown` redirects to `/api/me/markdown`. Normal browser traffic is unaffected.
+
+```bash
+# JSON
+curl https://josm.dev/api/me
+
+# Filtered
+curl https://josm.dev/api/me?filter=skills,experience
+
+# Markdown
+curl https://josm.dev/api/me/markdown
+
+# Content negotiation
+curl -H "Accept: application/json" https://josm.dev/
+```
+
 ## Deployment
 
-Build and deploy the `dist/` folder to any static host:
+Configured for [Vercel](https://vercel.com/) with server-side rendering (`output: 'server'`) for API routes and middleware.
 
 ```bash
 pnpm build
 ```
-
-Works with Vercel, Netlify, GitHub Pages, Cloudflare Pages, and any static file server.
 
 ---
 
