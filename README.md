@@ -134,16 +134,16 @@ This portfolio exposes machine-readable endpoints so AI agents can discover and 
 
 ```bash
 # JSON
-curl https://josm.dev/api/me
+curl https://portfolio-nu-seven-lv4odav0is.vercel.app/api/me
 
 # Filtered
-curl https://josm.dev/api/me?filter=skills,experience
+curl https://portfolio-nu-seven-lv4odav0is.vercel.app/api/me?filter=skills,experience
 
 # Markdown
-curl https://josm.dev/api/me/markdown
+curl https://portfolio-nu-seven-lv4odav0is.vercel.app/api/me/markdown
 
 # Content negotiation
-curl -H "Accept: application/json" https://josm.dev/
+curl -H "Accept: application/json" https://portfolio-nu-seven-lv4odav0is.vercel.app/
 ```
 
 ## Deployment

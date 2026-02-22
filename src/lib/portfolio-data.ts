@@ -167,10 +167,10 @@ export function getPortfolioData(): PortfolioData {
       linkedin: r.linkedin,
     })),
     contact: {
-      email: "contact@josm.dev",
+      email: "jhessinymattos@gmail.com",
       linkedin: "https://www.linkedin.com/in/jhessiny-mattos/",
       github: "https://github.com/Jhessiny",
-      website: "https://josm.dev",
+      website: "https://portfolio-nu-seven-lv4odav0is.vercel.app",
       resume: "/assets/RESUME - JHÉSSINY MATTOS.pdf",
     },
   };
