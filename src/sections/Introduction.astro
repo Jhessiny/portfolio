@@ -47,6 +47,20 @@
     style="opacity: 0; background-image: linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px); background-size: 80px 80px;"
   ></div>
 
+  <!-- AGENT-READABLE BADGE -->
+  <a
+    href="/api/me"
+    target="_blank"
+    rel="noreferrer"
+    id="agent-badge"
+    class="agent-badge absolute top-6 right-6 md:top-8 md:right-8 z-20 flex items-center gap-[7px]"
+    style="opacity: 0;"
+    title="Machine-readable portfolio for AI agents"
+  >
+    <span class="agent-badge-dot"></span>
+    <span class="agent-badge-text">Agent-Readable</span>
+  </a>
+
   <!-- MAIN COPY (right-aligned, centered on mobile) -->
   <div class="hero-copy absolute top-1/2 right-4 md:right-[6%] -translate-y-1/2 z-20 text-right max-w-[90%] md:max-w-[520px]" style="opacity: 0; transform: translateX(40px) translateY(-50%);">
     <!-- subtitle -->
@@ -115,6 +129,44 @@
 </section>
 
 <style>
+  /* ── Agent-readable badge ── */
+  .agent-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid #c47aff33;
+    color: #c47aff;
+    background: #c47aff08;
+    transition: all 0.35s ease;
+  }
+
+  .agent-badge:hover {
+    border-color: #c47aff66;
+    color: #c47aff;
+    background: #c47aff18;
+    box-shadow: 0 0 24px #c47aff1a;
+  }
+
+  .agent-badge-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #c47aff;
+    animation: agent-pulse 2.5s ease-in-out infinite;
+  }
+
+  .agent-badge-text {
+    line-height: 1;
+  }
+
+  @keyframes agent-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px #c47aff; }
+    50% { opacity: 0.3; box-shadow: none; }
+  }
+
   .tag {
     font-size: 10px;
     letter-spacing: 0.15em;
@@ -242,6 +294,7 @@
   }
 
   /* ── Phase transition styles ── */
+  #agent-badge { transition: opacity 0.5s ease-out; }
   #avatar-image { transition: opacity 0.8s ease-out; }
   .hero-copy { transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
   .hero-copy .hero-stagger {
@@ -291,6 +344,13 @@
     .hero-stagger:nth-child(3) { animation-delay: 0.45s; }
     .hero-stagger:nth-child(4) { animation-delay: 0.6s; }
     .hero-stagger:nth-child(5) { animation-delay: 0.75s; }
+
+    .agent-badge {
+      font-size: 8px;
+      padding: 5px 10px;
+      top: 12px;
+      right: 12px;
+    }
 
     /* CTA active states for touch feedback */
     .cta-primary:active {
@@ -570,7 +630,11 @@
     aiEl.style.opacity = '1';
     devEl.style.opacity = '1';
 
-    // Phase 8: existing hero animations (available tag)
+    // Phase 8: show agent badge
+    const agentBadge = document.getElementById('agent-badge');
+    if (agentBadge) agentBadge.style.opacity = '1';
+
+    // Phase 9: existing hero animations (available tag)
     startHeroAnimations();
   }
 

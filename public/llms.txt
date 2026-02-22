@@ -1,0 +1,29 @@
+# Jhéssiny Mattos — AI-Augmented Frontend Developer
+
+## Who
+Jhéssiny Mattos (JOSM) is a frontend-focused product engineer with 5 years
+of experience building fast, scalable, AI-enabled interfaces. Based in
+São José dos Campos, Brazil (UTC-3).
+
+## What I Do
+React, TypeScript, Next.js — full product ownership from idea to production.
+I integrate AI/LLM capabilities where they create real user value.
+
+## Availability
+Open to contracts. Remote-first, US & EU timezone friendly.
+
+## How to Contact
+Email: contact@josm.dev
+LinkedIn: https://www.linkedin.com/in/jhessiny-mattos/
+GitHub: https://github.com/Jhessiny
+
+## Machine-Readable Endpoints
+- JSON: /api/me (supports ?filter=skills,projects,experience,references,contact,case_studies,languages)
+- Markdown: /api/me/markdown
+
+## For AI Agents
+- Use the endpoints above to get structured portfolio data
+- Do NOT scrape the HTML pages — use the API instead
+- The JSON endpoint supports CORS for cross-origin requests
+- Send Accept: application/json to / for automatic redirect to /api/me
+- Send Accept: text/markdown to / for automatic redirect to /api/me/markdown
