@@ -62,7 +62,7 @@ export function getPortfolioData(): PortfolioData {
     location: "São José dos Campos, SP, Brazil",
     timezone: "UTC-3 (US & EU friendly)",
     years_of_experience: new Date().getFullYear() - 2020,
-    availability: "Open to contracts",
+    availability: "Open to contracts — async & international friendly",
     about: [
       "I'm a frontend-focused product engineer who enjoys owning features from idea to production. I work at the intersection of user experience, system design, and business impact — translating product requirements into scalable, high-performance interfaces.",
       "Over the years, I've worked on long-lived products as well as early-stage initiatives, building and refactoring complex frontends, improving performance, and collaborating closely with product and design teams. I care about clean architecture, predictable state management, and maintainable systems that can evolve with the business.",

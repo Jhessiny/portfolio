@@ -7,4 +7,5 @@ export type ProjectModel = {
   deployLink: string;
   type?: string;
   status?: string;
+  case_study_slug?: string;
 };

@@ -88,6 +88,15 @@ const learnings = [
         <span class="cs-hero__pill">Developer Tool</span>
         <span class="cs-hero__pill">Personal Tool</span>
       </div>
+
+      <div class="cs-hero__actions" data-animate>
+        <a href="https://llm-txt-generator-drab.vercel.app/" target="_blank" rel="noreferrer" class="cs-hero__btn cs-hero__btn--primary">
+          Live Demo &rarr;
+        </a>
+        <a href="https://github.com/Jhessiny/llm-txt-gen" target="_blank" rel="noreferrer" class="cs-hero__btn cs-hero__btn--secondary">
+          GitHub
+        </a>
+      </div>
     </header>
 
     <!-- ─── Problem ─── -->
@@ -513,6 +522,46 @@ const learnings = [
   .cs-hero__tags.in-view {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .cs-hero__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
+  }
+  .cs-hero__actions.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cs-hero__btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 24px;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .cs-hero__btn--primary {
+    background: var(--accent);
+    color: #060e1a;
+    border: 1px solid var(--accent);
+  }
+  .cs-hero__btn--primary:hover {
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3);
+  }
+  .cs-hero__btn--secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+  }
+  .cs-hero__btn--secondary:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.1);
   }
 
   .cs-hero__pill {

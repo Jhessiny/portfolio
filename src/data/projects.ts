@@ -4,7 +4,7 @@ export const projectsList: ProjectModel[] = [
   {
     title: "Dev Insights",
     description:
-      "A self-hosted pipeline that turns YouTube channels into a searchable knowledge graph. Configure once — the system polls channels, fetches transcripts, and uses Claude to surface key points, themes, and cross-video connections.",
+      "A self-hosted pipeline that turns YouTube channels into a searchable knowledge graph. Configure once — the system polls channels, fetches transcripts, and uses Claude to surface key points, themes, and cross-video connections. Self-hosted, no public demo.",
     technologies:
       "Python 3.12, FastAPI, React 19, TypeScript, PostgreSQL, Docker Compose, Anthropic SDK",
     img: "/assets/dev-insights.png",
@@ -34,6 +34,7 @@ export const projectsList: ProjectModel[] = [
     deployLink: "https://llm-txt-generator-drab.vercel.app/",
     type: "personal-tool",
     status: "completed",
+    case_study_slug: "llm-txt-gen",
   },
   {
     title: "Brand Builder",
@@ -46,6 +47,7 @@ export const projectsList: ProjectModel[] = [
     deployLink: "https://www.aiecosystem.tech/",
     type: "micro-saas",
     status: "completed",
+    case_study_slug: "brand-builder",
   },
   {
     title: "SpecLint",
