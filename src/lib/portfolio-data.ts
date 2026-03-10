@@ -30,8 +30,10 @@ export interface PortfolioData {
     title: string;
     description: string;
     technologies: string;
-    github: string;
-    live: string;
+    github?: string;
+    live?: string;
+    type?: string;
+    status?: string;
   }[];
   case_studies: {
     title: string;
@@ -59,7 +61,7 @@ export function getPortfolioData(): PortfolioData {
       "Frontend-focused product engineer building fast, scalable, AI-enabled interfaces.",
     location: "São José dos Campos, SP, Brazil",
     timezone: "UTC-3 (US & EU friendly)",
-    years_of_experience: 5,
+    years_of_experience: new Date().getFullYear() - 2020,
     availability: "Open to contracts",
     about: [
       "I'm a frontend-focused product engineer who enjoys owning features from idea to production. I work at the intersection of user experience, system design, and business impact — translating product requirements into scalable, high-performance interfaces.",
@@ -79,13 +81,17 @@ export function getPortfolioData(): PortfolioData {
         "React",
         "TypeScript",
         "Next.js",
+        "Vite",
         "Redux / Zustand",
+        "TanStack Query",
         "React Hook Form",
+        "Zod",
         "Tailwind",
+        "shadcn/ui",
       ],
       testing: ["Jest", "Cypress", "Vitest", "Testing Library"],
-      backend_and_infra: ["Node.js", "PostgreSQL", "Docker", "Supabase"],
-      ai_llm: ["Claude API", "V0", "Replit"],
+      backend_and_infra: ["Node.js", "Python", "FastAPI", "PostgreSQL", "Prisma", "Redis", "Stripe", "Docker", "Supabase"],
+      ai_llm: ["Claude API", "Anthropic SDK", "Prompt Engineering", "Structured AI Output", "RAG Pipelines", "Embeddings / Semantic Search", "pgvector", "Claude Code", "Cursor", "V0"],
     },
     languages: [
       { language: "Portuguese", level: "Native", proficiency_pct: 100 },
@@ -103,8 +109,10 @@ export function getPortfolioData(): PortfolioData {
       title: p.title,
       description: p.description,
       technologies: p.technologies,
-      github: p.githubRepo,
-      live: p.deployLink,
+      github: p.githubRepo || undefined,
+      live: p.deployLink || undefined,
+      type: p.type,
+      status: p.status,
     })),
     case_studies: [
       {
@@ -146,19 +154,53 @@ export function getPortfolioData(): PortfolioData {
           "Vercel",
         ],
         highlights: [
-          "Clean Architecture with 4 layers",
-          "6-week MVP timeline (4 phases)",
-          "React 19 with concurrent features",
-          "100% TypeScript",
+          "Interactive concept canvas with drag-and-drop connections",
+          "Real-time collaboration via Supabase subscriptions",
+          "Visual knowledge gaps surface missing links between topics",
+          "Clean Architecture enables feature additions without regressions",
         ],
       },
       {
-        title: "Ethereum Explorer",
-        slug: "ethereum-explorer",
+        title: "llm-txt-gen — AI Readability Crawler",
+        slug: "llm-txt-gen",
         status: "Completed",
-        date: "2024",
-        stack: ["TypeScript", "React", "Ethers.js"],
-        highlights: ["Web3 data product", "Blockchain data visualization"],
+        date: "2025",
+        stack: [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "Cheerio",
+          "Upstash Redis",
+        ],
+        highlights: [
+          "Auto-generates llm.txt, agent.md, and site.json",
+          "BFS crawling with AI readability scoring (0-100)",
+          "agent.md flags uncertain inferences instead of hallucinating",
+          "Dogfooded thinking behind portfolio's /api/me",
+        ],
+      },
+      {
+        title: "Brand Builder — Design System Pipeline",
+        slug: "brand-builder",
+        status: "Completed",
+        date: "2025",
+        stack: [
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "Tailwind CSS 4",
+          "Anthropic SDK",
+          "Stripe",
+          "Zod",
+          "next-intl",
+        ],
+        highlights: [
+          "Full product funnel: Wizard → AI generation → Paywall → Dashboard",
+          "Generates agent prompts for Claude Code / Cursor",
+          "Stripe-gated export with one-time payment",
+          "Live component playground with palette swapping",
+        ],
       },
     ],
     references: references.map((r) => ({

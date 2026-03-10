@@ -16,6 +16,8 @@ const VALID_FILTERS = [
   "contact",
   "case_studies",
   "languages",
+  "about",
+  "values",
 ] as const;
 
 type FilterKey = (typeof VALID_FILTERS)[number];
@@ -29,6 +31,7 @@ export const GET: APIRoute = ({ url }) => {
       purpose: "Machine-readable portfolio for AI agents",
       how_to_hire: "Email via the contact field below",
       available_filters: [...VALID_FILTERS],
+      project_types: ["project", "personal-tool", "micro-saas", "in-development"],
     },
     _schema_version: "1.0",
     last_updated: new Date().toISOString().split("T")[0],

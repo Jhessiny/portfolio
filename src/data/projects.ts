@@ -2,41 +2,61 @@ import type { ProjectModel } from "../types/project";
 
 export const projectsList: ProjectModel[] = [
   {
-    title: "Online Shopping Cart",
+    title: "Dev Insights",
     description:
-      "E-commerce website with products list and item pages, infinite scroll, interactive shopping cart, checkout, login with Google.",
+      "A self-hosted pipeline that turns YouTube channels into a searchable knowledge graph. Configure once — the system polls channels, fetches transcripts, and uses Claude to surface key points, themes, and cross-video connections.",
     technologies:
-      "Next.js, Typescript, Tailwindcss, Zustand, React-query, Axios, Next-Auth",
-    img: "/assets/ecommerce.png",
-    githubRepo: "https://github.com/Jhessiny/next-eccomerce",
-    deployLink: "https://next-eccomerce-gules.vercel.app/products",
+      "Python 3.12, FastAPI, React 19, TypeScript, PostgreSQL, Docker Compose, Anthropic SDK",
+    img: "/assets/dev-insights.png",
+    githubRepo: "https://github.com/Jhessiny/dev-insights",
+    deployLink: "",
+    type: "personal-tool",
+    status: "completed",
   },
   {
-    title: "Quiz Dash",
+    title: "Storefront",
     description:
-      "Dashboard to manage quizzes and contacts. The admin can create quizzes to gather leads and send it to platforms like Active Campaign.",
-    technologies: "React.js, Typescript, TSS, Axios",
-    img: "/assets/dashboard.png",
-    githubRepo: "https://github.com/Jhessiny/quiz-dash",
-    deployLink:
-      "http://quiz-dash-test.s3-website-us-east-1.amazonaws.com/admin",
+      "A modern e-commerce storefront with product browsing, cart management, and checkout flow. Built with performance and clean component architecture in mind.",
+    technologies: "Next.js, TypeScript, Tailwind CSS, Zustand",
+    img: "/assets/storefront.png",
+    githubRepo: "https://github.com/Jhessiny/storefront",
+    deployLink: "https://storefront-sigma-six.vercel.app/",
+    type: "project",
+    status: "completed",
   },
   {
-    title: "Fernandes Coutinho Advogados",
+    title: "llm-txt-gen",
     description:
-      "Landing page to present lawyer services and receive contacts.",
-    technologies: "Html, css, Javascript",
-    img: "/assets/fernandes-neto.png",
-    githubRepo:
-      "https://github.com/Jhessiny/jhessiny.github.io/tree/master/FernandesNeto2",
-    deployLink: "https://jhessiny.github.io/FernandesNeto2/",
+      "A crawler that auto-generates llm.txt, agent.md, and site.json for any website — making it readable by AI agents from a single URL.",
+    technologies: "Next.js, React, TypeScript, Tailwind CSS, Cheerio, Upstash Redis",
+    img: "/assets/storefront.png",
+    githubRepo: "https://github.com/Jhessiny/llm-txt-gen",
+    deployLink: "",
+    type: "personal-tool",
+    status: "completed",
   },
   {
-    title: "Kraftsoft",
-    description: "Landing page for digital agency",
-    technologies: "Next.js, Typescript, Tailwindcss, Zustand, Axios",
-    img: "/assets/kraftsoft.png",
-    githubRepo: "https://github.com/Jhessiny/kraftsoft-digital-agency",
-    deployLink: "https://jhessiny.github.io/kraftsoft-digital-agency/",
+    title: "Brand Builder",
+    description:
+      "A wizard-to-dashboard pipeline that generates palettes, typography pairings, component configs, and a ready-to-use agent prompt — Stripe-gated export.",
+    technologies:
+      "Next.js 16, React 19, TypeScript, Tailwind CSS 4, Anthropic SDK, Stripe, Zod, next-intl",
+    img: "/assets/storefront.png",
+    githubRepo: "https://github.com/Jhessiny/brand-builder",
+    deployLink: "",
+    type: "micro-saas",
+    status: "completed",
+  },
+  {
+    title: "SpecLint",
+    description:
+      "A focused text editor that surfaces vagueness, ambiguity, and undefined terms in software specs in real time — like a senior engineer looking over your shoulder.",
+    technologies:
+      "Next.js 15, React 19, TypeScript, Tailwind CSS 4, Anthropic SDK, Prisma, SQLite",
+    img: "/assets/storefront.png",
+    githubRepo: "",
+    deployLink: "",
+    type: "in-development",
+    status: "early-access",
   },
 ];

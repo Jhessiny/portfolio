@@ -11,6 +11,7 @@ const projects = [
     status: "Completed",
     href: "/case-study/collamap",
     accent: "#ffcb6b",
+    cta: "READ CASE STUDY",
   },
   {
     index: "02",
@@ -23,18 +24,46 @@ const projects = [
     status: "In Development",
     href: "/case-study/study-map",
     accent: "#64ffda",
+    cta: "READ CASE STUDY",
   },
   {
     index: "03",
-    title: "Ethereum Explorer",
-    tagline: "Blockchain data made readable",
+    title: "LLM-TXT-GEN",
+    tagline: "AI readability crawler for any website",
     description:
-      "A TypeScript-first interface for exploring Ethereum transactions, blocks, and wallet activity. Focused on turning raw chain data into a legible product experience.",
-    tags: ["Data Product", "Web3", "TypeScript"],
-    stack: ["TypeScript", "React", "Ethers.js"],
+      "A crawler that auto-generates llm.txt, agent.md, and site.json for any website — making it readable by AI agents from a single URL.",
+    tags: ["AI/LLM", "Developer Tool", "Personal Tool"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cheerio", "Upstash Redis"],
     status: "Completed",
-    href: "/case-study/ethereum-explorer",
-    accent: "#00b4d8",
+    href: "/case-study/llm-txt-gen",
+    accent: "#82aaff",
+    cta: "READ CASE STUDY",
+  },
+  {
+    index: "04",
+    title: "Brand Builder",
+    tagline: "Design system pipeline powered by AI",
+    description:
+      "A wizard-to-dashboard pipeline that generates palettes, typography pairings, component configs, and a ready-to-use agent prompt — Stripe-gated export.",
+    tags: ["Micro-SaaS", "AI/LLM", "Product Design"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Anthropic SDK", "Stripe", "Zod", "next-intl"],
+    status: "Completed",
+    href: "/case-study/brand-builder",
+    accent: "#c792ea",
+    cta: "READ CASE STUDY",
+  },
+  {
+    index: "05",
+    title: "SpecLint",
+    tagline: "Grammarly for software specs",
+    description:
+      "A focused text editor that surfaces vagueness, ambiguity, and undefined terms in software specs in real time — like a senior engineer looking over your shoulder.",
+    tags: ["In Development", "Developer Tool"],
+    stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS 4", "Anthropic SDK", "Prisma", "SQLite"],
+    status: "Early Access",
+    href: "mailto:jhessinymattos@gmail.com?subject=SpecLint%20Waitlist",
+    accent: "#ff8a65",
+    cta: "JOIN WAITLIST",
   },
 ];
 ---
@@ -116,7 +145,7 @@ const projects = [
 
             {/* read more */}
             <div class="cs-card__cta">
-              READ CASE STUDY <span class="cs-card__arrow">→</span>
+              {project.cta} <span class="cs-card__arrow">→</span>
             </div>
           </div>
         </a>

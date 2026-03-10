@@ -5,4 +5,6 @@ export type ProjectModel = {
   technologies: string;
   githubRepo: string;
   deployLink: string;
+  type?: string;
+  status?: string;
 };
