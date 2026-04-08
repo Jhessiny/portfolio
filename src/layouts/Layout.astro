@@ -1,4 +1,6 @@
 ---
+import Analytics from '@vercel/analytics/astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -21,6 +23,7 @@ const { title = "Portfolio", description = "Frontend developer portfolio" } = As
       rel="stylesheet"
     />
     <title>{title}</title>
+    <Analytics />
   </head>
   <body class="font-body">
     <slot />
