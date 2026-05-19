@@ -1,0 +1,194 @@
+---
+import { features, stack, highlights } from "../../../data/case-studies/revla";
+
+const accent = "#ff5fa2";
+const accentRgb = "255,95,162";
+---
+
+  <div class="cs-page" style={`--accent: ${accent}; --accent-rgb: ${accentRgb};`}>
+    <!-- Background layers -->
+    <div class="cs-noise"></div>
+    <div class="cs-grid"></div>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="cs-nav" data-animate>
+      <a href="/#case-studies" class="cs-nav__back">
+        <span class="cs-nav__arrow">&larr;</span>
+        <span class="cs-nav__label">Back to projects</span>
+      </a>
+      <span class="cs-nav__index">01</span>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <header class="cs-hero">
+      <div class="cs-hero__meta" data-animate>
+        <div class="cs-hero__tag">
+          <span class="cs-hero__dot"></span>
+          Active · First contract signed
+        </div>
+        <span class="cs-hero__date">May 2025 — Present</span>
+      </div>
+
+      <h1 class="cs-hero__title" data-animate>
+        <span class="cs-hero__title-main">REVLA</span>
+        <span class="cs-hero__title-sub">Conversation<br/>Intelligence Platform</span>
+      </h1>
+
+      <p class="cs-hero__summary" data-animate>
+        Fullstack SaaS for B2C teams. Analyzes client–attendant conversations to
+        anticipate <strong>risks</strong> (churn signals, complaints) and
+        <strong>opportunities</strong> (upsell intent, satisfaction) with AI. I ship
+        features end-to-end across React/TS, Node, Postgres — and shipped the CSV
+        import that unlocked the company's first signed contract.
+      </p>
+
+      <div class="cs-hero__tags" data-animate>
+        <span class="cs-hero__pill">Fullstack</span>
+        <span class="cs-hero__pill">AI/LLM</span>
+        <span class="cs-hero__pill">SaaS</span>
+        <span class="cs-hero__pill">Startup pace</span>
+      </div>
+    </header>
+
+    <!-- ─── My Scope ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>My Scope</span>
+      </div>
+      <p class="cs-section__intro">
+        Fullstack engineer at a Softo client — React/TypeScript on the frontend,
+        Node.js + PostgreSQL on the backend. Startup pace: 4–5 developers shipping
+        features in parallel, no dedicated analyst. I joined client discovery
+        sessions directly and used AI to bridge the analyst gap. Close collaboration
+        with DevOps on feature-flag infrastructure and Lambda integrations.
+      </p>
+    </section>
+
+    <!-- ─── Selected Work ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Selected Work</span>
+      </div>
+      <h2 class="cs-section__heading">Features I<br/><span class="cs-accent">owned end-to-end</span></h2>
+
+      <div class="cs-features">
+        {features.map((f, i) => (
+          <div
+            class="cs-feature"
+            style={`--feat-color: ${f.accent}; --feat-delay: ${i * 0.1}s;`}
+            data-animate
+          >
+            <div class="cs-feature__header">
+              <span class="cs-feature__stage">FEATURE {f.stage}</span>
+              <div class="cs-feature__bar"></div>
+            </div>
+            <h3 class="cs-feature__title">{f.title}</h3>
+            <div class="cs-feature__row">
+              <span class="cs-feature__key">Problem</span>
+              <p class="cs-feature__text">{f.problem}</p>
+            </div>
+            <div class="cs-feature__row">
+              <span class="cs-feature__key">Approach</span>
+              <p class="cs-feature__text">{f.approach}</p>
+            </div>
+            <div class="cs-feature__row">
+              <span class="cs-feature__key">Outcome</span>
+              <p class="cs-feature__text cs-feature__text--outcome">{f.outcome}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Tech Stack ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Tech Stack</span>
+      </div>
+      <div class="cs-stack">
+        {stack.map((s) => (
+          <span class="cs-stack__pill">{s.name}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Highlights ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>What I'd Highlight</span>
+      </div>
+      <h2 class="cs-section__heading">The signal,<br/><span class="cs-accent">not the noise</span></h2>
+
+      <div class="cs-highlights">
+        {highlights.map((h, i) => (
+          <div class="cs-highlight" style={`--hl-delay: ${i * 0.08}s;`} data-animate>
+            <span class="cs-highlight__index">0{i + 1}</span>
+            <h3 class="cs-highlight__title">{h.title}</h3>
+            <p class="cs-highlight__text">{h.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Outcome ─── -->
+    <section class="cs-section cs-outcome" data-animate>
+      <div class="cs-outcome__glow"></div>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Outcome</span>
+      </div>
+      <h2 class="cs-outcome__heading">
+        Active product,<br/><span class="cs-accent">first contract signed</span>
+      </h2>
+      <div class="cs-outcome__points">
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>CSV import unlocked the company's first signed contract</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Events &amp; alerts shipping as the platform's retention lever</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Feature flagging infrastructure live across FE + BE</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Discovery loop running without a dedicated analyst</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer nav ─── -->
+    <nav class="cs-footer-nav" data-animate>
+      <a href="/#case-studies" class="cs-footer-nav__link">
+        <span class="cs-footer-nav__arrow">&larr;</span>
+        Back to all projects
+      </a>
+    </nav>
+  </div>
+
+<style define:vars={{ accent, accentRgb }}>
+  @import "./styles.css";
+</style>
+
+<script>
+  const elements = document.querySelectorAll('[data-animate]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+  );
+  elements.forEach((el) => observer.observe(el));
+</script>

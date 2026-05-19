@@ -1,0 +1,394 @@
+---
+import { metrics, pipeline, timeline, stack, learnings } from "../../../data/case-studies/collamap";
+
+const accent = "#ffcb6b";
+const accentRgb = "255,203,107";
+---
+
+  <div class="cs-page" style={`--accent: ${accent}; --accent-rgb: ${accentRgb};`}>
+    <!-- Background layers -->
+    <div class="cs-noise"></div>
+    <div class="cs-grid"></div>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="cs-nav" data-animate>
+      <a href="/#case-studies" class="cs-nav__back">
+        <span class="cs-nav__arrow">&larr;</span>
+        <span class="cs-nav__label">Back to projects</span>
+      </a>
+      <span class="cs-nav__index">03</span>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <header class="cs-hero">
+      <div class="cs-hero__meta" data-animate>
+        <div class="cs-hero__tag">
+          <span class="cs-hero__dot"></span>
+          POC Approved for Production
+        </div>
+        <span class="cs-hero__date">2022 – 2025</span>
+      </div>
+
+      <h1 class="cs-hero__title" data-animate>
+        <span class="cs-hero__title-main">COLLAMAP</span>
+        <span class="cs-hero__title-sub">Research Suggestion<br/>Engine</span>
+      </h1>
+
+      <p class="cs-hero__summary" data-animate>
+        Multi-tenant research platform. I led the frontend for 3 years and diagnosed
+        a retention problem through engagement-data analysis — then shipped the response:
+        a 3-stage AI pipeline that discovers novel research topics at
+        <strong>66% cost reduction</strong> over naive approaches. Built in 4 days, ran in production.
+      </p>
+
+      <div class="cs-hero__tags" data-animate>
+        <span class="cs-hero__pill">AI/LLM</span>
+        <span class="cs-hero__pill">Full-Stack</span>
+        <span class="cs-hero__pill">Cost Optimization</span>
+        <span class="cs-hero__pill">Rapid Prototyping</span>
+      </div>
+    </header>
+
+    <!-- ─── My Scope ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>My Scope</span>
+      </div>
+      <p class="cs-section__intro">
+        Main frontend engineer on a small team — 1 backend, 2 frontend (I led FE),
+        1 QA, shared DevOps. Over 3 years I shipped an interactive canvas, a custom
+        rich-text editor, auth and multi-tenant scoping at the FE layer, and the AI
+        initiative this case study focuses on. Owned FE technical decisions, onboarded
+        the second frontend engineer, conducted ~5 hiring interviews.
+      </p>
+      <p class="cs-section__intro" style="margin-top: -24px;">
+        Primary stack: React · TypeScript · Redux · RTK Query · Material UI · React
+        Hook Form. The POC below used Tailwind for build velocity over 4 days.
+      </p>
+    </section>
+
+    <!-- ─── Metrics Strip ─── -->
+    <section class="cs-metrics" data-animate>
+      <div class="cs-metrics__grid">
+        {metrics.map((m) => (
+          <div class="cs-metric">
+            <span class="cs-metric__value">{m.value}</span>
+            <span class="cs-metric__label">{m.label}</span>
+            <span class="cs-metric__detail">{m.detail}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Problem ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>The Problem</span>
+      </div>
+      <div class="cs-section__content cs-problem">
+        <div class="cs-problem__text">
+          <h2 class="cs-section__heading">Platform stagnation<br/><span class="cs-accent">hiding in plain sight</span></h2>
+          <p>
+            Through analysis of user engagement data using Clarity analytics, a critical pattern emerged:
+            the research collaboration platform — designed for researchers to collaborate on disease-specific
+            topics — had low active user counts, minimal frequent contributors, and stagnant concept creation.
+          </p>
+          <p>
+            The platform organized research into a <strong>hierarchical concept tree</strong> (5 levels deep,
+            max 10 nodes per level). Researchers needed to manually stay current with emerging literature
+            and identify novel topics worthy of new concepts — a time-consuming process that became the
+            primary barrier to engagement.
+          </p>
+        </div>
+        <div class="cs-problem__signals">
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Low active user count</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Minimal frequent contributors</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Stagnant concept creation</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Manual literature review burden</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Pipeline Architecture ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Architecture</span>
+      </div>
+      <h2 class="cs-section__heading">The 3-stage<br/><span class="cs-accent">analysis pipeline</span></h2>
+      <p class="cs-section__intro">
+        The breakthrough was recognizing that not all parts of the concept tree required the same
+        depth of analysis. Shallow levels have distinct keyword signatures; deep levels need semantic
+        understanding; only truly novel papers need expensive LLM processing.
+      </p>
+
+      <div class="cs-pipeline">
+        {pipeline.map((p, i) => (
+          <div
+            class="cs-pipe"
+            style={`--pipe-color: ${p.color}; --pipe-delay: ${i * 0.15}s;`}
+            data-animate
+          >
+            <div class="cs-pipe__connector">
+              <div class="cs-pipe__dot"></div>
+              {i < pipeline.length - 1 && <div class="cs-pipe__line"></div>}
+            </div>
+            <div class="cs-pipe__card">
+              <div class="cs-pipe__bar"></div>
+              <div class="cs-pipe__header">
+                <span class="cs-pipe__stage">Stage {p.stage}</span>
+                <span class="cs-pipe__cost">{p.cost}/run</span>
+              </div>
+              <h3 class="cs-pipe__title">{p.title}</h3>
+              <p class="cs-pipe__desc">{p.description}</p>
+              <div class="cs-pipe__filter">
+                <span class="cs-pipe__filter-icon">&rarr;</span>
+                {p.filter}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- funnel visualization -->
+      <div class="cs-funnel" data-animate>
+        <div class="cs-funnel__row">
+          <div class="cs-funnel__bar cs-funnel__bar--full"></div>
+          <span class="cs-funnel__label">30-50 papers ingested</span>
+        </div>
+        <div class="cs-funnel__row">
+          <div class="cs-funnel__bar cs-funnel__bar--mid"></div>
+          <span class="cs-funnel__label">~12 potentially novel</span>
+        </div>
+        <div class="cs-funnel__row">
+          <div class="cs-funnel__bar cs-funnel__bar--narrow"></div>
+          <span class="cs-funnel__label">3-5 actionable suggestions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Cost Comparison ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Cost Analysis</span>
+      </div>
+      <h2 class="cs-section__heading">Naive vs. optimized<br/><span class="cs-accent">cost breakdown</span></h2>
+
+      <div class="cs-cost-compare">
+        <div class="cs-cost-bar">
+          <div class="cs-cost-bar__label">Naive Approach</div>
+          <div class="cs-cost-bar__track">
+            <div class="cs-cost-bar__fill cs-cost-bar__fill--naive"></div>
+          </div>
+          <div class="cs-cost-bar__value">$0.50<span>/run</span></div>
+        </div>
+        <div class="cs-cost-bar">
+          <div class="cs-cost-bar__label">3-Stage Pipeline</div>
+          <div class="cs-cost-bar__track">
+            <div class="cs-cost-bar__fill cs-cost-bar__fill--opt"></div>
+          </div>
+          <div class="cs-cost-bar__value cs-cost-bar__value--accent">$0.17<span>/run</span></div>
+        </div>
+      </div>
+
+      <div class="cs-cost-breakdown">
+        <div class="cs-cost-item">
+          <span class="cs-cost-item__dot" style="background: #64ffda;"></span>
+          <span class="cs-cost-item__label">Stage 1 — Keyword</span>
+          <span class="cs-cost-item__value">$0.00</span>
+        </div>
+        <div class="cs-cost-item">
+          <span class="cs-cost-item__dot" style="background: #00b4d8;"></span>
+          <span class="cs-cost-item__label">Stage 2 — Granular</span>
+          <span class="cs-cost-item__value">$0.02</span>
+        </div>
+        <div class="cs-cost-item">
+          <span class="cs-cost-item__dot" style={`background: ${accent};`}></span>
+          <span class="cs-cost-item__label">Stage 3 — AI Gen</span>
+          <span class="cs-cost-item__value">$0.15</span>
+        </div>
+      </div>
+
+      <div class="cs-cost-scale">
+        <div class="cs-cost-scale__item">
+          <span class="cs-cost-scale__num">$0.34</span>
+          <span class="cs-cost-scale__label">Monthly / tenant</span>
+        </div>
+        <div class="cs-cost-scale__divider"></div>
+        <div class="cs-cost-scale__item">
+          <span class="cs-cost-scale__num">$4.08</span>
+          <span class="cs-cost-scale__label">Annual / tenant</span>
+        </div>
+        <div class="cs-cost-scale__divider"></div>
+        <div class="cs-cost-scale__item">
+          <span class="cs-cost-scale__num">$408</span>
+          <span class="cs-cost-scale__label">Annual @ 100 tenants</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Timeline ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Implementation</span>
+      </div>
+      <h2 class="cs-section__heading">Four days,<br/><span class="cs-accent">zero shortcuts</span></h2>
+
+      <div class="cs-timeline">
+        {timeline.map((t, i) => (
+          <div
+            class="cs-tl"
+            style={`--tl-delay: ${i * 0.1}s;`}
+            data-animate
+          >
+            <div class="cs-tl__marker">
+              <span class="cs-tl__day">{t.day}</span>
+              <div class="cs-tl__dot"></div>
+              {i < timeline.length - 1 && <div class="cs-tl__line"></div>}
+            </div>
+            <div class="cs-tl__content">
+              <h3 class="cs-tl__title">{t.title}</h3>
+              <ul class="cs-tl__list">
+                {t.items.map((item) => (
+                  <li class="cs-tl__item">{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Tech Stack ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Tech Stack</span>
+      </div>
+      <div class="cs-stack">
+        {stack.map((s) => (
+          <span class="cs-stack__pill">{s.name}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Other Featured Work ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Other Featured Work</span>
+      </div>
+      <h2 class="cs-section__heading">Beyond the POC,<br/><span class="cs-accent">a 3-year FE footprint</span></h2>
+
+      <div class="cs-feat">
+        <h3 class="cs-feat__title">Interactive canvas — TTI reduced 60%</h3>
+        <p class="cs-feat__body">
+          The platform home was an interactive canvas — the heaviest screen in the app
+          and the first thing every user saw. Code splitting, virtualization,
+          memoization, and image lazy-loading brought time-to-interactive down 60% on
+          Lighthouse, measured before and after rollout.
+        </p>
+      </div>
+
+      <div class="cs-feat">
+        <h3 class="cs-feat__title">Custom rich-text editor</h3>
+        <p class="cs-feat__body">
+          Built and maintained a custom RTE for research note authoring — handling
+          structured content, embedded references, and per-tenant configuration.
+          Avoided dropping in a third-party editor whose data model didn't fit the
+          platform's domain.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── Team & Ownership ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Team &amp; Ownership</span>
+      </div>
+      <ul class="cs-team">
+        <li class="cs-team__item"><strong>Led frontend technical decisions</strong> in joint meetings with backend, QA, and DevOps.</li>
+        <li class="cs-team__item"><strong>Onboarded the second frontend engineer</strong> through their first features.</li>
+        <li class="cs-team__item"><strong>Conducted ~5 hiring interviews</strong> for frontend candidates.</li>
+        <li class="cs-team__item"><strong>Owned PR review</strong> on the frontend codebase — patterns, testing, performance.</li>
+      </ul>
+    </section>
+
+    <!-- ─── Learnings ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Learnings</span>
+      </div>
+      <h2 class="cs-section__heading">What I<br/><span class="cs-accent">took away</span></h2>
+
+      <div class="cs-learnings">
+        {learnings.map((l, i) => (
+          <div class="cs-learning" style={`--learn-delay: ${i * 0.08}s;`} data-animate>
+            <span class="cs-learning__index">0{i + 1}</span>
+            <h3 class="cs-learning__title">{l.title}</h3>
+            <p class="cs-learning__text">{l.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Outcome ─── -->
+    <section class="cs-section cs-outcome" data-animate>
+      <div class="cs-outcome__glow"></div>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Outcome</span>
+      </div>
+      <h2 class="cs-outcome__heading">
+        Shipped,<br/><span class="cs-accent">running, validated</span>
+      </h2>
+      <div class="cs-outcome__points">
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Shipped to production · pipeline ran live</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Cost model validated at projected $0.17/run</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Pattern reusable for future AI features</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Reassigned to next priority project — CollaMap stable</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer nav ─── -->
+    <nav class="cs-footer-nav" data-animate>
+      <a href="/#case-studies" class="cs-footer-nav__link">
+        <span class="cs-footer-nav__arrow">&larr;</span>
+        Back to all projects
+      </a>
+    </nav>
+  </div>
+
+<style define:vars={{ accent, accentRgb }}>
+  @import "./styles.css";
+</style>

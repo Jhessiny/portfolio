@@ -1,0 +1,272 @@
+---
+import { metrics, pipeline, decisions, stack, learnings } from "../../../data/case-studies/brand-builder";
+
+const accent = "#c792ea";
+const accentRgb = "199,146,234";
+---
+
+  <div class="cs-page" style={`--accent: ${accent}; --accent-rgb: ${accentRgb};`}>
+    <!-- Background layers -->
+    <div class="cs-noise"></div>
+    <div class="cs-grid"></div>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="cs-nav" data-animate>
+      <a href="/#case-studies" class="cs-nav__back">
+        <span class="cs-nav__arrow">&larr;</span>
+        <span class="cs-nav__label">Back to projects</span>
+      </a>
+      <span class="cs-nav__index">04</span>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <header class="cs-hero">
+      <div class="cs-hero__meta" data-animate>
+        <div class="cs-hero__tag">
+          <span class="cs-hero__dot"></span>
+          Shipped Product
+        </div>
+      </div>
+
+      <h1 class="cs-hero__title" data-animate>
+        <span class="cs-hero__title-main">BRAND BUILDER</span>
+        <span class="cs-hero__title-sub">Design System<br/>Pipeline</span>
+      </h1>
+
+      <p class="cs-hero__summary" data-animate>
+        A wizard-to-dashboard pipeline that generates palettes, typography pairings, component configs,
+        and a ready-to-use agent prompt — all from brand inputs. Stripe-gated export turns it into a real product.
+      </p>
+
+      <div class="cs-hero__tags" data-animate>
+        <span class="cs-hero__pill">Micro-SaaS</span>
+        <span class="cs-hero__pill">AI/LLM</span>
+        <span class="cs-hero__pill">Product Design</span>
+        <span class="cs-hero__pill">Stripe Integration</span>
+      </div>
+
+      <div class="cs-hero__actions" data-animate>
+        <a href="https://www.aiecosystem.tech/" target="_blank" rel="noreferrer" class="cs-hero__btn cs-hero__btn--primary">
+          Live Demo &rarr;
+        </a>
+        <a href="https://github.com/Jhessiny/brand-builder" target="_blank" rel="noreferrer" class="cs-hero__btn cs-hero__btn--secondary">
+          GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- ─── Metrics Strip ─── -->
+    <section class="cs-metrics" data-animate>
+      <div class="cs-metrics__grid">
+        {metrics.map((m) => (
+          <div class="cs-metric">
+            <span class="cs-metric__value">{m.value}</span>
+            <span class="cs-metric__label">{m.label}</span>
+            <span class="cs-metric__detail">{m.detail}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Problem ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>The Problem</span>
+      </div>
+      <div class="cs-section__content cs-problem">
+        <div class="cs-problem__text">
+          <h2 class="cs-section__heading">Design systems are<br/><span class="cs-accent">expensive to produce</span></h2>
+          <p>
+            Building a design system from scratch requires specialized knowledge — color theory, typography pairing,
+            component architecture, accessibility standards. Most startups and small teams skip this entirely or end up
+            with inconsistent, hard-to-maintain visual systems.
+          </p>
+          <p>
+            Even with AI tools, the output is fragmented — a palette here, a font suggestion there. There's no unified
+            pipeline that goes from brand inputs to a complete, implementable design system.
+          </p>
+        </div>
+        <div class="cs-problem__signals">
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Design expertise is expensive and scarce</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">AI tools produce fragmented output</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">No unified brand-to-implementation pipeline</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Consistency breaks down without a system</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Pipeline Architecture ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Architecture</span>
+      </div>
+      <h2 class="cs-section__heading">The product<br/><span class="cs-accent">funnel</span></h2>
+      <p class="cs-section__intro">
+        Most developer tools are features. Brand Builder is a product loop — each step feeds the next,
+        and the paywall sits at the point of maximum perceived value.
+      </p>
+
+      <div class="cs-pipeline">
+        {pipeline.map((p, i) => (
+          <div
+            class="cs-pipe"
+            style={`--pipe-color: ${p.color}; --pipe-delay: ${i * 0.15}s;`}
+            data-animate
+          >
+            <div class="cs-pipe__connector">
+              <div class="cs-pipe__dot"></div>
+              {i < pipeline.length - 1 && <div class="cs-pipe__line"></div>}
+            </div>
+            <div class="cs-pipe__card">
+              <div class="cs-pipe__bar"></div>
+              <div class="cs-pipe__header">
+                <span class="cs-pipe__stage">Stage {p.stage}</span>
+                <span class="cs-pipe__cost">{p.cost}</span>
+              </div>
+              <h3 class="cs-pipe__title">{p.title}</h3>
+              <p class="cs-pipe__desc">{p.description}</p>
+              <div class="cs-pipe__filter">
+                <span class="cs-pipe__filter-icon">&rarr;</span>
+                {p.filter}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Agent Prompt Callout ─── -->
+    <section class="cs-section cs-outcome" data-animate>
+      <div class="cs-outcome__glow"></div>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Standout Feature</span>
+      </div>
+      <h2 class="cs-outcome__heading">
+        Not just a system —<br/><span class="cs-accent">implementation instructions</span>
+      </h2>
+      <p class="cs-callout__text">
+        Brand Builder doesn't just generate a design system — it generates the instructions to implement it.
+        The Agent Prompt feature produces a structured prompt that tells Claude Code or Cursor exactly how to
+        apply every token, every component config, every spacing rule. This turns a static export into an
+        actionable implementation blueprint.
+      </p>
+    </section>
+
+    <!-- ─── Key Decisions ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Key Decisions</span>
+      </div>
+      <h2 class="cs-section__heading">Product choices<br/><span class="cs-accent">worth explaining</span></h2>
+
+      <div class="cs-pipeline">
+        {decisions.map((d, i) => (
+          <div
+            class="cs-pipe"
+            style={`--pipe-color: ${["#64ffda", "#c792ea", "#ffcb6b"][i]}; --pipe-delay: ${i * 0.15}s;`}
+            data-animate
+          >
+            <div class="cs-pipe__connector">
+              <div class="cs-pipe__dot"></div>
+              {i < decisions.length - 1 && <div class="cs-pipe__line"></div>}
+            </div>
+            <div class="cs-pipe__card">
+              <div class="cs-pipe__bar"></div>
+              <h3 class="cs-pipe__title">{d.title}</h3>
+              <p class="cs-pipe__desc">{d.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Tech Stack ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Tech Stack</span>
+      </div>
+      <div class="cs-stack">
+        {stack.map((s) => (
+          <span class="cs-stack__pill">{s}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Learnings ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Learnings</span>
+      </div>
+      <h2 class="cs-section__heading">What I<br/><span class="cs-accent">took away</span></h2>
+
+      <div class="cs-learnings">
+        {learnings.map((l, i) => (
+          <div class="cs-learning" style={`--learn-delay: ${i * 0.08}s;`} data-animate>
+            <span class="cs-learning__index">0{i + 1}</span>
+            <h3 class="cs-learning__title">{l.title}</h3>
+            <p class="cs-learning__text">{l.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Outcome ─── -->
+    <section class="cs-section cs-outcome" data-animate>
+      <div class="cs-outcome__glow"></div>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Outcome</span>
+      </div>
+      <h2 class="cs-outcome__heading">
+        Shipped with<br/><span class="cs-accent">live demo</span>
+      </h2>
+      <div class="cs-outcome__points">
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Full product shipped and deployed</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Stripe integration in test mode</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Generates implementation-ready agent prompts</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Live component playground with real-time preview</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer nav ─── -->
+    <nav class="cs-footer-nav" data-animate>
+      <a href="/#case-studies" class="cs-footer-nav__link">
+        <span class="cs-footer-nav__arrow">&larr;</span>
+        Back to all projects
+      </a>
+    </nav>
+  </div>
+
+<style define:vars={{ accent, accentRgb }}>
+  @import "./styles.css";
+</style>

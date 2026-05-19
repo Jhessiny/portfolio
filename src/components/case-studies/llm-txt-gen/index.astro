@@ -1,0 +1,213 @@
+---
+import { decisions, stack, learnings } from "../../../data/case-studies/llm-txt-gen";
+
+const accent = "#82aaff";
+const accentRgb = "130,170,255";
+---
+
+  <div class="cs-page" style={`--accent: ${accent}; --accent-rgb: ${accentRgb};`}>
+    <!-- Background layers -->
+    <div class="cs-noise"></div>
+    <div class="cs-grid"></div>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="cs-nav" data-animate>
+      <a href="/#case-studies" class="cs-nav__back">
+        <span class="cs-nav__arrow">&larr;</span>
+        <span class="cs-nav__label">Back to projects</span>
+      </a>
+      <span class="cs-nav__index">03</span>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <header class="cs-hero">
+      <div class="cs-hero__meta" data-animate>
+        <div class="cs-hero__tag">
+          <span class="cs-hero__dot"></span>
+          Completed
+        </div>
+      </div>
+
+      <h1 class="cs-hero__title" data-animate>
+        <span class="cs-hero__title-main">LLM-TXT-GEN</span>
+        <span class="cs-hero__title-sub">AI Readability Crawler</span>
+      </h1>
+
+      <p class="cs-hero__summary" data-animate>
+        A crawler that auto-generates llm.txt, agent.md, and site.json for any website — making it readable by AI agents from a single URL.
+      </p>
+
+      <div class="cs-hero__tags" data-animate>
+        <span class="cs-hero__pill">AI/LLM</span>
+        <span class="cs-hero__pill">Developer Tool</span>
+        <span class="cs-hero__pill">Personal Tool</span>
+      </div>
+
+      <div class="cs-hero__actions" data-animate>
+        <a href="https://llm-txt-generator-drab.vercel.app/" target="_blank" rel="noreferrer" class="cs-hero__btn cs-hero__btn--primary">
+          Live Demo &rarr;
+        </a>
+        <a href="https://github.com/Jhessiny/llm-txt-gen" target="_blank" rel="noreferrer" class="cs-hero__btn cs-hero__btn--secondary">
+          GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- ─── Problem ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>The Problem</span>
+      </div>
+      <div class="cs-section__content cs-problem">
+        <div class="cs-problem__text">
+          <h2 class="cs-section__heading">Invisible to<br/><span class="cs-accent">AI agents</span></h2>
+          <p>
+            Most websites are invisible to AI agents — no structured interface, no machine-readable map.
+            There's no standard way for an LLM to understand what a site offers, what pages matter,
+            or how content relates. Without this, agents can't reliably navigate, extract, or act on web content.
+          </p>
+        </div>
+        <div class="cs-problem__signals">
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">No machine-readable site map</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">No structured interface for agents</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Content relationships invisible to LLMs</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Manual curation doesn't scale</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Key Decisions ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Key Decisions</span>
+      </div>
+      <h2 class="cs-section__heading">Design choices that<br/><span class="cs-accent">shaped the tool</span></h2>
+
+      <div class="cs-pipeline">
+        {decisions.map((d, i) => (
+          <div
+            class="cs-pipe"
+            style={`--pipe-color: ${d.color}; --pipe-delay: ${i * 0.15}s;`}
+            data-animate
+          >
+            <div class="cs-pipe__connector">
+              <div class="cs-pipe__dot"></div>
+              {i < decisions.length - 1 && <div class="cs-pipe__line"></div>}
+            </div>
+            <div class="cs-pipe__card">
+              <div class="cs-pipe__bar"></div>
+              <div class="cs-pipe__header">
+                <span class="cs-pipe__stage">Decision {d.stage}</span>
+              </div>
+              <h3 class="cs-pipe__title">{d.title}</h3>
+              <p class="cs-pipe__desc">{d.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Meta Connection ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Meta Connection</span>
+      </div>
+      <div class="cs-meta-box">
+        <h2 class="cs-section__heading">Dogfooding the<br/><span class="cs-accent">thinking</span></h2>
+        <p class="cs-meta-box__text">
+          This portfolio itself uses /api/me — a structured JSON endpoint that makes my professional data
+          readable by AI agents. I dogfooded this thinking before building llm-txt-gen, and the tool
+          formalized it into a reusable product.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── Tech Stack ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Tech Stack</span>
+      </div>
+      <div class="cs-stack">
+        {stack.map((s) => (
+          <span class="cs-stack__pill">{s.name}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Learnings ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Learnings</span>
+      </div>
+      <h2 class="cs-section__heading">What I<br/><span class="cs-accent">took away</span></h2>
+
+      <div class="cs-learnings">
+        {learnings.map((l, i) => (
+          <div class="cs-learning" style={`--learn-delay: ${i * 0.08}s;`} data-animate>
+            <span class="cs-learning__index">0{i + 1}</span>
+            <h3 class="cs-learning__title">{l.title}</h3>
+            <p class="cs-learning__text">{l.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Outcome ─── -->
+    <section class="cs-section cs-outcome" data-animate>
+      <div class="cs-outcome__glow"></div>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Outcome</span>
+      </div>
+      <h2 class="cs-outcome__heading">
+        Shipped &<br/><span class="cs-accent">open source</span>
+      </h2>
+      <div class="cs-outcome__points">
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Available on GitHub</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Live demo deployed</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Generates 3 output formats from a single URL</span>
+        </div>
+        <div class="cs-outcome__point">
+          <span class="cs-outcome__check">&#x2713;</span>
+          <span>Used to validate portfolio's own /api/me approach</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer nav ─── -->
+    <nav class="cs-footer-nav" data-animate>
+      <a href="/#case-studies" class="cs-footer-nav__link">
+        <span class="cs-footer-nav__arrow">&larr;</span>
+        Back to all projects
+      </a>
+    </nav>
+  </div>
+
+<style define:vars={{ accent, accentRgb }}>
+  @import "./styles.css";
+</style>

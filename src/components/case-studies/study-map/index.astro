@@ -1,0 +1,302 @@
+---
+import { metrics, layers, phases, stack, decisions } from "../../../data/case-studies/study-map";
+
+const accent = "#64ffda";
+const accentRgb = "100,255,218";
+---
+
+  <div class="cs-page" style={`--accent: ${accent}; --accent-rgb: ${accentRgb};`}>
+    <!-- Background layers -->
+    <div class="cs-noise"></div>
+    <div class="cs-grid"></div>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="cs-nav" data-animate>
+      <a href="/#case-studies" class="cs-nav__back">
+        <span class="cs-nav__arrow">&larr;</span>
+        <span class="cs-nav__label">Back to projects</span>
+      </a>
+      <span class="cs-nav__index">01</span>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <header class="cs-hero">
+      <div class="cs-hero__meta" data-animate>
+        <div class="cs-hero__tag">
+          <span class="cs-hero__dot"></span>
+          In Development
+        </div>
+        <span class="cs-hero__date">2024 — Present</span>
+      </div>
+
+      <h1 class="cs-hero__title" data-animate>
+        <span class="cs-hero__title-main">StudyMap</span>
+        <span class="cs-hero__title-sub">Visual Knowledge<br/>Platform</span>
+      </h1>
+
+      <p class="cs-hero__summary" data-animate>
+        An interactive canvas where concepts connect, resources attach, and knowledge gaps become visible.
+        Built with <strong>Clean Architecture</strong>, React Flow, and Supabase — designed to replace
+        the fragmented mess of Google Drive tabs, scattered PDFs, and disconnected bookmarks.
+      </p>
+
+      <div class="cs-hero__tags" data-animate>
+        <span class="cs-hero__pill">Product Engineering</span>
+        <span class="cs-hero__pill">Real-time</span>
+        <span class="cs-hero__pill">AI-ready</span>
+        <span class="cs-hero__pill">Clean Architecture</span>
+      </div>
+    </header>
+
+    <!-- ─── Metrics Strip ─── -->
+    <section class="cs-metrics" data-animate>
+      <div class="cs-metrics__grid">
+        {metrics.map((m) => (
+          <div class="cs-metric">
+            <span class="cs-metric__value">{m.value}</span>
+            <span class="cs-metric__label">{m.label}</span>
+            <span class="cs-metric__detail">{m.detail}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Problem ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>The Problem</span>
+      </div>
+      <div class="cs-section__content cs-problem">
+        <div class="cs-problem__text">
+          <h2 class="cs-section__heading">Study materials<br/><span class="cs-accent">scattered everywhere</span></h2>
+          <p>
+            Students juggle Google Drive folders, PDF downloads, browser bookmarks, and note-taking apps
+            — all disconnected from each other. There's no way to see how concepts relate, no single place
+            to attach resources to the topics they belong to, and no visibility into what you actually understand
+            versus what you've only skimmed.
+          </p>
+          <p>
+            The result: time wasted searching for materials, difficulty building mental models of a subject,
+            and no structured way to collaborate or ask questions in context.
+          </p>
+        </div>
+        <div class="cs-problem__signals">
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Fragmented across platforms</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">No concept relationships</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">Invisible knowledge gaps</span>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal__icon">&#x25CB;</span>
+            <span class="cs-signal__text">No contextual collaboration</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Solution ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>The Solution</span>
+      </div>
+      <h2 class="cs-section__heading">One canvas for<br/><span class="cs-accent">everything you study</span></h2>
+      <p class="cs-section__intro">
+        StudyMap gives learners a zoomable, interactive canvas where they map courses as hierarchical
+        concept trees. Each concept node is a container: attach resources, write learning objectives,
+        ask questions, and see the full structure of what you're learning at a glance.
+      </p>
+
+      <div class="cs-features">
+        <div class="cs-feature" data-animate>
+          <div class="cs-feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
+            </svg>
+          </div>
+          <h3 class="cs-feature__title">Visual Knowledge Map</h3>
+          <p class="cs-feature__desc">Zoom-based navigation across a hierarchical concept tree. See the big picture or dive into details.</p>
+        </div>
+        <div class="cs-feature" data-animate>
+          <div class="cs-feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+              <path d="M14 2v6h6"/>
+            </svg>
+          </div>
+          <h3 class="cs-feature__title">Resource Attachments</h3>
+          <p class="cs-feature__desc">Attach files, links, PDFs, and videos directly to concepts. Everything lives where it belongs.</p>
+        </div>
+        <div class="cs-feature" data-animate>
+          <div class="cs-feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3 class="cs-feature__title">Question Board</h3>
+          <p class="cs-feature__desc">Ask questions tied to specific concepts. Community voting surfaces the most valuable answers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Architecture ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Architecture</span>
+      </div>
+      <h2 class="cs-section__heading">Clean Architecture<br/><span class="cs-accent">for the frontend</span></h2>
+      <p class="cs-section__intro">
+        The codebase is structured in concentric layers where dependencies always point inward.
+        Business logic knows nothing about React or Supabase — making the system testable,
+        flexible, and built to evolve.
+      </p>
+
+      <div class="cs-arch">
+        {layers.map((l, i) => (
+          <div
+            class="cs-arch__layer"
+            style={`--layer-color: ${l.color}; --layer-delay: ${i * 0.1}s;`}
+            data-animate
+          >
+            <div class="cs-arch__indicator">
+              <div class="cs-arch__dot" style={`background: ${l.color};`}></div>
+              {i < layers.length - 1 && <div class="cs-arch__connector"></div>}
+            </div>
+            <div class="cs-arch__card">
+              <div class="cs-arch__bar" style={`background: ${l.color};`}></div>
+              <h3 class="cs-arch__name" style={`color: ${l.color};`}>{l.name}</h3>
+              <p class="cs-arch__desc">{l.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- directory structure -->
+      <div class="cs-dir" data-animate>
+        <div class="cs-dir__header">Project Structure</div>
+        <pre class="cs-dir__tree"><code>src/
+├── domain/           <span class="cs-dir__comment"># Entities & repository interfaces</span>
+├── application/      <span class="cs-dir__comment"># Use cases (business operations)</span>
+├── infrastructure/   <span class="cs-dir__comment"># Supabase adapters & factories</span>
+├── presentation/     <span class="cs-dir__comment"># React components, pages, hooks</span>
+└── shared/           <span class="cs-dir__comment"># Common utilities & types</span></code></pre>
+      </div>
+    </section>
+
+    <!-- ─── Roadmap ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Roadmap</span>
+      </div>
+      <h2 class="cs-section__heading">Phased delivery,<br/><span class="cs-accent">clear milestones</span></h2>
+
+      <div class="cs-timeline">
+        {phases.map((p, i) => (
+          <div
+            class="cs-tl"
+            style={`--tl-delay: ${i * 0.1}s;`}
+            data-animate
+          >
+            <div class="cs-tl__marker">
+              <span class="cs-tl__phase">{p.phase}</span>
+              <div class="cs-tl__dot"></div>
+              {i < phases.length - 1 && <div class="cs-tl__line"></div>}
+            </div>
+            <div class="cs-tl__content">
+              <div class="cs-tl__header">
+                <h3 class="cs-tl__title">{p.title}</h3>
+                <span class="cs-tl__weeks">{p.weeks}</span>
+              </div>
+              <ul class="cs-tl__list">
+                {p.items.map((item) => (
+                  <li class="cs-tl__item">{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Tech Stack ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Tech Stack</span>
+      </div>
+      <div class="cs-stack">
+        {stack.map((s) => (
+          <span class="cs-stack__pill">{s.name}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Technical Decisions ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Decisions</span>
+      </div>
+      <h2 class="cs-section__heading">Why these<br/><span class="cs-accent">tradeoffs</span></h2>
+
+      <div class="cs-decisions">
+        {decisions.map((d, i) => (
+          <div class="cs-decision" style={`--dec-delay: ${i * 0.08}s;`} data-animate>
+            <span class="cs-decision__index">0{i + 1}</span>
+            <h3 class="cs-decision__title">{d.title}</h3>
+            <p class="cs-decision__text">{d.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── Status ─── -->
+    <section class="cs-section cs-status" data-animate>
+      <div class="cs-status__glow"></div>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Status</span>
+      </div>
+      <h2 class="cs-status__heading">
+        Actively<br/><span class="cs-accent">in development</span>
+      </h2>
+      <p class="cs-status__text">
+        StudyMap is a solo portfolio project being built in the open. The architecture is in place,
+        the canvas is functional, and content features are being added phase by phase.
+      </p>
+      <div class="cs-status__future">
+        <span class="cs-status__future-label">Post-MVP roadmap</span>
+        <div class="cs-status__future-items">
+          <span class="cs-status__future-item">Progress tracking</span>
+          <span class="cs-status__future-item">Study timer</span>
+          <span class="cs-status__future-item">PDF export</span>
+          <span class="cs-status__future-item">AI flashcards</span>
+          <span class="cs-status__future-item">Spaced repetition</span>
+          <span class="cs-status__future-item">Mobile app</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer nav ─── -->
+    <nav class="cs-footer-nav" data-animate>
+      <a href="/#case-studies" class="cs-footer-nav__link">
+        <span class="cs-footer-nav__arrow">&larr;</span>
+        Back to all projects
+      </a>
+    </nav>
+  </div>
+
+<style define:vars={{ accent, accentRgb }}>
+  @import "./styles.css";
+</style>
