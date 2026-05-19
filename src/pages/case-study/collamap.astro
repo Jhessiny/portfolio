@@ -62,11 +62,15 @@ const timeline = [
 ];
 
 const stack = [
-  { name: "Node.js", category: "runtime" },
+  { name: "React", category: "frontend" },
   { name: "TypeScript", category: "language" },
+  { name: "Redux", category: "frontend" },
+  { name: "RTK Query", category: "frontend" },
+  { name: "Material UI", category: "frontend" },
+  { name: "React Hook Form", category: "frontend" },
+  { name: "Node.js", category: "runtime" },
   { name: "PostgreSQL", category: "database" },
   { name: "Claude API", category: "ai" },
-  { name: "React", category: "frontend" },
   { name: "Tailwind CSS", category: "frontend" },
   { name: "PubMed API", category: "integration" },
 ];
@@ -85,8 +89,8 @@ const learnings = [
     text: "The funnel from 30 papers to 5 suggestions felt natural: broad filter first, precision second.",
   },
   {
-    title: "POC Scope Discipline",
-    text: "Keeping focus tight — no email, no scheduling, local-only — enabled shipping in under 4 days.",
+    title: "Cost is Architecture",
+    text: "AI cost isn't a tuning problem solved by prompt tweaks — it's solved by deciding which model handles which shape of work. The 3-stage pipeline isn't optimization on top of the architecture. It is the architecture.",
   },
 ];
 ---
@@ -113,7 +117,7 @@ const learnings = [
           <span class="cs-hero__dot"></span>
           POC Approved for Production
         </div>
-        <span class="cs-hero__date">2024</span>
+        <span class="cs-hero__date">2022 – 2025</span>
       </div>
 
       <h1 class="cs-hero__title" data-animate>
@@ -122,9 +126,10 @@ const learnings = [
       </h1>
 
       <p class="cs-hero__summary" data-animate>
-        A 3-stage AI pipeline that automatically discovers novel research topics from recent publications
-        and generates contextualized, actionable suggestions for platform users — achieving
-        <strong>66% cost reduction</strong> over naive approaches.
+        Multi-tenant research platform. I led the frontend for 3 years and diagnosed
+        a retention problem through engagement-data analysis — then shipped the response:
+        a 3-stage AI pipeline that discovers novel research topics at
+        <strong>66% cost reduction</strong> over naive approaches. Built in 4 days, ran in production.
       </p>
 
       <div class="cs-hero__tags" data-animate>
@@ -134,6 +139,25 @@ const learnings = [
         <span class="cs-hero__pill">Rapid Prototyping</span>
       </div>
     </header>
+
+    <!-- ─── My Scope ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>My Scope</span>
+      </div>
+      <p class="cs-section__intro">
+        Main frontend engineer on a small team — 1 backend, 2 frontend (I led FE),
+        1 QA, shared DevOps. Over 3 years I shipped an interactive canvas, a custom
+        rich-text editor, auth and multi-tenant scoping at the FE layer, and the AI
+        initiative this case study focuses on. Owned FE technical decisions, onboarded
+        the second frontend engineer, conducted ~5 hiring interviews.
+      </p>
+      <p class="cs-section__intro" style="margin-top: -24px;">
+        Primary stack: React · TypeScript · Redux · RTK Query · Material UI · React
+        Hook Form. The POC below used Tailwind for build velocity over 4 days.
+      </p>
+    </section>
 
     <!-- ─── Metrics Strip ─── -->
     <section class="cs-metrics" data-animate>
@@ -355,6 +379,49 @@ const learnings = [
       </div>
     </section>
 
+    <!-- ─── Other Featured Work ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Other Featured Work</span>
+      </div>
+      <h2 class="cs-section__heading">Beyond the POC,<br/><span class="cs-accent">a 3-year FE footprint</span></h2>
+
+      <div class="cs-feat">
+        <h3 class="cs-feat__title">Interactive canvas — TTI reduced 60%</h3>
+        <p class="cs-feat__body">
+          The platform home was an interactive canvas — the heaviest screen in the app
+          and the first thing every user saw. Code splitting, virtualization,
+          memoization, and image lazy-loading brought time-to-interactive down 60% on
+          Lighthouse, measured before and after rollout.
+        </p>
+      </div>
+
+      <div class="cs-feat">
+        <h3 class="cs-feat__title">Custom rich-text editor</h3>
+        <p class="cs-feat__body">
+          Built and maintained a custom RTE for research note authoring — handling
+          structured content, embedded references, and per-tenant configuration.
+          Avoided dropping in a third-party editor whose data model didn't fit the
+          platform's domain.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── Team & Ownership ─── -->
+    <section class="cs-section" data-animate>
+      <div class="cs-section__label">
+        <div class="cs-section__line"></div>
+        <span>Team &amp; Ownership</span>
+      </div>
+      <ul class="cs-team">
+        <li class="cs-team__item"><strong>Led frontend technical decisions</strong> in joint meetings with backend, QA, and DevOps.</li>
+        <li class="cs-team__item"><strong>Onboarded the second frontend engineer</strong> through their first features.</li>
+        <li class="cs-team__item"><strong>Conducted ~5 hiring interviews</strong> for frontend candidates.</li>
+        <li class="cs-team__item"><strong>Owned PR review</strong> on the frontend codebase — patterns, testing, performance.</li>
+      </ul>
+    </section>
+
     <!-- ─── Learnings ─── -->
     <section class="cs-section" data-animate>
       <div class="cs-section__label">
@@ -382,24 +449,24 @@ const learnings = [
         <span>Outcome</span>
       </div>
       <h2 class="cs-outcome__heading">
-        Approved for<br/><span class="cs-accent">production deployment</span>
+        Shipped,<br/><span class="cs-accent">running, validated</span>
       </h2>
       <div class="cs-outcome__points">
         <div class="cs-outcome__point">
           <span class="cs-outcome__check">&#x2713;</span>
-          <span>Client impressed by rapid delivery</span>
+          <span>Shipped to production · pipeline ran live</span>
         </div>
         <div class="cs-outcome__point">
           <span class="cs-outcome__check">&#x2713;</span>
-          <span>Validated cost efficiency (66% optimization)</span>
+          <span>Cost model validated at projected $0.17/run</span>
         </div>
         <div class="cs-outcome__point">
           <span class="cs-outcome__check">&#x2713;</span>
-          <span>Appreciated depth-aware architectural design</span>
+          <span>Pattern reusable for future AI features</span>
         </div>
         <div class="cs-outcome__point">
           <span class="cs-outcome__check">&#x2713;</span>
-          <span>Requested multi-tenant rollout plan</span>
+          <span>Reassigned to next priority project — CollaMap stable</span>
         </div>
       </div>
     </section>
@@ -1281,6 +1348,69 @@ const learnings = [
     color: #6a8a9a;
     margin: 0;
     font-weight: 300;
+  }
+
+  /* ════════════════════════════════════════
+     FEATURED WORK (canvas + RTE blocks)
+     ════════════════════════════════════════ */
+  .cs-feat {
+    padding: 28px 32px;
+    border: 1px solid rgba(var(--accent-rgb), 0.08);
+    background: #0a1520;
+    margin-bottom: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .cs-feat:hover {
+    border-color: rgba(var(--accent-rgb), 0.18);
+    box-shadow: 0 0 24px rgba(var(--accent-rgb), 0.04);
+  }
+  .cs-feat__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: #c8d8e8;
+    margin: 0 0 12px;
+    font-weight: 400;
+  }
+  .cs-feat__body {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: #7a9aaa;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ════════════════════════════════════════
+     TEAM & OWNERSHIP
+     ════════════════════════════════════════ */
+  .cs-team {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .cs-team__item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #7a9aaa;
+    padding-left: 20px;
+    position: relative;
+    font-weight: 300;
+  }
+  .cs-team__item::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+  .cs-team__item strong {
+    color: #c8d8e8;
+    font-weight: 400;
   }
 
   /* ════════════════════════════════════════
