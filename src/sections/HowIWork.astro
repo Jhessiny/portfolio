@@ -1,0 +1,274 @@
+---
+const pillars = [
+  {
+    title: "The engineer owns the thinking.",
+    body: "Understanding the problem. Exploring the solution space. Choosing the architecture. Weighing performance and cost. Designing the guardrails that catch regressions before users do. None of that gets delegated. AI accelerates the keystrokes, not the judgment.",
+  },
+  {
+    title: "Hidden decision debt is real.",
+    body: "Skipped judgment surfaces later as spec drift, performance regressions, and untraceable bugs. I keep decisions explicit so the debt stays visible.",
+  },
+  {
+    title: "Coherent output ≠ correct output.",
+    body: "LLMs are probabilistic compilers — they optimize for coherence, not correctness. Verification is structural: tests, types, guardrails. Not vibe-based.",
+  },
+  {
+    title: "Workflow is method, not ritual.",
+    body: "The tools change. The agents change. The pipelines get renamed. What stays constant is who's accountable for the result.",
+  },
+];
+---
+
+<section id="how-i-work" class="hiw-section">
+  <!-- background grid -->
+  <div class="hiw-grid-bg"></div>
+  <!-- ambient glow -->
+  <div class="hiw-glow"></div>
+
+  <div class="hiw-container">
+    <!-- Header -->
+    <div class="hiw-header" data-hiw-animate>
+      <div class="hiw-header__label">
+        <div class="hiw-header__line"></div>
+        <span>How I Work</span>
+      </div>
+      <h2 class="hiw-header__title">
+        AI COMMODITIZED TYPING.<br />
+        <span class="hiw-accent">IT DID NOT COMMODITIZE ENGINEERING.</span>
+      </h2>
+    </div>
+
+    <!-- Pillars -->
+    <div class="hiw-pillars">
+      {pillars.map((p, i) => (
+        <div class="hiw-pillar" data-hiw-animate style={`--delay: ${0.15 + i * 0.1}s;`}>
+          <span class="hiw-pillar__num">0{i + 1}</span>
+          <h3 class="hiw-pillar__title">{p.title}</h3>
+          <p class="hiw-pillar__body">{p.body}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Closing -->
+    <div class="hiw-closing" data-hiw-animate style="--delay: 0.6s;">
+      <div class="hiw-closing__line"></div>
+      <p class="hiw-closing__text">
+        The signature I sign on the work is the judgment behind it.<br />
+        <span class="hiw-accent">That's the part worth paying for.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hiw-section {
+    background: #060e1a;
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    box-sizing: border-box;
+  }
+
+  .hiw-grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(100,255,218,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,255,218,0.02) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hiw-glow {
+    position: absolute;
+    top: 20%;
+    right: 8%;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(100,255,218,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hiw-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ── */
+  .hiw-header {
+    margin-bottom: 80px;
+  }
+
+  .hiw-header__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .hiw-header__label span {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #64ffda;
+    text-transform: uppercase;
+  }
+  .hiw-header__line {
+    width: 24px;
+    height: 1px;
+    background: #64ffda;
+  }
+
+  .hiw-header__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    color: #c8d8e8;
+    margin: 0;
+    max-width: 880px;
+  }
+  .hiw-accent {
+    color: #64ffda;
+  }
+
+  /* ── Pillars ── */
+  .hiw-pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-bottom: 80px;
+  }
+
+  .hiw-pillar {
+    padding: 32px 28px;
+    border: 1px solid #1e3a4a;
+    background: #0a1628;
+    position: relative;
+    transition: border-color 0.35s, box-shadow 0.35s, background 0.35s;
+  }
+  .hiw-pillar:hover {
+    border-color: #64ffda33;
+    background: #0d1b2a;
+    box-shadow: 0 0 32px rgba(100, 255, 218, 0.06),
+                inset 0 0 60px rgba(100, 255, 218, 0.02);
+  }
+
+  .hiw-pillar__num {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(100, 255, 218, 0.35);
+    margin-bottom: 14px;
+  }
+
+  .hiw-pillar__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+    color: #c8d8e8;
+    margin: 0 0 14px;
+    font-weight: 400;
+    line-height: 1.15;
+    transition: color 0.3s;
+  }
+  .hiw-pillar:hover .hiw-pillar__title {
+    color: #ffffff;
+  }
+
+  .hiw-pillar__body {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: #7a9aaa;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ── Closing ── */
+  .hiw-closing {
+    text-align: center;
+    padding-top: 48px;
+    position: relative;
+  }
+
+  .hiw-closing__line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #64ffda, transparent);
+    margin: 0 auto 32px;
+  }
+
+  .hiw-closing__text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    line-height: 1.9;
+    color: #8a9db0;
+    margin: 0 auto;
+    max-width: 560px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Scroll animations ── */
+  [data-hiw-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--delay, 0s);
+  }
+
+  [data-hiw-animate].in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .hiw-pillars {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hiw-section {
+      padding: 80px 24px;
+    }
+    .hiw-header {
+      margin-bottom: 48px;
+    }
+    .hiw-pillar {
+      padding: 24px 20px;
+    }
+    .hiw-pillar__title {
+      font-size: 20px;
+    }
+    .hiw-pillar__body {
+      font-size: 12px;
+    }
+    .hiw-closing__text {
+      font-size: 12.5px;
+    }
+  }
+</style>
+
+<script>
+  // Reuse the in-view observer pattern from other sections
+  const elements = document.querySelectorAll('[data-hiw-animate]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+  );
+  elements.forEach((el) => observer.observe(el));
+</script>
