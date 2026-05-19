@@ -25,23 +25,49 @@ const { title = "Portfolio", description = "Frontend developer portfolio" } = As
   <body class="font-body">
     <slot />
     <script>
-      // Global scroll-triggered animation observer
-      const globalObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+      // Ensure browser restores scroll position on back/forward
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'auto';
+      }
 
-      document.querySelectorAll(
-        '[data-animate], [data-exp-animate], [data-sr-animate], [data-sr-pill], [data-sr-lang], [data-about-animate]'
-      ).forEach((el) => {
-        globalObserver.observe(el);
-      });
+      const animatedSelector =
+        '[data-animate], [data-exp-animate], [data-sr-animate], [data-sr-pill], [data-sr-lang], [data-about-animate], [data-hiw-animate]';
+
+      // Detect back/forward navigation — skip animations and jump straight to final state
+      const navEntry = performance.getEntriesByType('navigation')[0] as
+        | PerformanceNavigationTiming
+        | undefined;
+      const isBackForward = navEntry?.type === 'back_forward';
+
+      if (isBackForward) {
+        // Disable transitions so elements snap to final state with no animation
+        const style = document.createElement('style');
+        style.textContent = `${animatedSelector.split(', ').map((s) => `${s}.in-view`).join(', ')} { transition: none !important; }`;
+        document.head.appendChild(style);
+        document.querySelectorAll(animatedSelector).forEach((el) => {
+          el.classList.add('in-view');
+        });
+        // Re-enable transitions on the next frame so future scroll behavior is normal
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => style.remove());
+        });
+      } else {
+        // First visit / forward nav — use IntersectionObserver for scroll-triggered reveal
+        const globalObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll(animatedSelector).forEach((el) => {
+          globalObserver.observe(el);
+        });
+      }
     </script>
   </body>
 </html>
