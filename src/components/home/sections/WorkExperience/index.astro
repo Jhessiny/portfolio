@@ -1,0 +1,71 @@
+---
+import { experiences } from "../../../../data/experiences";
+---
+
+<section class="exp-section" id="experience">
+  <!-- background grid -->
+  <div class="exp-grid-bg"></div>
+  <!-- ambient glow -->
+  <div class="exp-glow"></div>
+
+  <div class="exp-container">
+    <!-- Header -->
+    <div class="exp-header" data-exp-animate>
+      <div class="exp-header__label">
+        <div class="exp-header__line"></div>
+        <span>Work Experience</span>
+      </div>
+      <h2 class="exp-header__title">
+        WHERE I'VE <span class="exp-accent">OPERATED</span>
+      </h2>
+    </div>
+
+    <!-- Timeline -->
+    <div class="exp-timeline">
+      {experiences.map((item, i) => (
+        <div
+          class="exp-item"
+          data-exp-animate
+          style={`--delay: ${i * 0.12}s;`}
+        >
+          {/* Left — date + company */}
+          <div class="exp-left">
+            <div class="exp-period">{item.period}</div>
+            <div class="exp-company">{item.company}</div>
+            {item.current && (
+              <div class="exp-current-badge">
+                <span class="exp-current-label">Current</span>
+                <span class="exp-current-dot"></span>
+              </div>
+            )}
+          </div>
+
+          {/* Center — timeline line + dot */}
+          <div class="exp-center">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+
+          {/* Right — content */}
+          <div class="exp-right">
+            <h3 class="exp-role">{item.role}</h3>
+            {Array.isArray(item.description) ? (
+              <ul class="exp-bullets">
+                {item.description.map((point) => (
+                  <li class="exp-bullet">{point}</li>
+                ))}
+              </ul>
+            ) : (
+              <p class="exp-desc">{item.description}</p>
+            )}
+            <div class="exp-underline"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @import "./styles.css";
+</style>

@@ -1,0 +1,102 @@
+---
+import { stackGroups, languages } from "../../../../data/skills";
+---
+
+<section class="sr-section" id="skills">
+  <!-- background grid -->
+  <div class="sr-grid-bg"></div>
+  <!-- ambient glow -->
+  <div class="sr-glow sr-glow--bottom"></div>
+
+  <div class="sr-container">
+
+    <!-- Section header -->
+    <div class="sr-header" data-sr-animate>
+      <div class="sr-header__label">
+        <div class="sr-header__line"></div>
+        <span>Skills & Resume</span>
+      </div>
+      <h2 class="sr-header__title">
+        WHAT I <span class="sr-accent">WORK WITH</span>
+      </h2>
+    </div>
+
+    <!-- ── Tech stack by category ── -->
+    <div class="sr-stack" data-sr-animate>
+      <div class="sr-divider-label">
+        <div class="sr-divider-line"></div>
+        <span>Full Stack</span>
+        <div class="sr-divider-line"></div>
+      </div>
+
+      <div class="sr-groups">
+        {stackGroups.map((group, gi) => (
+          <div class="sr-group">
+            <div class="sr-group__header">
+              <span class="sr-group__label" style={`color: ${group.color}88;`}>{group.label}</span>
+              <div class="sr-group__line" style={`background: ${group.color}22;`}></div>
+            </div>
+            <div class="sr-pills">
+              {group.items.map((tech, i) => (
+                <div
+                  class="sr-pill"
+                  style={`--pill-color: ${tech.color}; --pill-delay: ${gi * 0.05 + i * 0.05}s;`}
+                  data-sr-pill
+                >
+                  <span class="sr-pill__icon">{tech.icon}</span>
+                  <span class="sr-pill__name">{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="sr-separator"></div>
+
+    <!-- ── Languages ── -->
+    <div class="sr-languages" data-sr-animate>
+      <div class="sr-divider-label">
+        <div class="sr-divider-line"></div>
+        <span>Languages</span>
+        <div class="sr-divider-line"></div>
+      </div>
+
+      <div class="sr-lang-bars">
+        {languages.map((l, i) => (
+          <div class="sr-lang" style={`--lang-delay: ${i * 0.15}s;`} data-sr-lang data-pct={l.pct}>
+            <div class="sr-lang__header">
+              <span class="sr-lang__name">{l.lang}</span>
+              <span class="sr-lang__level">{l.level}</span>
+            </div>
+            <div class="sr-lang__track">
+              <div class="sr-lang__fill" style={`--target-width: ${l.pct}%;`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="sr-separator"></div>
+
+    <!-- ── Resume CTA ── -->
+    <div class="sr-cta" data-sr-animate>
+      <span class="sr-cta__label">Need the formal doc?</span>
+      <a
+        href="/assets/RESUME - JHÉSSINY MATTOS.pdf"
+        download="RESUME - JHÉSSINY MATTOS"
+        class="sr-cta__btn"
+      >
+        <span class="sr-cta__arrow">↓</span>
+        Full Profile — PDF
+      </a>
+      <span class="sr-cta__credit">Jhéssiny Mattos · Updated 2026</span>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @import "./styles.css";
+</style>

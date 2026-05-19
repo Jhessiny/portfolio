@@ -1,0 +1,110 @@
+---
+import { projects, otherWork } from "../../../../data/case-studies-home";
+---
+
+<section class="case-studies" id="case-studies">
+  <!-- background grid -->
+  <div class="cs-grid-bg"></div>
+
+  <!-- ambient glow blobs -->
+  <div class="cs-glow cs-glow--tl"></div>
+  <div class="cs-glow cs-glow--br"></div>
+
+  <div class="cs-container">
+    <!-- Section header -->
+    <div class="cs-header" data-animate>
+      <div>
+        <div class="cs-header__label">
+          <div class="cs-header__line"></div>
+          <span>Case Studies</span>
+        </div>
+        <h2 class="cs-header__title">
+          Products I've<br />
+          <span class="cs-accent">built &amp; shipped</span>
+        </h2>
+      </div>
+      <p class="cs-header__description">
+        Each project documents not just what was built — but why. The tradeoffs, constraints, and decisions behind it.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="cs-cards">
+      {projects.map((project, i) => (
+        <a
+          href={project.href}
+          class="cs-card-link"
+          data-animate
+          style={`--delay: ${i * 0.12}s; --accent: ${project.accent};`}
+        >
+          <div class="cs-card">
+            {/* scanline overlay */}
+            <div class="cs-card__scanline"></div>
+
+            {/* corner brackets */}
+            <div class="cs-card__bracket cs-card__bracket--tl"></div>
+            <div class="cs-card__bracket cs-card__bracket--tr"></div>
+            <div class="cs-card__bracket cs-card__bracket--bl"></div>
+            <div class="cs-card__bracket cs-card__bracket--br"></div>
+
+            {/* top accent bar */}
+            <div class="cs-card__accent-bar"></div>
+
+            {/* header row */}
+            <div class="cs-card__header">
+              <span class="cs-card__index">{project.index}</span>
+              <span class="cs-card__status">{project.status}</span>
+            </div>
+
+            {/* title */}
+            <h3 class="cs-card__title">{project.title}</h3>
+
+            <p class="cs-card__tagline">{project.tagline}</p>
+
+            <p class="cs-card__description">{project.description}</p>
+
+            {/* tags */}
+            <div class="cs-card__tags">
+              {project.tags.map(tag => (
+                <span class="cs-card__tag">{tag}</span>
+              ))}
+            </div>
+
+            {/* stack */}
+            <div class="cs-card__stack">
+              {project.stack.map(tech => (
+                <span class="cs-card__tech">{tech}</span>
+              ))}
+            </div>
+
+            {/* read more */}
+            <div class="cs-card__cta">
+              {project.cta} <span class="cs-card__arrow">→</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Other work -->
+    <div class="cs-other" data-animate>
+      <div class="cs-other__label">
+        <div class="cs-other__line"></div>
+        <span>Other Work</span>
+      </div>
+      <div class="cs-other__grid">
+        {otherWork.map((item) => (
+          <a href={item.href} class="cs-other__item">
+            <span class="cs-other__title">{item.title}</span>
+            <span class="cs-other__tagline">{item.tagline}</span>
+            <span class="cs-other__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import "./styles.css";
+</style>

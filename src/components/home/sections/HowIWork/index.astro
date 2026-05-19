@@ -1,0 +1,65 @@
+---
+import { pillars } from "../../../../data/principles";
+---
+
+<section id="how-i-work" class="hiw-section">
+  <!-- background grid -->
+  <div class="hiw-grid-bg"></div>
+  <!-- ambient glow -->
+  <div class="hiw-glow"></div>
+
+  <div class="hiw-container">
+    <!-- Header -->
+    <div class="hiw-header" data-hiw-animate>
+      <div class="hiw-header__label">
+        <div class="hiw-header__line"></div>
+        <span>How I Work</span>
+      </div>
+      <h2 class="hiw-header__title">
+        AI COMMODITIZED TYPING.<br />
+        <span class="hiw-accent">IT DID NOT COMMODITIZE ENGINEERING.</span>
+      </h2>
+    </div>
+
+    <!-- Pillars -->
+    <div class="hiw-pillars">
+      {pillars.map((p, i) => (
+        <div class="hiw-pillar" data-hiw-animate style={`--delay: ${0.15 + i * 0.1}s;`}>
+          <span class="hiw-pillar__num">0{i + 1}</span>
+          <h3 class="hiw-pillar__title">{p.title}</h3>
+          <p class="hiw-pillar__body">{p.body}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Closing -->
+    <div class="hiw-closing" data-hiw-animate style="--delay: 0.6s;">
+      <div class="hiw-closing__line"></div>
+      <p class="hiw-closing__text">
+        The signature I sign on the work is the judgment behind it.<br />
+        <span class="hiw-accent">That's the part worth paying for.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import "./styles.css";
+</style>
+
+<script>
+  // Reuse the in-view observer pattern from other sections
+  const elements = document.querySelectorAll('[data-hiw-animate]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+  );
+  elements.forEach((el) => observer.observe(el));
+</script>

@@ -1,0 +1,137 @@
+---
+---
+<section
+  class="relative w-full h-[98vh] h-[98dvh] overflow-hidden font-body"
+  id="home"
+>
+  <!-- CENTERED IMAGE -->
+  <div class="absolute inset-0 z-[1] flex items-center justify-center bg-[#415872]">
+    <img
+      id="avatar-image"
+      src="/assets/avatar.png"
+      alt=""
+      class="h-[190%] max-w-none translate-y-[16.5%] -translate-x-[5%]"
+      style="opacity: 0;"
+    />
+  </div>
+
+  <!-- LEFT PANEL -->
+  <div
+    id="left-panel"
+    class="absolute top-0 left-0 h-full overflow-hidden transition-[width] duration-700 ease-in-out z-[2]"
+    style="width: 50%; opacity: 0;"
+  >
+  </div>
+
+  <!-- RIGHT PANEL — cold desaturated overlay -->
+  <div
+    id="right-panel"
+    class="absolute top-0 right-0 h-full overflow-hidden transition-[width] duration-700 ease-in-out z-[2]"
+    style="width: 50%; opacity: 0; transform: translateX(100%);"
+  >
+    <div class="absolute inset-0 bg-[#2b3a4a]/80" style="mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0" style="background: rgba(40,50,60,0.4); mix-blend-mode: saturation;"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 40% 50%, transparent 35%, #2b3a4a 90%);"></div>
+  </div>
+
+  <!-- SPLIT LINE -->
+  <div
+    id="split-line"
+    class="absolute top-0 bottom-0 w-[1px] z-10 transition-all duration-700 ease-in-out"
+    style="left: 50%; opacity: 0; background: linear-gradient(to bottom, transparent 0%, #64ffda88 25%, #64ffda 50%, #64ffda88 75%, transparent 100%); box-shadow: 0 0 12px #64ffda55;"
+  ></div>
+
+  <!-- GRID OVERLAY -->
+  <div
+    class="hero-grid absolute inset-0 pointer-events-none z-[8]"
+    style="opacity: 0; background-image: linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px); background-size: 80px 80px;"
+  ></div>
+
+  <!-- AGENT-READABLE BADGE -->
+  <a
+    href="/api/me"
+    target="_blank"
+    rel="noreferrer"
+    id="agent-badge"
+    class="agent-badge absolute top-6 right-6 md:top-8 md:right-8 z-20 flex items-center gap-[7px]"
+    style="opacity: 0;"
+    title="Machine-readable portfolio for AI agents"
+  >
+    <span class="agent-badge-dot"></span>
+    <span class="agent-badge-text">Agent-Readable</span>
+  </a>
+
+  <!-- MAIN COPY (right-aligned, centered on mobile) -->
+  <div class="hero-copy absolute top-1/2 right-4 md:right-[6%] -translate-y-1/2 z-20 text-right max-w-[90%] md:max-w-max" style="opacity: 0; transform: translateX(40px) translateY(-50%);">
+    <!-- subtitle -->
+    <div class="hero-stagger flex items-center justify-end gap-3 mb-5">
+      <span class="text-[11px] tracking-[0.28em] text-[#8a9db0] uppercase">Are you ready for an</span>
+      <div class="hero-subtitle-dash w-5 h-[1px] bg-[#64ffda33]"></div>
+    </div>
+
+    <!-- heading -->
+    <h1 class="hero-stagger relative font-bold uppercase leading-[0.88] mb-32 md:mb-24 text-5xl md:text-7xl lg:text-8xl" style="letter-spacing: 0.03em;">
+      <span id="ai-text" class="block text-primary-light" style="opacity: 0; transition: opacity 0.4s ease-out;">AI</span>
+      <span id="augmented-text" class="block text-[#64ffda]" style="text-shadow: 0 0 40px #64ffda44; letter-spacing: 0; opacity: 0; transition: opacity 0.4s ease-out;">AUGMENTED</span>
+      <span id="developer-text" class="block text-primary-light" style="opacity: 0; transition: opacity 0.4s ease-out;">DEVELOPER?</span>
+      <img
+        width="250"
+        height="250"
+        alt="signature"
+        src="/assets/signature.png"
+        class="hero-signature absolute -right-8 md:-right-12 bottom-0 h-16 md:h-32 w-auto translate-y-[50%] object-contain opacity-90 [filter:brightness(0)_invert(1)_sepia(1)_saturate(100)_hue-rotate(165deg)_brightness(0.7)]"
+      />
+    </h1>
+
+    <!-- bio line -->
+    <div class="hero-stagger mb-6 md:mb-8">
+      <p class="hero-bio"><span class="text-[#64ffda]">Frontend</span>-focused product engineer building fast, scalable, AI-enabled interfaces.</p>
+    </div>
+
+    <!-- status tag -->
+    <div class="hero-stagger flex flex-wrap gap-2 justify-end mb-8 md:mb-11">
+      <span id="available-tag" class="tag tag-scanning flex items-center gap-[7px]" style="min-width: 120px;">
+        <span id="available-dot" class="w-[5px] h-[5px] rounded-full inline-block dot-blink"></span>
+        <span id="available-text"></span>
+      </span>
+    </div>
+
+    <!-- CTAs -->
+    <div class="hero-stagger flex gap-5 md:gap-7 items-center justify-end">
+      <a href="#contact" class="cta-ghost">Get in touch</a>
+      <a href="#case-studies" class="cta-primary">
+        View Work <span class="text-[13px]">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- TERMINAL BOOT OVERLAY -->
+  <div id="boot-overlay" class="absolute inset-0 z-[25] flex items-center justify-center bg-[#415872]">
+    <div id="boot-terminal" class="relative font-mono text-white text-xs md:text-sm leading-relaxed max-w-[500px] px-8">
+      <span id="boot-cursor" class="inline-block w-[7px] h-[14px] bg-white animate-pulse"></span>
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div id="bottom-bar-line" class="absolute bottom-0 left-0 right-0 h-[1px] z-20" style="opacity: 0; background: linear-gradient(to right, transparent, #8a9db066, transparent);"></div>
+  <div id="bottom-bar" class="absolute bottom-6 left-12 right-12 flex justify-between items-center z-20" style="opacity: 0;">
+    <span class="text-[10px] tracking-[0.2em] text-[#6a8a9a] uppercase">
+      São José dos Campos, SP &middot; 2025
+    </span>
+    <div class="flex flex-col items-center gap-[6px]">
+      <span class="text-[9px] tracking-[0.25em] text-[#6a8a9a]">SCROLL</span>
+      <div class="w-[1px] h-6" style="background: linear-gradient(to bottom, #8a9db0, transparent);"></div>
+    </div>
+    <span class="text-[10px] tracking-[0.2em] text-[#6a8a9a] uppercase">
+      Product Engineering
+    </span>
+  </div>
+</section>
+
+<style>
+  @import "./styles.css";
+</style>
+
+<script>
+  import "./boot.ts";
+</script>
