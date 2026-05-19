@@ -16,6 +16,33 @@ import NavItem from "./NavItem.astro";
 
   <!-- Content -->
   <div class="relative z-10">
+    <!-- Info strip -->
+    <div class="footer-info">
+      <div class="footer-info__row">
+        <span class="footer-info__key">Based in</span>
+        <span class="footer-info__value">São José dos Campos, BR</span>
+      </div>
+      <div class="footer-info__row">
+        <span class="footer-info__key">Timezone</span>
+        <span class="footer-info__value">UTC-3 · US &amp; EU friendly</span>
+      </div>
+      <div class="footer-info__row">
+        <span class="footer-info__key">Experience</span>
+        <span class="footer-info__value">5 years</span>
+      </div>
+      <div class="footer-info__row">
+        <span class="footer-info__key">Focus</span>
+        <span class="footer-info__value">React · TypeScript · AI</span>
+      </div>
+      <div class="footer-info__row">
+        <span class="footer-info__key">Availability</span>
+        <span class="footer-info__value footer-info__value--accent">
+          <span class="footer-info__dot"></span>
+          Open to roles
+        </span>
+      </div>
+    </div>
+
     <div class="flex justify-center gap-6">
       <a
         href="https://www.linkedin.com/in/jhessiny-mattos/"
@@ -49,8 +76,9 @@ import NavItem from "./NavItem.astro";
 
     <nav class="footer-nav">
       <a href="#home">Home</a>
+      <a href="#how-i-work">How I Work</a>
+      <a href="#case-studies">Case Studies</a>
       <a href="#experience">Experience</a>
-      <a href="#projects">Portfolio</a>
       <a href="#skills">Skills</a>
       <a href="/blog">Blog</a>
     </nav>
@@ -95,6 +123,64 @@ import NavItem from "./NavItem.astro";
     .footer-watermark {
       font-size: 18rem;
     }
+  }
+
+  /* ── Info strip ── */
+  .footer-info {
+    max-width: 980px;
+    margin: 0 auto 56px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(100, 255, 218, 0.08);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.08);
+  }
+
+  .footer-info__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 12px;
+    border-right: 1px solid rgba(100, 255, 218, 0.06);
+    text-align: center;
+  }
+  .footer-info__row:last-child {
+    border-right: none;
+  }
+
+  .footer-info__key {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #64ffda;
+    opacity: 0.75;
+  }
+
+  .footer-info__value {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: #a0b8c8;
+  }
+
+  .footer-info__value--accent {
+    color: #64ffda;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-info__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #64ffda;
+    animation: footer-info-pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes footer-info-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px #64ffda; }
+    50% { opacity: 0.3; box-shadow: none; }
   }
 
   /* ── Social icons ── */
@@ -146,9 +232,40 @@ import NavItem from "./NavItem.astro";
     margin-top: 24px;
   }
 
+  @media (max-width: 900px) {
+    .footer-info {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-info__row {
+      border-right: 1px solid rgba(100, 255, 218, 0.06);
+    }
+    .footer-info__row:nth-child(2n) {
+      border-right: none;
+    }
+    .footer-info__row:not(:nth-last-child(-n+2)) {
+      border-bottom: 1px solid rgba(100, 255, 218, 0.06);
+    }
+    .footer-info__row:nth-last-child(1):nth-child(odd) {
+      grid-column: 1 / -1;
+      border-right: none;
+    }
+  }
+
   @media (max-width: 540px) {
     .footer {
       padding: 60px 20px 36px;
+    }
+    .footer-info {
+      grid-template-columns: 1fr;
+      margin-bottom: 40px;
+    }
+    .footer-info__row {
+      border-right: none !important;
+      border-bottom: 1px solid rgba(100, 255, 218, 0.06);
+      padding: 14px 12px;
+    }
+    .footer-info__row:last-child {
+      border-bottom: none;
     }
   }
 </style>
