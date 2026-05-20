@@ -1,6 +1,54 @@
 import { experiences } from "../data/experiences";
 import { projectsList } from "../data/projects";
 import { references } from "../data/references";
+import { pillars } from "../data/principles";
+import { stackGroups, languages } from "../data/skills";
+import {
+  projects as homeProjects,
+  otherWork as homeOtherWork,
+} from "../data/case-studies-home";
+
+import * as revlaData from "../data/case-studies/revla";
+import * as vegajusData from "../data/case-studies/vegajus";
+import * as collamapData from "../data/case-studies/collamap";
+import * as studyMapData from "../data/case-studies/study-map";
+import * as brandBuilderData from "../data/case-studies/brand-builder";
+import * as llmTxtGenData from "../data/case-studies/llm-txt-gen";
+
+const SKILL_LABEL_TO_KEY: Record<string, "frontend" | "testing" | "backend_and_infra" | "ai_llm"> = {
+  Frontend: "frontend",
+  Testing: "testing",
+  "Backend & Infra": "backend_and_infra",
+  "AI / LLM": "ai_llm",
+};
+
+const CASE_STUDY_DETAILS: Record<string, Record<string, unknown>> = {
+  revla: { ...revlaData },
+  vegajus: { ...vegajusData },
+  collamap: { ...collamapData },
+  "study-map": { ...studyMapData },
+  "brand-builder": { ...brandBuilderData },
+  "llm-txt-gen": { ...llmTxtGenData },
+};
+
+function slugFromHref(href: string): string | null {
+  const m = href.match(/^\/case-study\/([\w-]+)$/);
+  return m ? m[1] : null;
+}
+
+export interface CaseStudy {
+  title: string;
+  slug: string;
+  status: string;
+  tagline: string;
+  description: string;
+  href: string;
+  tags: string[];
+  stack: string[];
+  accent: string;
+  featured: boolean;
+  details: Record<string, unknown>;
+}
 
 export interface PortfolioData {
   name: string;
@@ -12,6 +60,7 @@ export interface PortfolioData {
   availability: string;
   about: string[];
   values: string[];
+  principles: { title: string; body: string }[];
   skills: {
     frontend: string[];
     testing: string[];
@@ -35,14 +84,7 @@ export interface PortfolioData {
     type?: string;
     status?: string;
   }[];
-  case_studies: {
-    title: string;
-    slug: string;
-    status: string;
-    date: string;
-    stack: string[];
-    highlights: string[];
-  }[];
+  case_studies: CaseStudy[];
   references: { name: string; title: string; linkedin: string }[];
   contact: {
     email: string;
@@ -51,6 +93,64 @@ export interface PortfolioData {
     website: string;
     resume: string;
   };
+}
+
+function buildSkillsByCategory(): PortfolioData["skills"] {
+  const out: PortfolioData["skills"] = {
+    frontend: [],
+    testing: [],
+    backend_and_infra: [],
+    ai_llm: [],
+  };
+  for (const group of stackGroups) {
+    const key = SKILL_LABEL_TO_KEY[group.label];
+    if (!key) continue;
+    out[key] = group.items.map((i) => i.name);
+  }
+  return out;
+}
+
+function buildCaseStudies(): CaseStudy[] {
+  const featured: CaseStudy[] = homeProjects.map((p) => {
+    const slug = slugFromHref(p.href) ?? "";
+    return {
+      title: p.title,
+      slug,
+      status: p.status,
+      tagline: p.tagline,
+      description: p.description,
+      href: p.href,
+      tags: p.tags,
+      stack: p.stack,
+      accent: p.accent,
+      featured: true,
+      details: CASE_STUDY_DETAILS[slug] ?? {},
+    };
+  });
+
+  const otherCaseStudies: CaseStudy[] = homeOtherWork
+    .map((o) => {
+      const slug = slugFromHref(o.href);
+      if (!slug) return null;
+      const details = CASE_STUDY_DETAILS[slug] ?? {};
+      const detailedStack = (details.stack as Array<{ name: string }> | undefined) ?? [];
+      return {
+        title: o.title,
+        slug,
+        status: "Shipped",
+        tagline: o.tagline,
+        description: o.tagline,
+        href: o.href,
+        tags: [],
+        stack: detailedStack.map((s) => s.name).filter(Boolean),
+        accent: "#64ffda",
+        featured: false,
+        details,
+      } satisfies CaseStudy;
+    })
+    .filter((x): x is CaseStudy => x !== null);
+
+  return [...featured, ...otherCaseStudies];
 }
 
 export function getPortfolioData(): PortfolioData {
@@ -76,28 +176,13 @@ export function getPortfolioData(): PortfolioData {
       "CROSS-FUNCTIONAL",
       "REMOTE-FIRST",
     ],
-    skills: {
-      frontend: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "Vite",
-        "Redux / Zustand",
-        "TanStack Query",
-        "React Hook Form",
-        "Zod",
-        "Tailwind",
-        "shadcn/ui",
-      ],
-      testing: ["Jest", "Cypress", "Vitest", "Testing Library"],
-      backend_and_infra: ["Node.js", "Python", "FastAPI", "PostgreSQL", "Prisma", "Redis", "Stripe", "Docker", "Supabase"],
-      ai_llm: ["Claude API", "Anthropic SDK", "Prompt Engineering", "Structured AI Output", "RAG Pipelines", "Embeddings / Semantic Search", "pgvector", "Claude Code", "Cursor", "V0"],
-    },
-    languages: [
-      { language: "Portuguese", level: "Native", proficiency_pct: 100 },
-      { language: "English", level: "Fluent", proficiency_pct: 92 },
-      { language: "French", level: "Advanced", proficiency_pct: 75 },
-    ],
+    principles: pillars.map((p) => ({ title: p.title, body: p.body })),
+    skills: buildSkillsByCategory(),
+    languages: languages.map((l) => ({
+      language: l.lang,
+      level: l.level,
+      proficiency_pct: l.pct,
+    })),
     experience: experiences.map((exp) => ({
       role: exp.role,
       company: exp.company,
@@ -114,95 +199,7 @@ export function getPortfolioData(): PortfolioData {
       type: p.type,
       status: p.status,
     })),
-    case_studies: [
-      {
-        title: "CollaMap — AI-Powered Research Suggestion Engine",
-        slug: "collamap",
-        status: "Completed / POC Approved for Production",
-        date: "2024",
-        stack: [
-          "Node.js",
-          "TypeScript",
-          "PostgreSQL",
-          "Claude API",
-          "React",
-          "Tailwind CSS",
-          "PubMed API",
-        ],
-        highlights: [
-          "66% cost reduction ($0.17 vs $0.50 per run)",
-          "Delivered in <4 days (ahead of 5-6 day estimate)",
-          "67% fewer API calls via 3-stage filtering",
-          "85% novelty accuracy",
-        ],
-      },
-      {
-        title: "StudyMap — Visual Knowledge Platform",
-        slug: "study-map",
-        status: "In Development",
-        date: "2024 — Present",
-        stack: [
-          "React 19",
-          "TypeScript",
-          "Vite",
-          "React Flow",
-          "Tailwind CSS",
-          "shadcn/ui",
-          "TanStack Query",
-          "Supabase",
-          "React Router v6",
-          "Vercel",
-        ],
-        highlights: [
-          "Interactive concept canvas with drag-and-drop connections",
-          "Real-time collaboration via Supabase subscriptions",
-          "Visual knowledge gaps surface missing links between topics",
-          "Clean Architecture enables feature additions without regressions",
-        ],
-      },
-      {
-        title: "llm-txt-gen — AI Readability Crawler",
-        slug: "llm-txt-gen",
-        status: "Completed",
-        date: "2025",
-        stack: [
-          "Next.js",
-          "React",
-          "TypeScript",
-          "Tailwind CSS",
-          "Cheerio",
-          "Upstash Redis",
-        ],
-        highlights: [
-          "Auto-generates llm.txt, agent.md, and site.json",
-          "BFS crawling with AI readability scoring (0-100)",
-          "agent.md flags uncertain inferences instead of hallucinating",
-          "Dogfooded thinking behind portfolio's /api/me",
-        ],
-      },
-      {
-        title: "Brand Builder — Design System Pipeline",
-        slug: "brand-builder",
-        status: "Completed",
-        date: "2025",
-        stack: [
-          "Next.js 16",
-          "React 19",
-          "TypeScript",
-          "Tailwind CSS 4",
-          "Anthropic SDK",
-          "Stripe",
-          "Zod",
-          "next-intl",
-        ],
-        highlights: [
-          "Full product funnel: Wizard → AI generation → Paywall → Dashboard",
-          "Generates agent prompts for Claude Code / Cursor",
-          "Stripe-gated export with one-time payment",
-          "Live component playground with palette swapping",
-        ],
-      },
-    ],
+    case_studies: buildCaseStudies(),
     references: references.map((r) => ({
       name: r.name,
       title: r.title,

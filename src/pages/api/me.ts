@@ -18,6 +18,7 @@ const VALID_FILTERS = [
   "languages",
   "about",
   "values",
+  "principles",
 ] as const;
 
 type FilterKey = (typeof VALID_FILTERS)[number];
