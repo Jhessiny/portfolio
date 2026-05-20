@@ -1,5 +1,5 @@
 ---
-import { metrics, pipeline, timeline, stack, learnings } from "../../../data/case-studies/collamap";
+import { metrics, pipeline, timeline, stack, learnings, live } from "../../../data/case-studies/collamap";
 
 const accent = "#ffcb6b";
 const accentRgb = "255,203,107";
@@ -47,6 +47,16 @@ const accentRgb = "255,203,107";
         <span class="cs-hero__pill">Cost Optimization</span>
         <span class="cs-hero__pill">Rapid Prototyping</span>
       </div>
+
+      <a
+        class="cs-hero__live"
+        href={live.url}
+        target="_blank"
+        rel="noreferrer noopener"
+        data-animate
+      >
+        {live.label} <span class="cs-hero__live-arrow">↗</span>
+      </a>
     </header>
 
     <!-- ─── My Scope ─── -->

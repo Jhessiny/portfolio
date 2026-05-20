@@ -1,5 +1,5 @@
 ---
-import { features, stack, highlights } from "../../../data/case-studies/revla";
+import { features, stack, highlights, live } from "../../../data/case-studies/revla";
 
 const accent = "#ff5fa2";
 const accentRgb = "255,95,162";
@@ -48,6 +48,16 @@ const accentRgb = "255,95,162";
         <span class="cs-hero__pill">SaaS</span>
         <span class="cs-hero__pill">Startup pace</span>
       </div>
+
+      <a
+        class="cs-hero__live"
+        href={live.url}
+        target="_blank"
+        rel="noreferrer noopener"
+        data-animate
+      >
+        {live.label} <span class="cs-hero__live-arrow">↗</span>
+      </a>
     </header>
 
     <!-- ─── My Scope ─── -->

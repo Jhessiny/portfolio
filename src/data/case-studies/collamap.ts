@@ -87,3 +87,5 @@ export const learnings = [
     text: "AI cost isn't a tuning problem solved by prompt tweaks — it's solved by deciding which model handles which shape of work. The 3-stage pipeline isn't optimization on top of the architecture. It is the architecture.",
   },
 ];
+
+export const live = { url: "https://fa.collamap.org/arc", label: "Open app" };

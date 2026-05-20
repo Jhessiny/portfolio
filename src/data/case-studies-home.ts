@@ -9,6 +9,7 @@ export interface FeaturedCaseStudy {
   href: string;
   accent: string;
   cta: string;
+  live?: { url: string; label: string };
 }
 
 export interface OtherWorkLink {
@@ -30,6 +31,7 @@ export const projects: FeaturedCaseStudy[] = [
     href: "/case-study/revla",
     accent: "#64ffda",
     cta: "READ CASE STUDY",
+    live: { url: "https://revla.ai/", label: "Visit landing" },
   },
   {
     index: "02",
@@ -43,6 +45,7 @@ export const projects: FeaturedCaseStudy[] = [
     href: "/case-study/vegajus",
     accent: "#c792ea",
     cta: "READ CASE STUDY",
+    live: { url: "https://vegajus.com.br/", label: "Visit landing" },
   },
   {
     index: "03",
@@ -56,6 +59,7 @@ export const projects: FeaturedCaseStudy[] = [
     href: "/case-study/collamap",
     accent: "#ffcb6b",
     cta: "READ CASE STUDY",
+    live: { url: "https://fa.collamap.org/arc", label: "Open app" },
   },
 ];
 

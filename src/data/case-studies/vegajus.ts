@@ -78,3 +78,5 @@ export const highlights = [
     text: "React 19, Vite, TanStack Query on the frontend; Spring Modulith and hexagonal architecture on the backend. Every dependency justified — no churn for novelty.",
   },
 ];
+
+export const live = { url: "https://vegajus.com.br/", label: "Visit landing" };

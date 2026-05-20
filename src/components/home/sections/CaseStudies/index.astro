@@ -31,11 +31,14 @@ import { projects, otherWork } from "../../../../data/case-studies-home";
     <!-- Cards grid -->
     <div class="cs-cards">
       {projects.map((project, i) => (
+        <div
+          class="cs-card-wrap"
+          data-animate
+          style={`--delay: ${i * 0.12}s; --accent: ${project.accent};`}
+        >
         <a
           href={project.href}
           class="cs-card-link"
-          data-animate
-          style={`--delay: ${i * 0.12}s; --accent: ${project.accent};`}
         >
           <div class="cs-card">
             {/* scanline overlay */}
@@ -83,6 +86,17 @@ import { projects, otherWork } from "../../../../data/case-studies-home";
             </div>
           </div>
         </a>
+        {project.live && (
+          <a
+            class="cs-card__live"
+            href={project.live.url}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {project.live.label} <span class="cs-card__live-arrow">↗</span>
+          </a>
+        )}
+        </div>
       ))}
     </div>
 

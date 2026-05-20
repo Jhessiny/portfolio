@@ -527,3 +527,31 @@
       font-size: 22px;
     }
   }
+
+/* ── Hero live CTA ── */
+.cs-hero__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 14px 28px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  transition: color 0.3s, border-color 0.3s, background 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.cs-hero__live:hover {
+  border-color: color-mix(in srgb, var(--accent) 75%, transparent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 22%, transparent);
+  transform: translateY(-2px);
+}
+.cs-hero__live-arrow {
+  font-size: 14px;
+  line-height: 1;
+}

@@ -65,3 +65,5 @@ export const highlights = [
     text: "CSV import unlocked the first signed contract. Events/alerts were designed to move retention. Outcomes, not output.",
   },
 ];
+
+export const live = { url: "https://revla.ai/", label: "Visit landing" };
