@@ -7,11 +7,14 @@ function renderDetailValue(value: unknown): string[] {
       if (typeof item === "string") return [`  - ${item}`];
       if (item && typeof item === "object") {
         const obj = item as Record<string, unknown>;
-        const title = (obj.title ?? obj.name ?? obj.stage ?? "") as string;
-        const text = (obj.text ?? obj.body ?? obj.description ?? obj.outcome ?? obj.problem ?? "") as string;
-        if (title && text) return [`  - **${title}** — ${text}`];
-        if (title) return [`  - ${title}`];
-        if (text) return [`  - ${text}`];
+        const label = (obj.title ?? obj.name ?? obj.stage ?? obj.label ?? "") as string;
+        const body = (obj.text ?? obj.body ?? obj.description ?? obj.outcome ?? obj.problem ?? obj.detail ?? "") as string;
+        const value = obj.value as string | undefined;
+        if (label && value && body) return [`  - **${value} ${label}** — ${body}`];
+        if (label && value) return [`  - **${value} ${label}**`];
+        if (label && body) return [`  - **${label}** — ${body}`];
+        if (label) return [`  - ${label}`];
+        if (body) return [`  - ${body}`];
         return [`  - ${JSON.stringify(obj)}`];
       }
       return [`  - ${String(item)}`];

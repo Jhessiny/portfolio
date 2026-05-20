@@ -133,7 +133,7 @@ function buildCaseStudies(): CaseStudy[] {
       const slug = slugFromHref(o.href);
       if (!slug) return null;
       const details = CASE_STUDY_DETAILS[slug] ?? {};
-      const detailedStack = (details.stack as Array<{ name: string }> | undefined) ?? [];
+      const detailedStack = (details.stack as Array<string | { name: string }> | undefined) ?? [];
       return {
         title: o.title,
         slug,
@@ -142,7 +142,9 @@ function buildCaseStudies(): CaseStudy[] {
         description: o.tagline,
         href: o.href,
         tags: [],
-        stack: detailedStack.map((s) => s.name).filter(Boolean),
+        stack: detailedStack
+          .map((s) => (typeof s === "string" ? s : s.name))
+          .filter((n): n is string => Boolean(n)),
         accent: "#64ffda",
         featured: false,
         details,
