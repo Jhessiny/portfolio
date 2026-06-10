@@ -1,0 +1,446 @@
+.contact-section {
+  background: #060e1a;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 96px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-margin-top: 80px;
+}
+
+/* ── ambient bg ── */
+.contact-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(100,255,218,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100,255,218,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 35%, transparent 75%);
+}
+.contact-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 720px;
+  height: 720px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(100,255,218,0.06) 0%, transparent 65%);
+}
+.contact-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 3px,
+    rgba(100,255,218,0.018) 3px,
+    rgba(100,255,218,0.018) 4px
+  );
+  opacity: 0.45;
+}
+
+/* ── container ── */
+.contact-container {
+  position: relative;
+  width: 100%;
+  max-width: 940px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* ── label ── */
+.contact-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #64ffda;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.contact-label::before,
+.contact-label::after {
+  content: "";
+  flex: 0 0 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+}
+.contact-label.in-view { opacity: 1; transform: translateY(0); }
+
+/* ── headline ── */
+.contact-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 7.2vw, 96px);
+  line-height: 0.95;
+  letter-spacing: 0.025em;
+  color: #c8d8e8;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s;
+}
+.contact-headline.in-view { opacity: 1; transform: translateY(0); }
+.contact-headline__accent {
+  color: #64ffda;
+  display: block;
+}
+.contact-headline__period {
+  color: #64ffda;
+}
+
+/* ── prompt ── */
+.contact-prompt {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #7a9aaa;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;
+}
+.contact-prompt.in-view { opacity: 1; transform: translateY(0); }
+.contact-prompt__path { color: #64ffda; }
+.contact-prompt__cmd { color: #c8d8e8; }
+.contact-prompt__cursor {
+  display: inline-block;
+  width: 9px;
+  height: 14px;
+  margin-left: 6px;
+  background: #64ffda;
+  vertical-align: middle;
+  animation: contact-cursor-blink 1s steps(1) infinite;
+}
+@keyframes contact-cursor-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* ── primary email card ── */
+.contact-primary {
+  --accent: #64ffda;
+  position: relative;
+  border: 1px solid #1e3a4a;
+  background: #0a1628;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 24px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.35s, background 0.35s, transform 0.35s, box-shadow 0.35s;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease 0.4s,
+              transform 0.7s ease 0.4s,
+              border-color 0.35s,
+              background 0.35s,
+              box-shadow 0.35s;
+}
+.contact-primary.in-view { opacity: 1; transform: translateY(0); }
+.contact-primary:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: #0d1b2a;
+  box-shadow: 0 0 48px color-mix(in srgb, var(--accent) 10%, transparent),
+              inset 0 0 64px color-mix(in srgb, var(--accent) 3%, transparent);
+  transform: translateY(-3px);
+}
+
+.contact-primary__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+.contact-primary:hover .contact-primary__bar { transform: scaleX(1); }
+
+.contact-primary__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(100,255,218,0.02) 2px, rgba(100,255,218,0.02) 4px);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.contact-primary:hover .contact-primary__scan { opacity: 1; }
+
+.contact-primary__bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.contact-primary:hover .contact-primary__bracket { opacity: 1; }
+.contact-primary__bracket--tl { top: 10px; left: 10px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+.contact-primary__bracket--tr { top: 10px; right: 10px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+.contact-primary__bracket--bl { bottom: 10px; left: 10px; border-bottom: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+.contact-primary__bracket--br { bottom: 10px; right: 10px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+
+.contact-primary__icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+.contact-primary__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.contact-primary__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent) 65%, transparent);
+}
+.contact-primary__value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  color: #c8d8e8;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.contact-primary:hover .contact-primary__value {
+  color: #ffffff;
+  text-shadow: 0 0 24px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.contact-primary__copy {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
+  z-index: 1;
+}
+.contact-primary__copy:hover {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.contact-primary__copy[data-state="copied"] {
+  color: #c8ffea;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 75%, transparent);
+}
+.contact-primary__copy svg { width: 13px; height: 13px; }
+
+.contact-primary__send {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #0a1628;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  transition: filter 0.3s, box-shadow 0.3s, transform 0.3s;
+  z-index: 1;
+  position: relative;
+}
+.contact-primary__send:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 40%, transparent);
+  transform: translateY(-1px);
+}
+.contact-primary__send-arrow { font-size: 13px; line-height: 1; }
+
+/* ── secondary cards ── */
+.contact-secondary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease 0.55s, transform 0.7s ease 0.55s;
+}
+.contact-secondary.in-view { opacity: 1; transform: translateY(0); }
+
+.contact-card {
+  position: relative;
+  border: 1px solid #1e3a4a;
+  background: #0a1628;
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color 0.35s, background 0.35s, transform 0.35s, box-shadow 0.35s;
+}
+.contact-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  background: #0d1b2a;
+  box-shadow: 0 0 36px color-mix(in srgb, var(--accent) 10%, transparent);
+  transform: translateY(-3px);
+}
+.contact-card--linkedin { --accent: #6aa5f0; }
+.contact-card--github   { --accent: #d6e2ec; }
+
+.contact-card__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+.contact-card:hover .contact-card__bar { transform: scaleX(1); }
+
+.contact-card__icon {
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+.contact-card__body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.contact-card__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent) 65%, transparent);
+}
+.contact-card__value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: #c8d8e8;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.contact-card__arrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  color: color-mix(in srgb, var(--accent) 50%, transparent);
+  transition: transform 0.3s, color 0.3s;
+}
+.contact-card:hover .contact-card__arrow {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+/* ── status strip ── */
+.contact-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(100, 255, 218, 0.1);
+  font-family: 'IBM Plex Mono', monospace;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease 0.7s, transform 0.7s ease 0.7s;
+}
+.contact-status.in-view { opacity: 1; transform: translateY(0); }
+
+.contact-status__pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6a8a9a;
+}
+.contact-status__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.contact-status__sep { color: #2c4554; }
+
+.contact-status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #64ffda;
+  box-shadow: 0 0 8px #64ffda;
+  animation: contact-status-pulse 2s ease-in-out infinite;
+}
+.contact-status__sig {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5a7a8a;
+}
+.contact-status__sig b { color: #c8d8e8; font-weight: 500; letter-spacing: 0.22em; }
+
+@keyframes contact-status-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px #64ffda; }
+  50% { opacity: 0.35; box-shadow: 0 0 0 transparent; }
+}
+
+/* ── responsive ── */
+@media (max-width: 720px) {
+  .contact-section { padding: 80px 22px; }
+  .contact-container { gap: 28px; }
+  .contact-primary {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px;
+  }
+  .contact-primary__icon { display: none; }
+  .contact-primary__copy,
+  .contact-primary__send { justify-content: center; }
+  .contact-secondary { grid-template-columns: 1fr; }
+  .contact-status { flex-direction: column; align-items: flex-start; }
+}

@@ -1,271 +1,136 @@
 ---
-import NavItem from "./NavItem.astro";
+const year = new Date().getFullYear();
 ---
 
-<footer class="footer" id="contact">
-  <!-- grid background -->
-  <div class="footer-grid"></div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-row footer-row--top">
+      <a href="#home" class="footer-mark">
+        <span class="footer-mark__sigil">◇</span>
+        <span class="footer-mark__name">JOSM</span>
+        <span class="footer-mark__role">Frontend Product Engineer</span>
+      </a>
 
-  <!-- JOSM background text -->
-  <div
-    class="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-    aria-hidden="true"
-  >
-    <span class="footer-watermark">JOSM</span>
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10">
-    <!-- Info strip -->
-    <div class="footer-info">
-      <div class="footer-info__row">
-        <span class="footer-info__key">Based in</span>
-        <span class="footer-info__value">São José dos Campos, BR</span>
-      </div>
-      <div class="footer-info__row">
-        <span class="footer-info__key">Timezone</span>
-        <span class="footer-info__value">UTC-3 · US &amp; EU friendly</span>
-      </div>
-      <div class="footer-info__row">
-        <span class="footer-info__key">Experience</span>
-        <span class="footer-info__value">5 years</span>
-      </div>
-      <div class="footer-info__row">
-        <span class="footer-info__key">Focus</span>
-        <span class="footer-info__value">React · TypeScript · AI</span>
-      </div>
-      <div class="footer-info__row">
-        <span class="footer-info__key">Availability</span>
-        <span class="footer-info__value footer-info__value--accent">
-          <span class="footer-info__dot"></span>
-          Open to roles
-        </span>
-      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#how-i-work">How I Work</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="/blog">Blog</a>
+      </nav>
     </div>
 
-    <div class="flex justify-center gap-6">
-      <a
-        href="https://www.linkedin.com/in/jhessiny-mattos/"
-        target="_blank"
-        rel="noreferrer"
-        class="footer-social"
-      >
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      </a>
-      <a
-        href="https://github.com/Jhessiny"
-        target="_blank"
-        rel="noreferrer"
-        class="footer-social"
-      >
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
-          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-        </svg>
-      </a>
-      <a
-        href="mailto:contact@josm.dev"
-        class="footer-social"
-      >
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-      </a>
+    <div class="footer-row footer-row--bottom">
+      <p class="footer-meta">
+        &copy; {year} JOSM
+        <span class="footer-meta__sep">·</span>
+        São José dos Campos · UTC-3
+        <span class="footer-meta__sep">·</span>
+        v1
+      </p>
+      <p class="footer-built">
+        BUILT WITH <span class="footer-built__accent">INTENT</span>
+        <span class="footer-meta__sep">·</span>
+        SHIPPED WITH <span class="footer-built__accent">JUDGMENT</span>
+      </p>
     </div>
-
-    <nav class="footer-nav">
-      <a href="#home">Home</a>
-      <a href="#how-i-work">How I Work</a>
-      <a href="#case-studies">Case Studies</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="/blog">Blog</a>
-    </nav>
-
-    <p class="footer-copyright">
-      &copy; Copyright {new Date().getFullYear()}. All rights reserved.
-    </p>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: linear-gradient(to bottom, #0d1b2a 0%, #2b3a4a 30%);
-    padding: 80px 60px 48px;
-    position: relative;
-    overflow: hidden;
+    background: #050a13;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
     font-family: 'IBM Plex Mono', monospace;
     box-sizing: border-box;
+    padding: 28px 60px;
   }
 
-  .footer-grid {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(100,255,218,0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(100,255,218,0.018) 1px, transparent 1px);
-    background-size: 80px 80px;
-  }
-
-  .footer-watermark {
-    font-size: 12rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #c8d8e8;
-    opacity: 0.04;
-    line-height: 1;
-    font-family: 'Bebas Neue', sans-serif;
-  }
-  @media (min-width: 768px) {
-    .footer-watermark {
-      font-size: 18rem;
-    }
-  }
-
-  /* ── Info strip ── */
-  .footer-info {
-    max-width: 980px;
-    margin: 0 auto 56px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    border-top: 1px solid rgba(100, 255, 218, 0.08);
-    border-bottom: 1px solid rgba(100, 255, 218, 0.08);
-  }
-
-  .footer-info__row {
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 20px 12px;
-    border-right: 1px solid rgba(100, 255, 218, 0.06);
-    text-align: center;
-  }
-  .footer-info__row:last-child {
-    border-right: none;
+    gap: 18px;
   }
 
-  .footer-info__key {
-    font-size: 9px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #64ffda;
-    opacity: 0.75;
-  }
-
-  .footer-info__value {
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: #a0b8c8;
-  }
-
-  .footer-info__value--accent {
-    color: #64ffda;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .footer-info__dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #64ffda;
-    animation: footer-info-pulse 2.2s ease-in-out infinite;
-  }
-
-  @keyframes footer-info-pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 6px #64ffda; }
-    50% { opacity: 0.3; box-shadow: none; }
-  }
-
-  /* ── Social icons ── */
-  .footer-social {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 1px solid #5a7a8a;
+  .footer-row {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: #a0b8c8;
-    transition: all 0.35s;
-  }
-  .footer-social:hover {
-    border-color: #c8d8e888;
-    color: #c8d8e8;
-    box-shadow: 0 0 20px #c8d8e812;
-    transform: scale(1.1);
-  }
-
-  /* ── Navigation ── */
-  .footer-nav {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 24px;
     flex-wrap: wrap;
-    gap: 4px 16px;
-    margin-top: 32px;
   }
-  .footer-nav a {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #a0b8c8;
+
+  /* ── Mark ── */
+  .footer-mark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
     text-decoration: none;
-    padding: 6px 8px;
+    color: inherit;
+  }
+  .footer-mark__sigil {
+    color: #64ffda;
+    font-size: 12px;
+    transform: translateY(1px);
+  }
+  .footer-mark__name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.14em;
+    color: #c8d8e8;
     transition: color 0.3s;
   }
-  .footer-nav a:hover {
-    color: #c8d8e8;
-  }
-
-  /* ── Copyright ── */
-  .footer-copyright {
-    text-align: center;
+  .footer-mark:hover .footer-mark__name { color: #64ffda; }
+  .footer-mark__role {
     font-size: 10px;
-    letter-spacing: 0.1em;
-    color: #7a98a8;
-    margin-top: 24px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5a7a8a;
   }
 
-  @media (max-width: 900px) {
-    .footer-info {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .footer-info__row {
-      border-right: 1px solid rgba(100, 255, 218, 0.06);
-    }
-    .footer-info__row:nth-child(2n) {
-      border-right: none;
-    }
-    .footer-info__row:not(:nth-last-child(-n+2)) {
-      border-bottom: 1px solid rgba(100, 255, 218, 0.06);
-    }
-    .footer-info__row:nth-last-child(1):nth-child(odd) {
-      grid-column: 1 / -1;
-      border-right: none;
-    }
+  /* ── Nav ── */
+  .footer-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 18px;
   }
+  .footer-nav a {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #6a8a9a;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-nav a:hover { color: #64ffda; }
 
-  @media (max-width: 540px) {
-    .footer {
-      padding: 60px 20px 36px;
+  /* ── Bottom row ── */
+  .footer-row--bottom {
+    padding-top: 16px;
+    border-top: 1px dashed rgba(100, 255, 218, 0.07);
+  }
+  .footer-meta,
+  .footer-built {
+    margin: 0;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #5a7a8a;
+  }
+  .footer-meta__sep { color: #2c4554; margin: 0 8px; }
+  .footer-built__accent { color: #c8d8e8; }
+
+  @media (max-width: 720px) {
+    .footer { padding: 24px 22px; }
+    .footer-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
     }
-    .footer-info {
-      grid-template-columns: 1fr;
-      margin-bottom: 40px;
-    }
-    .footer-info__row {
-      border-right: none !important;
-      border-bottom: 1px solid rgba(100, 255, 218, 0.06);
-      padding: 14px 12px;
-    }
-    .footer-info__row:last-child {
-      border-bottom: none;
-    }
+    .footer-mark { flex-wrap: wrap; }
+    .footer-built { order: -1; }
   }
 </style>
