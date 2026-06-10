@@ -158,15 +158,15 @@ function buildCaseStudies(): CaseStudy[] {
 export function getPortfolioData(): PortfolioData {
   return {
     name: "Jhéssiny Mattos",
-    title: "AI-Augmented Frontend Developer",
+    title: "AI Engineer",
     headline:
-      "Frontend-focused product engineer building fast, scalable, AI-enabled interfaces.",
+      "AI engineer shipping LLM-powered features, agent pipelines, and the interfaces that put them to work.",
     location: "São José dos Campos, SP, Brazil",
     timezone: "UTC-3 (US & EU friendly)",
     years_of_experience: new Date().getFullYear() - 2020,
     availability: "Open to contracts — async & international friendly",
     about: [
-      "I'm a frontend-focused product engineer who enjoys owning features from idea to production. I work at the intersection of user experience, system design, and business impact — translating product requirements into scalable, high-performance interfaces.",
+      "I'm an AI engineer who owns features from idea to production. I work at the intersection of LLM systems, product UX, and engineering judgment — turning loose requirements into shipped, measurable software.",
       "Over the years, I've worked on long-lived products as well as early-stage initiatives, building and refactoring complex frontends, improving performance, and collaborating closely with product and design teams. I care about clean architecture, predictable state management, and maintainable systems that can evolve with the business.",
       "I use AI as a development accelerator and as a product capability — integrating LLM-based features where they create real user value, not just novelty. My focus is pragmatic: ship fast, iterate safely, and measure impact.",
       "I'm particularly interested in small, product-driven teams where engineers have ownership, influence roadmap decisions, and are trusted to execute autonomously.",
