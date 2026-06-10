@@ -191,3 +191,22 @@
     font-size: 12.5px;
   }
 }
+
+/* Workflow map: desktop island vs. mobile stepper switch */
+.hiw-workflow {
+  margin-top: 96px;
+}
+.workflow-map-desktop {
+  display: none;
+}
+.workflow-map-mobile {
+  display: block;
+}
+@media (min-width: 768px) {
+  .workflow-map-desktop {
+    display: block;
+  }
+  .workflow-map-mobile {
+    display: none;
+  }
+}

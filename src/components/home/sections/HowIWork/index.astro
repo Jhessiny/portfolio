@@ -1,5 +1,7 @@
 ---
 import { pillars } from "../../../../data/principles";
+import WorkflowMap from "./WorkflowMap";
+import WorkflowStepper from "./WorkflowStepper.astro";
 ---
 
 <section id="how-i-work" class="hiw-section">
@@ -39,6 +41,16 @@ import { pillars } from "../../../../data/principles";
         The signature I sign on the work is the judgment behind it.<br />
         <span class="hiw-accent">That's the part worth paying for.</span>
       </p>
+    </div>
+
+    <!-- Workflow map -->
+    <div class="hiw-workflow" id="workflow-map" data-hiw-animate>
+      <div class="workflow-map-desktop">
+        <WorkflowMap client:media="(min-width: 768px)" />
+      </div>
+      <div class="workflow-map-mobile">
+        <WorkflowStepper />
+      </div>
     </div>
   </div>
 </section>

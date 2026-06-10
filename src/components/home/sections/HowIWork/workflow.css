@@ -1,0 +1,413 @@
+/* Ported verbatim from AI Workflow Map.html lines 22–128 (theme-light block dropped). */
+
+.workflow-map-island {
+  --bg: #0b0d11;
+  --bg-2: #0f1218;
+  --grid: #1d2530;
+  --mask: rgba(8, 10, 13, 0.72);
+  --surface: #13171e;
+  --surface-2: #171c25;
+  --border: #262d39;
+  --border-2: #333c4b;
+  --tx: #e8ebf0;
+  --tx-mute: #8a93a3;
+  --tx-faint: #5a6473;
+  --agent: #5fd4a0;
+  --human: #f0a948;
+  --auto: #6aa5f0;
+  --agent-soft: rgba(95, 212, 160, 0.1);
+  --human-soft: rgba(240, 169, 72, 0.1);
+  --auto-soft: rgba(106, 165, 240, 0.1);
+  --shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+
+  position: relative;
+  width: 100%;
+  height: 900px;
+  background: var(--bg);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.workflow-map-island * {
+  box-sizing: border-box;
+}
+
+.workflow-map-island .react-flow {
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(106, 165, 240, 0.06), transparent 60%),
+    radial-gradient(80% 60% at 50% 110%, rgba(95, 212, 160, 0.05), transparent 60%),
+    var(--bg);
+}
+
+/* ---------- phase bands ---------- */
+.workflow-map-island .rfband {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+.workflow-map-island .rfband-rail {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.workflow-map-island .rfband-idx {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tx-faint);
+  letter-spacing: 0.1em;
+}
+.workflow-map-island .rfband-label {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--tx-mute);
+}
+.workflow-map-island .rfband-sub {
+  font-size: 12.5px;
+  color: var(--tx-faint);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- step nodes ---------- */
+.workflow-map-island .rfn {
+  position: relative;
+  width: 264px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  box-shadow: var(--shadow);
+  padding: 14px 16px 15px 18px;
+  overflow: hidden;
+  transition: opacity 0.25s ease, border-color 0.2s ease, transform 0.15s ease;
+  --ac: var(--auto);
+  --ac-soft: var(--auto-soft);
+}
+.workflow-map-island .rfn.a-agent {
+  --ac: var(--agent);
+  --ac-soft: var(--agent-soft);
+}
+.workflow-map-island .rfn.a-human {
+  --ac: var(--human);
+  --ac-soft: var(--human-soft);
+}
+.workflow-map-island .rfn.a-auto {
+  --ac: var(--auto);
+  --ac-soft: var(--auto-soft);
+}
+.workflow-map-island .rfn-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--ac);
+}
+.workflow-map-island .rfn.is-sel {
+  border-color: var(--ac);
+  box-shadow: 0 0 0 1px var(--ac), 0 14px 40px rgba(0, 0, 0, 0.5);
+}
+.workflow-map-island .rfn.is-dim {
+  opacity: 0.34;
+}
+.workflow-map-island .rfn:hover {
+  border-color: var(--border-2);
+  transform: translateY(-1px);
+}
+
+.workflow-map-island .rfn-eb {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  color: var(--ac);
+  text-transform: uppercase;
+}
+.workflow-map-island .rfn-eb .rfn-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ac);
+}
+.workflow-map-island .rfn-ic {
+  display: inline-flex;
+  color: var(--ac);
+  margin-right: -1px;
+}
+.workflow-map-island .rfn-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--tx);
+  line-height: 1.2;
+  margin-top: 8px;
+  letter-spacing: -0.01em;
+}
+.workflow-map-island .rfn-desc {
+  font-size: 12.8px;
+  line-height: 1.42;
+  color: var(--tx-mute);
+  margin: 7px 0 0;
+  text-wrap: pretty;
+}
+.workflow-map-island .rfn-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 11px;
+}
+.workflow-map-island .rfn-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--tx-mute);
+  background: var(--ac-soft);
+  border: 1px solid color-mix(in oklab, var(--ac) 28%, transparent);
+  padding: 3px 7px;
+  border-radius: 5px;
+}
+
+/* gate + milestone emphasis */
+.workflow-map-island .rfn.k-gate {
+  border-color: color-mix(in oklab, var(--auto) 45%, var(--border));
+  background: linear-gradient(180deg, rgba(106, 165, 240, 0.1), var(--surface));
+}
+.workflow-map-island .rfn.k-gate .rfn-title {
+  font-size: 17px;
+}
+.workflow-map-island .rfn.k-milestone {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--human) 26%, var(--surface-2)),
+    var(--surface)
+  );
+  border-color: color-mix(in oklab, var(--human) 55%, var(--border));
+  text-align: left;
+}
+.workflow-map-island .rfn.k-milestone .rfn-title {
+  font-size: 19px;
+  font-weight: 700;
+}
+.workflow-map-island .rfn.k-milestone .rfn-bar {
+  width: 5px;
+}
+.workflow-map-island .rfn.k-intake {
+  border-style: dashed;
+}
+.workflow-map-island .rfn.k-prioritized {
+  background: linear-gradient(180deg, rgba(95, 212, 160, 0.07), var(--surface));
+}
+.workflow-map-island .rfn.k-session {
+  padding: 11px 14px 12px 16px;
+}
+.workflow-map-island .rfn.k-session .rfn-title {
+  font-size: 14.5px;
+  margin-top: 6px;
+}
+.workflow-map-island .rfn.k-output .rfn-title {
+  font-size: 15px;
+}
+
+/* ---------- HUD panels ---------- */
+.workflow-map-island .react-flow__panel {
+  margin: 18px;
+}
+.workflow-map-island .hud-title {
+  max-width: 420px;
+}
+.workflow-map-island .hud-eb {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--auto);
+  text-transform: uppercase;
+}
+.workflow-map-island .hud-title h1 {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--tx);
+  margin: 10px 0 0;
+  text-wrap: balance;
+}
+.workflow-map-island .hud-title p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--tx-mute);
+  margin: 9px 0 0;
+  max-width: 380px;
+}
+.workflow-map-island .hud-title em {
+  color: var(--tx);
+  font-style: italic;
+}
+
+.workflow-map-island .hud-card {
+  background: rgba(17, 21, 28, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  min-width: 188px;
+}
+.workflow-map-island .hud-row-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tx-faint);
+  margin-bottom: 9px;
+}
+.workflow-map-island .seg-group {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 3px;
+}
+.workflow-map-island .seg {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--tx-mute);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.workflow-map-island .seg:hover {
+  color: var(--tx);
+}
+.workflow-map-island .seg.on {
+  background: var(--surface-2);
+  color: var(--tx);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04), inset 0 0 0 1px var(--border-2);
+}
+.workflow-map-island .hud-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
+.workflow-map-island .toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  color: var(--tx-mute);
+  padding: 6px 2px;
+}
+.workflow-map-island .toggle:hover {
+  color: var(--tx);
+}
+.workflow-map-island .toggle .tg-box {
+  width: 30px;
+  height: 17px;
+  border-radius: 999px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  position: relative;
+  transition: background 0.18s ease, border-color 0.18s ease;
+  flex: none;
+}
+.workflow-map-island .toggle .tg-box::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--tx-faint);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+.workflow-map-island .toggle.on {
+  color: var(--tx);
+}
+.workflow-map-island .toggle.on .tg-box {
+  background: color-mix(in oklab, var(--auto) 40%, var(--bg-2));
+  border-color: var(--auto);
+}
+.workflow-map-island .toggle.on .tg-box::after {
+  transform: translateX(13px);
+  background: #fff;
+}
+
+.workflow-map-island .legend .lg-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--tx-mute);
+  padding: 3px 0;
+}
+.workflow-map-island .legend .lg-row b {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--tx);
+}
+.workflow-map-island .legend .lg-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+
+/* ---------- react-flow chrome ---------- */
+.workflow-map-island .react-flow__controls {
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.workflow-map-island .react-flow__controls-button {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  color: var(--tx-mute);
+  width: 30px;
+  height: 30px;
+}
+.workflow-map-island .react-flow__controls-button:hover {
+  background: var(--surface-2);
+  color: var(--tx);
+}
+.workflow-map-island .react-flow__controls-button svg {
+  fill: currentColor;
+}
+.workflow-map-island .react-flow__minimap {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-2) !important;
+  box-shadow: var(--shadow);
+}
+.workflow-map-island .react-flow__edge-text {
+  font-family: 'IBM Plex Mono', monospace;
+}
+.workflow-map-island .react-flow__attribution {
+  display: none;
+}

@@ -1,0 +1,180 @@
+---
+import { ACTOR, bands, steps } from "../../../../data/workflow/data";
+
+const groupedByBand = bands.map((b) => {
+  const yStart = b.position.y;
+  const yEnd = yStart + b.style.height;
+  return {
+    band: b,
+    items: steps.filter((s) => s.y >= yStart && s.y < yEnd),
+  };
+});
+---
+
+<div class="wfs-root">
+  {
+    groupedByBand.map(({ band, items }) => (
+      <section class="wfs-band">
+        <header class="wfs-band__head">
+          <span class="wfs-band__idx">{band.data.idx}</span>
+          <h3 class="wfs-band__label">{band.data.label}</h3>
+          <p class="wfs-band__sub">{band.data.sub}</p>
+        </header>
+        <ol class="wfs-list">
+          {items.map((s) => (
+            <li class={`wfs-step a-${s.actor} k-${s.kind}`}>
+              <span class="wfs-step__bar" style={{ background: ACTOR[s.actor].hex }} />
+              <div class="wfs-step__body">
+                <div class="wfs-step__eb" style={{ color: ACTOR[s.actor].hex }}>
+                  <span class="wfs-step__dot" style={{ background: ACTOR[s.actor].hex }} />
+                  {s.type}
+                </div>
+                <p class="wfs-step__title">{s.title}</p>
+                <p class="wfs-step__desc">{s.desc}</p>
+                {s.tags && s.tags.length > 0 && (
+                  <div class="wfs-step__tags">
+                    {s.tags.map((t) => (
+                      <span class="wfs-step__tag">{t}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))
+  }
+  <p class="wfs-loop">↻ next run</p>
+</div>
+
+<style>
+  .wfs-root {
+    --bg: #0b0d11;
+    --surface: #13171e;
+    --surface-2: #171c25;
+    --border: #262d39;
+    --tx: #e8ebf0;
+    --tx-mute: #8a93a3;
+    --tx-faint: #5a6473;
+
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px 24px;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    color: var(--tx);
+  }
+  .wfs-band {
+    margin-top: 24px;
+  }
+  .wfs-band:first-child {
+    margin-top: 4px;
+  }
+  .wfs-band__head {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-bottom: 14px;
+  }
+  .wfs-band__idx {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--tx-faint);
+    letter-spacing: 0.1em;
+  }
+  .wfs-band__label {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--tx-mute);
+    margin: 4px 0 2px;
+  }
+  .wfs-band__sub {
+    font-size: 12px;
+    color: var(--tx-faint);
+    margin: 0;
+  }
+  .wfs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wfs-step {
+    position: relative;
+    background: linear-gradient(180deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px 13px 18px;
+    overflow: hidden;
+  }
+  .wfs-step__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+  }
+  .wfs-step__eb {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .wfs-step__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .wfs-step__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--tx);
+    line-height: 1.2;
+    margin: 6px 0 0;
+  }
+  .wfs-step__desc {
+    font-size: 12.8px;
+    line-height: 1.42;
+    color: var(--tx-mute);
+    margin: 6px 0 0;
+  }
+  .wfs-step__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .wfs-step__tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    color: var(--tx-mute);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+  .wfs-step.k-milestone .wfs-step__title {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .wfs-step.k-gate .wfs-step__title {
+    font-size: 16px;
+  }
+  .wfs-loop {
+    text-align: center;
+    color: var(--tx-faint);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 18px 0 0;
+  }
+</style>
