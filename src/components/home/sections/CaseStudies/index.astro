@@ -1,5 +1,5 @@
 ---
-import { projects, otherWork } from "../../../../data/case-studies-home";
+import { projects } from "../../../../data/case-studies-home";
 ---
 
 <section class="case-studies" id="case-studies">
@@ -100,22 +100,6 @@ import { projects, otherWork } from "../../../../data/case-studies-home";
       ))}
     </div>
 
-    <!-- Other work -->
-    <div class="cs-other" data-animate>
-      <div class="cs-other__label">
-        <div class="cs-other__line"></div>
-        <span>Other Work</span>
-      </div>
-      <div class="cs-other__grid">
-        {otherWork.map((item) => (
-          <a href={item.href} class="cs-other__item">
-            <span class="cs-other__title">{item.title}</span>
-            <span class="cs-other__tagline">{item.tagline}</span>
-            <span class="cs-other__arrow">→</span>
-          </a>
-        ))}
-      </div>
-    </div>
   </div>
 </section>
 

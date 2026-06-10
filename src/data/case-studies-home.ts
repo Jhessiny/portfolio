@@ -61,6 +61,19 @@ export const projects: FeaturedCaseStudy[] = [
     cta: "READ CASE STUDY",
     live: { url: "https://fa.collamap.org/arc", label: "Open app" },
   },
+  {
+    index: "04",
+    title: "STUDYMAP",
+    tagline: "Visual knowledge platform for students",
+    description:
+      "Solo portfolio project built in the open. Zoomable concept canvas where learners map courses as hierarchical knowledge trees, attach resources, and ask questions. Clean Architecture adapted for the frontend.",
+    tags: ["Solo Project", "Clean Architecture", "EdTech"],
+    stack: ["React 19", "TypeScript", "Vite", "React Flow", "TanStack Query", "Supabase"],
+    status: "In Development",
+    href: "/case-study/study-map",
+    accent: "#a78bfa",
+    cta: "READ CASE STUDY",
+  },
 ];
 
 export const otherWork: OtherWorkLink[] = [
@@ -73,11 +86,6 @@ export const otherWork: OtherWorkLink[] = [
     title: "Brand Builder",
     tagline: "AI-powered design system pipeline",
     href: "/case-study/brand-builder",
-  },
-  {
-    title: "StudyMap",
-    tagline: "Visual knowledge platform for students",
-    href: "/case-study/study-map",
   },
   {
     title: "SpecLint",

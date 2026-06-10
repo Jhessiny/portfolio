@@ -105,12 +105,14 @@
 .cs-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 20px;
 }
 
 /* ── Card wrapper (entrance animation) ── */
 .cs-card-wrap {
   position: relative;
+  display: flex;
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 0.7s ease var(--delay, 0s), transform 0.7s ease var(--delay, 0s);
@@ -122,7 +124,8 @@
 
 /* ── Card link ── */
 .cs-card-link {
-  display: block;
+  display: flex;
+  width: 100%;
   text-decoration: none;
   color: inherit;
 }
@@ -130,8 +133,8 @@
 /* ── Live URL badge (outside the card link, valid HTML) ── */
 .cs-card__live {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 36px;
+  right: 32px;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -158,9 +161,9 @@
   line-height: 1;
 }
 
-/* The live badge sits where the status pill used to be — nudge status pill out of the way */
+/* Reserve room on the right so header content never collides with the live badge */
 .cs-card-wrap:has(.cs-card__live) .cs-card__header {
-  padding-right: 120px;
+  padding-right: 140px;
 }
 
 /* ── Card ── */
@@ -169,6 +172,9 @@
   padding: 36px 32px 56px;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s, background 0.35s;
   background: #0a1628;
 }
@@ -228,8 +234,8 @@
 /* header row */
 .cs-card__header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  gap: 14px;
   margin-bottom: 28px;
 }
 .cs-card__index {
@@ -306,6 +312,7 @@
   gap: 20px;
   flex-wrap: wrap;
   padding-top: 20px;
+  margin-top: auto;
   border-top: 1px solid #1e3a4a;
 }
 .cs-card__tech {
