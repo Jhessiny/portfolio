@@ -212,7 +212,7 @@ export function getPortfolioData(): PortfolioData {
       linkedin: "https://www.linkedin.com/in/jhessiny-mattos/",
       github: "https://github.com/Jhessiny",
       website: "https://portfolio-nu-seven-lv4odav0is.vercel.app",
-      resume: "/assets/RESUME - JHÉSSINY MATTOS.pdf",
+      resume: "/assets/RESUME_JHESSINY_MATTOS_AI_2026.pdf",
     },
   };
 }
